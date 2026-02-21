@@ -26,6 +26,11 @@ export function renderHeader() {
             <a href="#/word-counter">Word Counter</a>
             <a href="#/diff-checker">Diff Checker</a>
             <a href="#/password-generator">Passwords</a>
+            <a href="#/qr-code-generator">QR Code</a>
+            <a href="#/image-base64">Image Base64</a>
+            <a href="#/css-gradient">CSS Gradient</a>
+            <a href="#/meta-tag-generator">Meta Tags</a>
+            <a href="#/favicon-generator">Favicon</a>
           </div>
         </div>
         <a href="#/about">About</a>
@@ -46,6 +51,11 @@ export function renderHeader() {
       <a href="#/word-counter">Word Counter</a>
       <a href="#/diff-checker">Diff Checker</a>
       <a href="#/password-generator">Passwords</a>
+      <a href="#/qr-code-generator">QR Code Generator</a>
+      <a href="#/image-base64">Image ↔ Base64</a>
+      <a href="#/css-gradient">CSS Gradient</a>
+      <a href="#/meta-tag-generator">Meta Tags</a>
+      <a href="#/favicon-generator">Favicon Generator</a>
       <div class="mobile-nav-divider"></div>
       <a href="#/about">About</a>
       <a href="#/contact">Contact</a>

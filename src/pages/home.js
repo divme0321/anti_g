@@ -91,6 +91,36 @@ const tools = [
     title: 'Password Generator',
     description: 'Generate cryptographically secure random passwords with customizable options.',
   },
+  {
+    id: 'qr-code-generator',
+    icon: '📱',
+    title: 'QR Code Generator',
+    description: 'Generate QR codes for URLs, WiFi, email, and phone. Download as PNG or SVG.',
+  },
+  {
+    id: 'image-base64',
+    icon: '🖼️',
+    title: 'Image ↔ Base64',
+    description: 'Convert images to Base64 data URIs or decode Base64 strings back to images.',
+  },
+  {
+    id: 'css-gradient',
+    icon: '🌈',
+    title: 'CSS Gradient Generator',
+    description: 'Create beautiful CSS linear, radial, and conic gradients with a visual editor.',
+  },
+  {
+    id: 'meta-tag-generator',
+    icon: '🏷️',
+    title: 'Meta Tag Generator',
+    description: 'Generate SEO meta tags, Open Graph, and Twitter Cards with Google & social previews.',
+  },
+  {
+    id: 'favicon-generator',
+    icon: '⭐',
+    title: 'Favicon Generator',
+    description: 'Create favicons from emoji or text. Download in all sizes for web, iOS, and Android.',
+  },
 ];
 
 export function renderHome() {

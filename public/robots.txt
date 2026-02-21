@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://v0-anti-g.vercel.app/sitemap.xml

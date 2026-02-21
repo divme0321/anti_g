@@ -1,0 +1,71 @@
+name: Antigravity Auto - Weekly Tool Suggestions
+
+on:
+  schedule:
+    # Runs every Monday at 9:00 AM JST (Sunday midnight UTC)
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  suggest-new-tools:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Count existing tools
+        id: count
+        run: |
+          TOOL_COUNT=$(ls src/tools/*.js | wc -l | tr -d ' ')
+          echo "tool_count=$TOOL_COUNT" >> $GITHUB_OUTPUT
+          echo "Current tools: $TOOL_COUNT"
+
+      - name: Create weekly issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const toolCount = '${{ steps.count.outputs.tool_count }}';
+            const date = new Date().toISOString().split('T')[0];
+
+            const suggestedTools = [
+              'JSON to YAML Converter',
+              'SVG Optimizer / Minifier',
+              'JWT Decoder',
+              'Crontab Expression Generator',
+              'SQL Formatter',
+              'HTML Table Generator',
+              'Emoji Picker & Search',
+              'CSS Box Shadow Generator',
+              'Aspect Ratio Calculator',
+              'HTTP Status Code Reference',
+              'MIME Type Lookup',
+              'JSON Schema Validator',
+              'Image Color Palette Extractor',
+              'CSS Animation Generator',
+              'Open Graph Image Preview',
+              'IP Address Lookup',
+              'DNS Lookup Tool',
+              'Markdown Table Generator',
+              'Text Case Converter',
+              'Chmod Calculator',
+            ];
+
+            // Pick 5 random suggestions
+            const picked = [];
+            const copy = [...suggestedTools];
+            for (let i = 0; i < 5 && copy.length > 0; i++) {
+              const idx = Math.floor(Math.random() * copy.length);
+              picked.push(copy.splice(idx, 1)[0]);
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🤖 Weekly Tool Suggestions - ${date}`,
+              body: `## Antigravity Auto Report\n\n**Current tool count:** ${toolCount}\n**Date:** ${date}\n\n### Suggested New Tools for This Week\n\n${picked.map((t, i) => `- [ ] ${i + 1}. **${t}**`).join('\n')}\n\n### Priority Actions\n- Review Google Search Console for top query opportunities\n- Check which tools are getting the most traffic\n- Consider adding related blog content\n\n---\n*This issue was automatically created by the Antigravity Auto workflow.*`,
+              labels: ['enhancement', 'auto-suggestion']
+            });

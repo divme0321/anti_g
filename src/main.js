@@ -21,6 +21,11 @@ import { renderTimestampConverter } from './tools/timestamp-converter.js';
 import { renderWordCounter } from './tools/word-counter.js';
 import { renderDiffChecker } from './tools/diff-checker.js';
 import { renderPasswordGenerator } from './tools/password-generator.js';
+import { renderQrCodeGenerator } from './tools/qr-code-generator.js';
+import { renderImageBase64 } from './tools/image-base64.js';
+import { renderCssGradient } from './tools/css-gradient.js';
+import { renderMetaTagGenerator } from './tools/meta-tag-generator.js';
+import { renderFaviconGenerator } from './tools/favicon-generator.js';
 
 const routes = {
   '': renderHome,
@@ -43,6 +48,11 @@ const routes = {
   'word-counter': renderWordCounter,
   'diff-checker': renderDiffChecker,
   'password-generator': renderPasswordGenerator,
+  'qr-code-generator': renderQrCodeGenerator,
+  'image-base64': renderImageBase64,
+  'css-gradient': renderCssGradient,
+  'meta-tag-generator': renderMetaTagGenerator,
+  'favicon-generator': renderFaviconGenerator,
 };
 
 function getRoute() {
@@ -105,6 +115,11 @@ function updateMeta(route) {
     'word-counter': 'Word Counter & Text Analyzer — DevToolBox',
     'diff-checker': 'Diff Checker — DevToolBox',
     'password-generator': 'Password Generator — DevToolBox',
+    'qr-code-generator': 'QR Code Generator — DevToolBox',
+    'image-base64': 'Image ↔ Base64 Converter — DevToolBox',
+    'css-gradient': 'CSS Gradient Generator — DevToolBox',
+    'meta-tag-generator': 'Meta Tag Generator — DevToolBox',
+    'favicon-generator': 'Favicon Generator — DevToolBox',
   };
   document.title = titles[route] || titles[''];
 }
