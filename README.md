@@ -53,3 +53,4 @@ Ad slots are pre-configured in the layout. To activate:
 ## License
 
 MIT
+
