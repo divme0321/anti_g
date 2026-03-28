@@ -68,21 +68,9 @@ function render() {
   app.innerHTML = '';
   app.appendChild(renderHeader());
 
-  // Top ad slot
-  const adTop = document.createElement('div');
-  adTop.className = 'ad-slot';
-  adTop.innerHTML = '<div class="ad-slot-inner" id="ad-top"><!-- AdSense ad unit code here --></div>';
-  app.appendChild(adTop);
-
   const main = document.createElement('main');
   main.appendChild(renderPage());
   app.appendChild(main);
-
-  // Bottom ad slot
-  const adBottom = document.createElement('div');
-  adBottom.className = 'ad-slot';
-  adBottom.innerHTML = '<div class="ad-slot-inner" id="ad-bottom"><!-- AdSense ad unit code here --></div>';
-  app.appendChild(adBottom);
 
   app.appendChild(renderFooter());
 

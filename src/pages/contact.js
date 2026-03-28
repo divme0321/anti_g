@@ -70,10 +70,36 @@ export function renderContact() {
         const form = document.getElementById('contact-form');
         const success = document.getElementById('contact-success');
         if (form) {
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                form.style.display = 'none';
-                success.style.display = 'block';
+                const btn = form.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+
+                const data = {
+                    name: document.getElementById('contact-name').value,
+                    email: document.getElementById('contact-email').value,
+                    subject: document.getElementById('contact-subject').value,
+                    message: document.getElementById('contact-message').value,
+                };
+
+                try {
+                    const res = await fetch('https://formspree.io/f/xreoeaqb', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+                    if (res.ok) {
+                        form.style.display = 'none';
+                        success.style.display = 'block';
+                    } else {
+                        throw new Error('Failed');
+                    }
+                } catch {
+                    btn.disabled = false;
+                    btn.textContent = 'Send Message';
+                    alert('Failed to send. Please email us directly at devtoolbox.contact@gmail.com');
+                }
             });
         }
     }, 0);
