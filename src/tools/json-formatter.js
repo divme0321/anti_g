@@ -6,7 +6,7 @@ export function renderJsonFormatter() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>JSON Formatter</span>
+        <a href="/">Home</a> <span>/</span> <span>JSON Formatter</span>
       </div>
       <h1>JSON Formatter & Validator</h1>
       <p>Paste your JSON to format, validate, or minify it instantly.</p>

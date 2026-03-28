@@ -61,7 +61,7 @@ export function renderColorConverter() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>Color Converter</span>
+        <a href="/">Home</a> <span>/</span> <span>Color Converter</span>
       </div>
       <h1>Color Converter</h1>
       <p>Convert colors between HEX, RGB, and HSL formats with a live preview.</p>

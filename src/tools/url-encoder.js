@@ -6,7 +6,7 @@ export function renderUrlEncoder() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>URL Encoder / Decoder</span>
+        <a href="/">Home</a> <span>›</span> <span>URL Encoder / Decoder</span>
       </div>
       <h1>URL Encoder / Decoder</h1>
       <p>Encode special characters for safe URL usage, or decode URL-encoded strings back to readable text.</p>

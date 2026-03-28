@@ -7,7 +7,7 @@ export function renderMetaTagGenerator() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Meta Tag Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>Meta Tag Generator</span>
       </div>
       <h1>Meta Tag Generator</h1>
       <p>Generate SEO-optimized meta tags, Open Graph tags, and Twitter Cards for your website. Preview how your page looks on Google and social media.</p>

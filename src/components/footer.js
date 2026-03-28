@@ -13,32 +13,44 @@ export function renderFooter() {
         </div>
         <div class="footer-col">
           <h4>Popular Tools</h4>
-          <a href="#/json-formatter">JSON Formatter</a>
-          <a href="#/base64">Base64 Encoder</a>
-          <a href="#/uuid-generator">UUID Generator</a>
-          <a href="#/hash-generator">Hash Generator</a>
-          <a href="#/password-generator">Password Generator</a>
+          <a href="/json-formatter">JSON Formatter</a>
+          <a href="/base64">Base64 Encoder</a>
+          <a href="/uuid-generator">UUID Generator</a>
+          <a href="/hash-generator">Hash Generator</a>
+          <a href="/password-generator">Password Generator</a>
         </div>
         <div class="footer-col">
           <h4>More Tools</h4>
-          <a href="#/color-converter">Color Converter</a>
-          <a href="#/regex-tester">Regex Tester</a>
-          <a href="#/css-minifier">CSS Minifier</a>
-          <a href="#/timestamp-converter">Timestamp Converter</a>
-          <a href="#/diff-checker">Diff Checker</a>
+          <a href="/color-converter">Color Converter</a>
+          <a href="/regex-tester">Regex Tester</a>
+          <a href="/css-minifier">CSS Minifier</a>
+          <a href="/timestamp-converter">Timestamp Converter</a>
+          <a href="/diff-checker">Diff Checker</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="#/about">About</a>
-          <a href="#/contact">Contact</a>
-          <a href="#/privacy">Privacy Policy</a>
-          <a href="#/terms">Terms of Service</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© ${new Date().getFullYear()} <a href="#/">DevToolBox</a> — Free developer tools, built with ♥</p>
+        <p>© ${new Date().getFullYear()} <a href="/">DevToolBox</a> — Free developer tools, built with ♥</p>
       </div>
     </div>
   `;
+
+  footer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('/')) {
+        e.preventDefault();
+        history.pushState(null, '', href);
+        window.dispatchEvent(new Event('popstate'));
+      }
+    });
+  });
+
   return footer;
 }

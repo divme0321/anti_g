@@ -17,7 +17,7 @@ export function renderHtmlEntities() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>HTML Entity Encoder / Decoder</span>
+        <a href="/">Home</a> <span>›</span> <span>HTML Entity Encoder / Decoder</span>
       </div>
       <h1>HTML Entity Encoder / Decoder</h1>
       <p>Convert special characters to HTML entities and vice versa. Essential for safely embedding content in HTML.</p>

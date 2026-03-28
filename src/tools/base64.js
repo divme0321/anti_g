@@ -6,7 +6,7 @@ export function renderBase64() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>Base64</span>
+        <a href="/">Home</a> <span>/</span> <span>Base64</span>
       </div>
       <h1>Base64 Encoder / Decoder</h1>
       <p>Encode text to Base64 or decode Base64 strings instantly.</p>

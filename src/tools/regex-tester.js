@@ -4,7 +4,7 @@ export function renderRegexTester() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Regex Tester</span>
+        <a href="/">Home</a> <span>›</span> <span>Regex Tester</span>
       </div>
       <h1>Regex Tester</h1>
       <p>Test regular expressions against sample text with real-time match highlighting, capture groups, and flag support.</p>

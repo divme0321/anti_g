@@ -6,7 +6,7 @@ export function renderPasswordGenerator() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Password Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>Password Generator</span>
       </div>
       <h1>Password Generator</h1>
       <p>Generate strong, random passwords with customizable length and character options. Uses cryptographically secure random number generation.</p>

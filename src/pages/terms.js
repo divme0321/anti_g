@@ -68,7 +68,7 @@ export function renderTerms() {
 
       <section>
         <h2>9. Privacy</h2>
-        <p>Your use of the Service is also governed by our <a href="#/privacy">Privacy Policy</a>, which describes how we handle information collected through the Service.</p>
+        <p>Your use of the Service is also governed by our <a href="/privacy">Privacy Policy</a>, which describes how we handle information collected through the Service.</p>
       </section>
 
       <section>
@@ -78,7 +78,7 @@ export function renderTerms() {
 
       <section>
         <h2>11. Contact</h2>
-        <p>If you have any questions about these Terms, please visit our <a href="#/contact">Contact page</a>.</p>
+        <p>If you have any questions about these Terms, please visit our <a href="/contact">Contact page</a>.</p>
       </section>
     </div>
   `;

@@ -49,7 +49,7 @@ export function renderAbout() {
           <li><strong>Converters:</strong> Color Converter (HEX/RGB/HSL), Timestamp Converter</li>
           <li><strong>Text Tools:</strong> Markdown Preview, Word Counter, Diff Checker, Regex Tester</li>
         </ul>
-        <p>We're constantly adding new tools. If you have a suggestion, feel free to reach out via our <a href="#/contact">Contact page</a>.</p>
+        <p>We're constantly adding new tools. If you have a suggestion, feel free to reach out via our <a href="/contact">Contact page</a>.</p>
       </section>
 
       <section>
@@ -99,7 +99,7 @@ export function renderAbout() {
           </div>
           <div class="faq-item">
             <h3>How can I report a bug or suggest a feature?</h3>
-            <p>Please visit our <a href="#/contact">Contact page</a> to send us a message. We appreciate all feedback!</p>
+            <p>Please visit our <a href="/contact">Contact page</a> to send us a message. We appreciate all feedback!</p>
           </div>
         </div>
       </section>

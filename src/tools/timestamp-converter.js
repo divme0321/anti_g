@@ -6,7 +6,7 @@ export function renderTimestampConverter() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Timestamp Converter</span>
+        <a href="/">Home</a> <span>›</span> <span>Timestamp Converter</span>
       </div>
       <h1>Unix Timestamp Converter</h1>
       <p>Convert between Unix timestamps and human-readable date/time formats. Essential for debugging APIs and working with date fields.</p>

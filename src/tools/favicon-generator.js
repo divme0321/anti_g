@@ -7,7 +7,7 @@ export function renderFaviconGenerator() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Favicon Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>Favicon Generator</span>
       </div>
       <h1>Favicon Generator</h1>
       <p>Create favicons from text, emoji, or initials. Download in multiple sizes for web, iOS, and Android.</p>

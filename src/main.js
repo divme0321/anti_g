@@ -56,8 +56,8 @@ const routes = {
 };
 
 function getRoute() {
-  const hash = window.location.hash.replace('#/', '').replace('#', '');
-  return hash || '';
+  const path = window.location.pathname.replace(/^\//, '');
+  return path || '';
 }
 
 function render() {
@@ -112,7 +112,7 @@ function updateMeta(route) {
   document.title = titles[route] || titles[''];
 }
 
-window.addEventListener('hashchange', render);
+window.addEventListener('popstate', render);
 window.addEventListener('DOMContentLoaded', render);
 
 // Toast utility

@@ -17,7 +17,7 @@ export function renderUuidGenerator() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>UUID Generator</span>
+        <a href="/">Home</a> <span>/</span> <span>UUID Generator</span>
       </div>
       <h1>UUID Generator</h1>
       <p>Generate random UUID v4 identifiers instantly. Click to copy.</p>

@@ -6,122 +6,122 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/json-formatter</loc>
+    <loc>https://devtoolbox.link/json-formatter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/base64</loc>
+    <loc>https://devtoolbox.link/base64</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/uuid-generator</loc>
+    <loc>https://devtoolbox.link/uuid-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/color-converter</loc>
+    <loc>https://devtoolbox.link/color-converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/lorem-ipsum</loc>
+    <loc>https://devtoolbox.link/lorem-ipsum</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/markdown-preview</loc>
+    <loc>https://devtoolbox.link/markdown-preview</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/hash-generator</loc>
+    <loc>https://devtoolbox.link/hash-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/url-encoder</loc>
+    <loc>https://devtoolbox.link/url-encoder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/html-entities</loc>
+    <loc>https://devtoolbox.link/html-entities</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/regex-tester</loc>
+    <loc>https://devtoolbox.link/regex-tester</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/css-minifier</loc>
+    <loc>https://devtoolbox.link/css-minifier</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/timestamp-converter</loc>
+    <loc>https://devtoolbox.link/timestamp-converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/word-counter</loc>
+    <loc>https://devtoolbox.link/word-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/diff-checker</loc>
+    <loc>https://devtoolbox.link/diff-checker</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/password-generator</loc>
+    <loc>https://devtoolbox.link/password-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/qr-code-generator</loc>
+    <loc>https://devtoolbox.link/qr-code-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/image-base64</loc>
+    <loc>https://devtoolbox.link/image-base64</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/css-gradient</loc>
+    <loc>https://devtoolbox.link/css-gradient</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/meta-tag-generator</loc>
+    <loc>https://devtoolbox.link/meta-tag-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/favicon-generator</loc>
+    <loc>https://devtoolbox.link/favicon-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/about</loc>
+    <loc>https://devtoolbox.link/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/contact</loc>
+    <loc>https://devtoolbox.link/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/privacy</loc>
+    <loc>https://devtoolbox.link/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://devtoolbox.link/#/terms</loc>
+    <loc>https://devtoolbox.link/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

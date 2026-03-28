@@ -8,7 +8,7 @@ export function renderQrCodeGenerator() {
   page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>QR Code Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>QR Code Generator</span>
       </div>
       <h1>QR Code Generator</h1>
       <p>Generate QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.</p>

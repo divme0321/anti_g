@@ -4,7 +4,7 @@ export function renderWordCounter() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Word Counter</span>
+        <a href="/">Home</a> <span>›</span> <span>Word Counter</span>
       </div>
       <h1>Word Counter & Text Analyzer</h1>
       <p>Count words, characters, sentences, and paragraphs. Estimate reading time and analyze text statistics in real time.</p>

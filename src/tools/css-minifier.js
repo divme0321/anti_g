@@ -6,7 +6,7 @@ export function renderCssMinifier() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>CSS Minifier / Beautifier</span>
+        <a href="/">Home</a> <span>›</span> <span>CSS Minifier / Beautifier</span>
       </div>
       <h1>CSS Minifier / Beautifier</h1>
       <p>Minify CSS to reduce file size for production, or beautify minified CSS for readability. Helps improve page load performance.</p>

@@ -6,7 +6,7 @@ export function renderHashGenerator() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Hash Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>Hash Generator</span>
       </div>
       <h1>Hash Generator</h1>
       <p>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text input. Useful for verifying data integrity and creating checksums.</p>

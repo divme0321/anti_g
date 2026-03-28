@@ -67,7 +67,7 @@ export function renderMarkdownPreview() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>Markdown Preview</span>
+        <a href="/">Home</a> <span>/</span> <span>Markdown Preview</span>
       </div>
       <h1>Markdown Preview</h1>
       <p>Write Markdown and see a beautiful rendered preview in real-time.</p>

@@ -7,7 +7,7 @@ export function renderCssGradient() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>CSS Gradient Generator</span>
+        <a href="/">Home</a> <span>›</span> <span>CSS Gradient Generator</span>
       </div>
       <h1>CSS Gradient Generator</h1>
       <p>Create beautiful CSS gradients with a visual editor. Copy the CSS code directly into your project.</p>

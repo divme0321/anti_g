@@ -91,7 +91,7 @@ export function renderPrivacy() {
 
       <section>
         <h2>Contact Us</h2>
-        <p>If you have any questions or concerns about this Privacy Policy, please visit our <a href="#/contact">Contact page</a>.</p>
+        <p>If you have any questions or concerns about this Privacy Policy, please visit our <a href="/contact">Contact page</a>.</p>
       </section>
     </div>
   `;

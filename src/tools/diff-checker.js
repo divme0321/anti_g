@@ -4,7 +4,7 @@ export function renderDiffChecker() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Diff Checker</span>
+        <a href="/">Home</a> <span>›</span> <span>Diff Checker</span>
       </div>
       <h1>Diff Checker</h1>
       <p>Compare two blocks of text side by side and see the differences highlighted. Perfect for code reviews and document comparison.</p>

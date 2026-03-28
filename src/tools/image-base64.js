@@ -7,7 +7,7 @@ export function renderImageBase64() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>›</span> <span>Image ↔ Base64</span>
+        <a href="/">Home</a> <span>›</span> <span>Image ↔ Base64</span>
       </div>
       <h1>Image ↔ Base64 Converter</h1>
       <p>Convert images to Base64 data URIs or decode Base64 strings back to images. Supports PNG, JPG, GIF, SVG, WebP.</p>

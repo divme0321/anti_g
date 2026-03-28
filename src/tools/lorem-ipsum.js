@@ -37,7 +37,7 @@ export function renderLoremIpsum() {
     page.innerHTML = `
     <div class="tool-header">
       <div class="tool-breadcrumb">
-        <a href="#/">Home</a> <span>/</span> <span>Lorem Ipsum</span>
+        <a href="/">Home</a> <span>/</span> <span>Lorem Ipsum</span>
       </div>
       <h1>Lorem Ipsum Generator</h1>
       <p>Generate placeholder text for your designs and mockups.</p>
