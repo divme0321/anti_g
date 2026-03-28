@@ -109,7 +109,55 @@ function updateMeta(route) {
     'meta-tag-generator': 'Meta Tag Generator — DevToolBox',
     'favicon-generator': 'Favicon Generator — DevToolBox',
   };
+
+  const descriptions = {
+    '': 'Free, fast, and private online developer tools. JSON formatter, Base64 encoder, UUID generator, regex tester, and 16 more tools. No signup required. All processing in your browser.',
+    'privacy': 'Privacy Policy for DevToolBox. Learn how we handle your data. All tool processing happens in your browser — nothing is ever sent to our servers.',
+    'terms': 'Terms of Service for DevToolBox. Read the terms governing your use of our free online developer tools.',
+    'about': 'About DevToolBox — a free collection of fast, private, browser-based developer tools. No ads, no tracking, no signup required.',
+    'contact': 'Contact DevToolBox. Send us feedback, bug reports, or feature requests. We read every message.',
+    'json-formatter': 'Free online JSON formatter and validator. Paste JSON to instantly format, beautify, minify, and validate. Syntax highlighting and error detection. No signup required.',
+    'base64': 'Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 strings back to plain text instantly. Supports UTF-8. No data sent to server.',
+    'uuid-generator': 'Free online UUID v4 generator. Generate single or bulk UUIDs instantly. Copy to clipboard with one click. Cryptographically random. No signup required.',
+    'color-converter': 'Free online color converter. Convert between HEX, RGB, and HSL formats with a live color preview. Pick colors visually and copy CSS values instantly.',
+    'lorem-ipsum': 'Free online Lorem Ipsum generator. Generate placeholder text by paragraphs, sentences, or words. Customize length for your design mockups.',
+    'markdown-preview': 'Free online Markdown editor with live preview. Write Markdown and see rendered HTML in real time. Supports GFM, tables, and code blocks.',
+    'hash-generator': 'Free online hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text. Instant results, no data sent to server.',
+    'url-encoder': 'Free online URL encoder and decoder. Encode special characters for safe URL usage or decode percent-encoded strings. Handles query strings and full URLs.',
+    'html-entities': 'Free online HTML entity encoder and decoder. Convert special characters to HTML entities and decode them back. Supports named, numeric, and full non-ASCII encoding.',
+    'regex-tester': 'Free online regex tester and debugger. Test regular expressions with real-time match highlighting and capture group display. Supports all JS regex flags.',
+    'css-minifier': 'Free online CSS minifier and beautifier. Minify CSS for production or beautify minified CSS for readability. See exact size savings instantly.',
+    'timestamp-converter': 'Free online Unix timestamp converter. Convert Unix timestamps to human-readable dates and back. Supports seconds and milliseconds. Includes live clock.',
+    'word-counter': 'Free online word counter and text analyzer. Count words, characters, sentences, paragraphs, and estimate reading time. Paste any text for instant results.',
+    'diff-checker': 'Free online diff checker. Compare two texts side by side and see differences highlighted with added and removed lines. Instant results in your browser.',
+    'password-generator': 'Free online password generator. Generate cryptographically secure random passwords with custom length, uppercase, numbers, and symbols.',
+    'qr-code-generator': 'Free online QR code generator. Create QR codes for URLs, text, email, and phone numbers. Download as PNG or SVG. No signup required.',
+    'image-base64': 'Free online image to Base64 converter. Convert images to Base64 data URIs or decode Base64 strings back to images. Supports PNG, JPEG, GIF, and WebP.',
+    'css-gradient': 'Free online CSS gradient generator. Create beautiful linear, radial, and conic gradients with a visual editor. Copy the CSS code instantly.',
+    'meta-tag-generator': 'Free online meta tag generator. Generate SEO meta tags, Open Graph tags, and Twitter Cards with a live Google and social media preview.',
+    'favicon-generator': 'Free online favicon generator. Create favicons from emoji or text. Download in all required sizes for web, iOS, and Android. No design skills needed.',
+  };
+
   document.title = titles[route] || titles[''];
+
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) {
+    metaDesc = document.createElement('meta');
+    metaDesc.setAttribute('name', 'description');
+    document.head.appendChild(metaDesc);
+  }
+  metaDesc.setAttribute('content', descriptions[route] || descriptions['']);
+
+  let ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', descriptions[route] || descriptions['']);
+
+  let ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', titles[route] || titles['']);
+
+  let canonicalLink = document.querySelector('link[rel="canonical"]');
+  if (canonicalLink) {
+    canonicalLink.setAttribute('href', `https://devtoolbox.link${window.location.pathname}`);
+  }
 }
 
 window.addEventListener('popstate', render);
