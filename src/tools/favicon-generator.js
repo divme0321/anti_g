@@ -104,6 +104,14 @@ export function renderFaviconGenerator() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Favicon Generator</h2>
+      <p style="margin-bottom: 1.5rem;">Generate a complete set of favicons for all modern browsers, devices, and platforms from a single image or emoji. A proper favicon setup is crucial for brand identity and browser tab recognition.</p>
+      <p style="margin-bottom: 1.5rem;">This tool creates the necessary sizes for iOS, Android, Windows, and standard web formats, along with the HTML meta tags required to implement them.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

@@ -71,6 +71,14 @@ export function renderHashGenerator() {
         <li><strong>SHA-512</strong> — 512-bit hash. Longer output, slightly more secure than SHA-256 for specific applications.</li>
       </ul>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Hash Generator (MD5, SHA)</h2>
+      <p style="margin-bottom: 1.5rem;">Generate cryptographic hashes instantly using algorithms like MD5, SHA-1, SHA-256, and SHA-512. Hashing is a one-way mathematical function used extensively in data integrity verification and password hashing.</p>
+      <p style="margin-bottom: 1.5rem;">All hashing is performed locally in your browser using the Web Crypto API, meaning your sensitive text is never sent to a server.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

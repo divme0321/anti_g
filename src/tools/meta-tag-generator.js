@@ -113,6 +113,14 @@ export function renderMetaTagGenerator() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">SEO Meta Tag Generator</h2>
+      <p style="margin-bottom: 1.5rem;">Create perfectly formatted HTML meta tags for SEO and social media sharing. Includes Open Graph (Facebook) and Twitter Cards to ensure your links look great when shared.</p>
+      <p style="margin-bottom: 1.5rem;">Proper meta tags are essential for search engine optimization and improving click-through rates from social platforms.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

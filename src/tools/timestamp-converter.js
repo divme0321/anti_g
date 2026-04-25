@@ -72,6 +72,14 @@ export function renderTimestampConverter() {
         <li><strong>ISO 8601:</strong> Human-readable format (e.g., 2024-02-22T00:00:00Z)</li>
       </ul>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Unix Timestamp Converter</h2>
+      <p style="margin-bottom: 1.5rem;">Convert Unix timestamps to human-readable dates and vice versa. Unix time is the number of seconds that have elapsed since January 1, 1970, and is widely used in databases and APIs.</p>
+      <p style="margin-bottom: 1.5rem;">This tool helps developers quickly debug timestamp issues, convert local times to UTC, and manage date-related data easily.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

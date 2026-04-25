@@ -132,6 +132,14 @@ export function renderQrCodeGenerator() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">QR Code Generator</h2>
+      <p style="margin-bottom: 1.5rem;">Create customized QR codes for URLs, text, Wi-Fi networks, or contact information. QR codes bridge the gap between the physical and digital world, allowing users to scan and access data instantly.</p>
+      <p style="margin-bottom: 1.5rem;">Generate high-quality, scannable QR codes completely offline within your browser, ensuring your data remains private.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
   setTimeout(() => {

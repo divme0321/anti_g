@@ -70,6 +70,14 @@ export function renderLoremIpsum() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Lorem Ipsum Generator</h2>
+      <p style="margin-bottom: 1.5rem;">Generate placeholder text instantly for your mockups, wireframes, and prototypes. Lorem Ipsum has been the industry standard dummy text since the 1500s.</p>
+      <p style="margin-bottom: 1.5rem;">Customize the number of paragraphs, words, or lists to perfectly fit your design layout before the final copy is ready.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

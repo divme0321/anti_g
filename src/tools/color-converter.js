@@ -102,6 +102,14 @@ export function renderColorConverter() {
         <div class="pane-body" id="color-palette"></div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Color Converter (HEX, RGB, HSL)</h2>
+      <p style="margin-bottom: 1.5rem;">Our Color Converter allows designers and developers to instantly switch between HEX, RGB, and HSL formats. This is essential when working with different design systems or CSS frameworks that require specific color formats.</p>
+      <p style="margin-bottom: 1.5rem;">Whether you are adjusting lightness in HSL or matching a precise HEX code from a brand guideline, this tool provides real-time previews and a generated palette of shades.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

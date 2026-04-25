@@ -48,7 +48,7 @@ export function renderContact() {
           <div class="contact-method">
             <div class="contact-method-icon">📧</div>
             <h3>Email</h3>
-            <p>For direct inquiries, you can email us at <strong>div.me.0321@gmail.com</strong></p>
+            <p>For direct inquiries, you can email us at <strong>contact@div-me.com</strong></p>
           </div>
           <div class="contact-method">
             <div class="contact-method-icon">💡</div>
@@ -98,7 +98,7 @@ export function renderContact() {
                 } catch {
                     btn.disabled = false;
                     btn.textContent = 'Send Message';
-                    alert('Failed to send. Please email us directly at div.me.0321@gmail.com');
+                    alert('Failed to send. Please email us directly at contact@div-me.com');
                 }
             });
         }

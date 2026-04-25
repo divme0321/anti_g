@@ -101,6 +101,14 @@ export function renderMarkdownPreview() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Markdown Previewer</h2>
+      <p style="margin-bottom: 1.5rem;">Write and preview Markdown in real-time. Markdown is a lightweight markup language used for writing documentation, README files, and blog posts.</p>
+      <p style="margin-bottom: 1.5rem;">Our tool instantly converts your Markdown syntax into formatted HTML, providing a live preview of how your text will look when published.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

@@ -54,6 +54,14 @@ export function renderWordCounter() {
       <h3>How Reading Time is Calculated</h3>
       <p>Average reading speed is approximately 200-250 words per minute. We use 225 wpm as the baseline. Speaking time uses 150 wpm, which is the average pace for presentations.</p>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Word & Character Counter</h2>
+      <p style="margin-bottom: 1.5rem;">Analyze text to get instant word counts, character counts (with and without spaces), paragraph counts, and reading time estimates.</p>
+      <p style="margin-bottom: 1.5rem;">Perfect for content creators, copywriters, and developers needing to meet strict length limits for SEO meta descriptions, tweets, or database fields.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

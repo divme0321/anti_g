@@ -85,6 +85,14 @@ export function renderCssGradient() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">CSS Gradient Generator</h2>
+      <p style="margin-bottom: 1.5rem;">Create beautiful, pure CSS gradients without writing a single line of code. Our CSS Gradient Generator provides a visual interface to blend colors, adjust angles, and instantly copy the cross-browser compatible CSS code.</p>
+      <p style="margin-bottom: 1.5rem;">Gradients can significantly enhance the visual appeal of backgrounds, buttons, and text. This tool ensures your gradients look perfect on all devices while keeping your site lightweight and fast.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

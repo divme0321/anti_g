@@ -52,6 +52,14 @@ export function renderDiffChecker() {
       <h3>How It Works</h3>
       <p>This tool uses a line-by-line comparison algorithm. Each line is compared between the original and modified text. Lines that exist only in the original are marked as removed (red), lines that exist only in the modified text are marked as added (green), and matching lines are shown as context.</p>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Text Diff Checker</h2>
+      <p style="margin-bottom: 1.5rem;">Compare two text blocks or code snippets instantly to spot the differences. The Diff Checker highlights additions, deletions, and modifications line by line.</p>
+      <p style="margin-bottom: 1.5rem;">This tool is invaluable for reviewing code changes, comparing document drafts, or debugging configuration files without needing to open a full IDE or Git client.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

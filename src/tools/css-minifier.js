@@ -61,6 +61,14 @@ export function renderCssMinifier() {
         <li>Extra spaces around selectors, properties, and values</li>
       </ul>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">CSS Minifier</h2>
+      <p style="margin-bottom: 1.5rem;">Minifying CSS is a critical step in web performance optimization. Our CSS Minifier strips out unnecessary whitespace, comments, and line breaks from your stylesheet, significantly reducing the file size.</p>
+      <p style="margin-bottom: 1.5rem;">Smaller CSS files mean faster download times, quicker rendering, and higher Core Web Vitals scores, which directly impacts your search engine ranking and user experience.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

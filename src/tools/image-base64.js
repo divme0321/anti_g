@@ -66,6 +66,14 @@ export function renderImageBase64() {
         </div>
       </div>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Image to Base64 Converter</h2>
+      <p style="margin-bottom: 1.5rem;">Convert images to Base64 data URIs to embed them directly into your HTML or CSS files. This technique reduces HTTP requests, which can speed up the loading time of small icons or logos.</p>
+      <p style="margin-bottom: 1.5rem;">All image processing happens securely within your browser. The tool also supports converting Base64 strings back into downloadable images.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

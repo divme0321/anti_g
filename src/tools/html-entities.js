@@ -69,6 +69,14 @@ export function renderHtmlEntities() {
         <li><code>&amp;nbsp;</code> → non-breaking space</li>
       </ul>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">HTML Entity Encoder & Decoder</h2>
+      <p style="margin-bottom: 1.5rem;">Safely encode HTML entities to prevent Cross-Site Scripting (XSS) attacks, or decode them back to readable text. Converting reserved characters like &lt; and &gt; ensures your code renders correctly.</p>
+      <p style="margin-bottom: 1.5rem;">This tool is essential for web developers needing to display raw code snippets on a webpage without the browser trying to interpret them as live HTML tags.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {

@@ -58,6 +58,14 @@ export function renderUrlEncoder() {
       </ul>
       <p>Use <code>encodeURIComponent</code> when encoding individual values, and <code>encodeURI</code> when encoding a full URL that should remain navigable.</p>
     </div>
+
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">URL Encoder / Decoder</h2>
+      <p style="margin-bottom: 1.5rem;">Safely encode text for use in URL query strings, or decode URL-encoded strings back to plain text. URL encoding ensures that special characters do not break the URL structure.</p>
+      <p style="margin-bottom: 1.5rem;">Essential for working with REST APIs, handling form submissions, or debugging complex web requests.</p>
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
+      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
+    </div>
   `;
 
     setTimeout(() => {
