@@ -26,6 +26,9 @@ import { renderImageBase64 } from './tools/image-base64.js';
 import { renderCssGradient } from './tools/css-gradient.js';
 import { renderMetaTagGenerator } from './tools/meta-tag-generator.js';
 import { renderFaviconGenerator } from './tools/favicon-generator.js';
+import { renderJwtDecoder } from './tools/jwt-decoder.js';
+import { renderSqlFormatter } from './tools/sql-formatter.js';
+import { renderCronParser } from './tools/cron-parser.js';
 
 const routes = {
   '': renderHome,
@@ -53,6 +56,9 @@ const routes = {
   'css-gradient': renderCssGradient,
   'meta-tag-generator': renderMetaTagGenerator,
   'favicon-generator': renderFaviconGenerator,
+  'jwt-decoder': renderJwtDecoder,
+  'sql-formatter': renderSqlFormatter,
+  'cron-parser': renderCronParser,
 };
 
 function getRoute() {
@@ -108,6 +114,9 @@ function updateMeta(route) {
     'css-gradient': 'CSS Gradient Generator — DevToolBox',
     'meta-tag-generator': 'Meta Tag Generator — DevToolBox',
     'favicon-generator': 'Favicon Generator — DevToolBox',
+    'jwt-decoder': 'JWT Decoder & Inspector — DevToolBox',
+    'sql-formatter': 'SQL Formatter & Beautifier — DevToolBox',
+    'cron-parser': 'CRON Expression Parser — DevToolBox',
   };
 
   const descriptions = {
@@ -136,6 +145,9 @@ function updateMeta(route) {
     'css-gradient': 'Free online CSS gradient generator. Create beautiful linear, radial, and conic gradients with a visual editor. Copy the CSS code instantly.',
     'meta-tag-generator': 'Free online meta tag generator. Generate SEO meta tags, Open Graph tags, and Twitter Cards with a live Google and social media preview.',
     'favicon-generator': 'Free online favicon generator. Create favicons from emoji or text. Download in all required sizes for web, iOS, and Android. No design skills needed.',
+    'jwt-decoder': 'Free online JWT Decoder. Decode JSON Web Tokens securely in your browser to inspect header and payload data without sending tokens to a server.',
+    'sql-formatter': 'Free online SQL Formatter. Beautify and indent minified SQL queries for better readability. No data sent to server.',
+    'cron-parser': 'Free online CRON Expression Parser. Translate complex UNIX CRON schedules into human-readable text instantly.',
   };
 
   document.title = titles[route] || titles[''];

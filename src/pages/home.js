@@ -121,6 +121,24 @@ const tools = [
     title: 'Favicon Generator',
     description: 'Create favicons from emoji or text. Download in all sizes for web, iOS, and Android.',
   },
+  {
+    id: 'jwt-decoder',
+    icon: '🔐',
+    title: 'JWT Decoder',
+    description: 'Decode JSON Web Tokens securely in your browser to inspect header and payload.',
+  },
+  {
+    id: 'sql-formatter',
+    icon: '🗄️',
+    title: 'SQL Formatter',
+    description: 'Beautify and indent minified SQL queries for better readability.',
+  },
+  {
+    id: 'cron-parser',
+    icon: '⏰',
+    title: 'CRON Parser',
+    description: 'Translate complex UNIX CRON schedules into plain, human-readable text.',
+  },
 ];
 
 export function renderHome() {
@@ -138,6 +156,7 @@ export function renderHome() {
         <div class="hero-stat-value">${tools.length}</div>
         <div class="hero-stat-label">Tools Available</div>
       </div>
+
       <div class="hero-stat">
         <div class="hero-stat-value">0ms</div>
         <div class="hero-stat-label">Server Latency</div>
