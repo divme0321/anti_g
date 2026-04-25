@@ -43,6 +43,25 @@ export function renderBase64() {
         </div>
       </div>
     </div>
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Understanding Base64 Encoding & Decoding</h2>
+      
+      <p style="margin-bottom: 1.5rem;">Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It is most commonly used when there is a need to encode binary data that needs to be stored and transferred over media that are designed to deal with textual data. This ensures that the data remains intact without modification during transport.</p>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">How Base64 Works</h3>
+      <p style="margin-bottom: 1.5rem;">The term "Base64" comes from the fact that the encoding uses a set of 64 unique characters to represent data. These include uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and the symbols '+' and '/'. The '=' character is used as padding at the end of the encoded string to ensure the length is a multiple of 4.</p>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Common Applications in Web Development</h3>
+      <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
+        <li><strong>Data URIs:</strong> Embedding small images (like icons or logos) directly into HTML or CSS files to reduce HTTP requests.</li>
+        <li><strong>Basic Authentication:</strong> Encoding credentials (username and password) for use in HTTP headers.</li>
+        <li><strong>Email Attachments:</strong> Using MIME (Multipurpose Internet Mail Extensions) to send binary files over SMTP.</li>
+        <li><strong>JWT (JSON Web Tokens):</strong> Encoding the header and payload sections of a token for secure transmission.</li>
+      </ul>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private Processing</h3>
+      <p>Security is paramount when handling data. Many developers use Base64 to encode sensitive strings or configuration snippets. Our tool performs all encoding and decoding locally in your browser. This means your data is never uploaded to a server, keeping your information safe from third-party interception.</p>
+    </div>
   `;
 
     setTimeout(() => {

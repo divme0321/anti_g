@@ -43,6 +43,25 @@ export function renderUuidGenerator() {
         </div>
       </div>
     </div>
+    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">What is a UUID (Universally Unique Identifier)?</h2>
+      
+      <p style="margin-bottom: 1.5rem;">A <strong>UUID (Universally Unique Identifier)</strong>, also known as a GUID (Globally Unique Identifier), is a 128-bit label used for identification in computer systems. The main purpose of a UUID is to enable distributed systems to uniquely identify information without significant central coordination.</p>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Why Version 4 UUIDs?</h3>
+      <p style="margin-bottom: 1.5rem;">There are several versions of UUIDs (v1, v3, v4, v5). This tool generates <strong>Version 4 UUIDs</strong>, which are based on random numbers. Out of the 128 bits, 122 bits are generated randomly, meaning there are 2<sup>122</sup> (approximately 5.3 x 10<sup>36</sup>) possible v4 UUIDs. The probability of a collision (generating the same ID twice) is so infinitesimally small that it is considered zero for practical purposes.</p>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Common Use Cases for Developers</h3>
+      <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
+        <li><strong>Database Primary Keys:</strong> Using UUIDs as keys allows you to generate IDs on the client-side or in distributed environments without checking a central database for the next available integer.</li>
+        <li><strong>Session Identifiers:</strong> Securely identifying user sessions in web applications.</li>
+        <li><strong>Unique File Names:</strong> Preventing naming conflicts when multiple users upload files to the same storage bucket.</li>
+        <li><strong>Transaction IDs:</strong> Tracking specific events or requests across microservices.</li>
+      </ul>
+
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">The Structure of a UUID</h3>
+      <p>A UUID is represented as 32 hexadecimal digits, displayed in five groups separated by hyphens (e.g., <code>8-4-4-4-12</code>). In a v4 UUID, the 13th character is always '4', and the 17th character is always one of '8', '9', 'a', or 'b' (representing the variant).</p>
+    </div>
   `;
 
     setTimeout(() => {

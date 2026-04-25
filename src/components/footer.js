@@ -10,6 +10,10 @@ export function renderFooter() {
             <span style="font-weight:700;color:var(--color-heading);">DevToolBox</span>
           </div>
           <p>Free, fast, and private developer tools. All processing happens in your browser — no data is ever sent to a server.</p>
+          <div class="footer-operator" style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-dim);">
+            <p style="margin-bottom: 0.25rem;"><strong>Operator:</strong> 合同会社me</p>
+            <p style="margin-bottom: 0;">〒107-0052 東京都港区南青山2丁目2-15 UCF635</p>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Popular Tools</h4>
@@ -20,23 +24,22 @@ export function renderFooter() {
           <a href="/password-generator">Password Generator</a>
         </div>
         <div class="footer-col">
-          <h4>More Tools</h4>
-          <a href="/color-converter">Color Converter</a>
-          <a href="/regex-tester">Regex Tester</a>
-          <a href="/css-minifier">CSS Minifier</a>
-          <a href="/timestamp-converter">Timestamp Converter</a>
-          <a href="/diff-checker">Diff Checker</a>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
+          <h4>Legal</h4>
           <a href="/privacy">Privacy Policy</a>
           <a href="/terms">Terms of Service</a>
+          <a href="/about">About Us</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="https://div-me.com/" target="_blank">Corporate Site</a>
+          <a href="/color-converter">Color Converter</a>
+          <a href="/regex-tester">Regex Tester</a>
+          <a href="/timestamp-converter">Timestamp Converter</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© ${new Date().getFullYear()} <a href="/">DevToolBox</a> — Free developer tools, built with ♥</p>
+        <p>© ${new Date().getFullYear()} <a href="/">DevToolBox</a> by 合同会社me — Built with ♥</p>
       </div>
     </div>
   `;
