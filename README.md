@@ -1,76 +1,42 @@
-# DevToolBox — Free Online Developer Tools
+# DevToolBox — 開発者のための無料オンラインツール
 
-> 🚀 Fast, beautiful, and private developer tools that run entirely in your browser.
+> 🚀 JSON整形からQRコード作成まで、23種類の開発者向けツールと技術ブログ。すべてブラウザ内で動作し、データは一切送信されません。
 
-🔗 **Live site**: [https://devtoolbox.link](https://devtoolbox.link)
+🔗 **公開サイト**: [https://devtoolbox.link](https://devtoolbox.link)
 
-## Tools Included (20 tools)
+## 構成
 
-| Category | Tool | Description |
-|----------|------|-------------|
-| **Formatters** | JSON Formatter & Validator | Format, validate, and minify JSON data |
-| | CSS Minifier / Beautifier | Minify or beautify CSS code |
-| | HTML Entity Encoder | Encode/decode HTML entities |
-| **Encoders** | Base64 Encoder / Decoder | Encode/decode text and Base64 strings |
-| | URL Encoder / Decoder | Encode/decode URL strings |
-| | Image ↔ Base64 | Convert images to Base64 data URIs |
-| **Generators** | UUID Generator | Generate UUID v4 (single or bulk) |
-| | Lorem Ipsum Generator | Generate placeholder text |
-| | Hash Generator | MD5 / SHA-1 / SHA-256 / SHA-512 |
-| | Password Generator | Cryptographically secure passwords |
-| | QR Code Generator | Generate QR codes as PNG or SVG |
-| | CSS Gradient Generator | Visual CSS gradient editor |
-| | Meta Tag Generator | SEO / OGP / Twitter Card tags |
-| | Favicon Generator | Favicon from emoji or text |
-| **Converters** | Color Converter | HEX ↔ RGB ↔ HSL with live preview |
-| | Timestamp Converter | Unix timestamp ↔ human-readable date |
-| **Text Tools** | Markdown Preview | Real-time Markdown editor and preview |
-| | Word Counter | Words, characters, reading time |
-| | Diff Checker | Compare two texts side by side |
-| | Regex Tester | Test regex with live match highlighting |
+- **23のオンラインツール** — 変換・整形 / エンコード・ハッシュ / ジェネレーター / Web制作 / 開発ユーティリティの5カテゴリ。各ツールに日本語の解説記事・FAQ付き。
+- **技術ブログ** (`/blog`) — HTTPステータスコード一覧、正規表現入門、Gitコマンド逆引きなどのリファレンス記事。
+- **完全静的生成** — ビルド時に全ルートのHTMLを生成（SEO・AdSense対応）。sitemap.xml と RSS (feed.xml) も自動生成。
 
-## Getting Started
+## 開発
 
 ```bash
 npm install
-npm run dev
+npm run dev      # 開発サーバー (http://localhost:5173)
+npm run build    # dist/ に静的サイトを生成
+npm run preview  # ビルド結果の確認
 ```
 
-Open `http://localhost:5173` in your browser.
+## デプロイ
 
-## Deploy
+`main` ブランチへの push で Cloudflare Pages が自動デプロイします。
 
-### Cloudflare Pages (Recommended)
-1. Push this repo to GitHub
-2. Connect to [Cloudflare Pages](https://pages.cloudflare.com)
-3. Build command: `npm run build` / Output directory: `dist`
-4. Auto-deploys on every push to `main`
+- ビルドコマンド: `npm run build`
+- 出力ディレクトリ: `dist`
 
-### Netlify
-1. Push to GitHub
-2. Connect to [Netlify](https://netlify.com)
-3. Build command: `npm run build` / Publish directory: `dist`
+## コンテンツの追加・更新
 
-## Monetization (Google AdSense)
+手順は [CLAUDE.md](./CLAUDE.md) を参照（ブログ記事の追加・ツールの追加・品質基準）。
 
-To add AdSense after approval:
+## 技術スタック
 
-1. Add the AdSense script to `index.html` `<head>`:
-```html
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-```
+- **Vite** — ビルド
+- **Vanilla JS** — フレームワークなし。ツールUIは動的importでコード分割
+- **自前SSG** — `scripts/build-static.mjs` が全ページの静的HTMLを生成
+- **Cloudflare Pages** — ホスティング
 
-2. Add ad units in `src/main.js` inside the `render()` function
-
-## Tech Stack
-
-- **Vite** — Lightning-fast build
-- **Vanilla JS** — Zero framework overhead
-- **CSS** — Custom design system, dark mode, glassmorphism
-- **Google Fonts** — Inter + JetBrains Mono
-- **Cloudflare Pages** — Global edge deployment
-
-## License
+## ライセンス
 
 MIT
-

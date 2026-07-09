@@ -1,47 +1,39 @@
-import { showToast, copyToClipboard } from '../main.js';
+import { showToast, copyToClipboard } from '../utils.js';
 
-export function renderImageBase64() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
 
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Image ↔ Base64</span>
-      </div>
-      <h1>Image ↔ Base64 Converter</h1>
-      <p>Convert images to Base64 data URIs or decode Base64 strings back to images. Supports PNG, JPG, GIF, SVG, WebP.</p>
-    </div>
-    <div class="tool-container">
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Image → Base64</span>
+          <span class="pane-title">画像 → Base64</span>
         </div>
         <div class="pane-body">
           <div class="img-b64-dropzone" id="img-dropzone">
             <div class="dropzone-content">
               <div class="dropzone-icon">🖼️</div>
-              <p>Drag & drop an image here</p>
-              <span class="dropzone-sub">or click to select a file</span>
+              <p>ここに画像をドラッグ＆ドロップ</p>
+              <span class="dropzone-sub">またはクリックしてファイルを選択</span>
               <input type="file" id="img-file-input" accept="image/*" class="dropzone-input" />
             </div>
           </div>
           <div id="img-preview-container" style="display:none">
             <div class="img-preview-box">
-              <img id="img-preview" alt="Preview" />
+              <img id="img-preview" alt="プレビュー" />
               <div class="img-meta" id="img-meta"></div>
             </div>
           </div>
           <div id="img-b64-output-area" style="display:none">
             <div class="qr-form-group" style="margin-top: var(--space-md)">
-              <label>Output Format</label>
+              <label>出力形式</label>
               <select id="img-format-select">
-                <option value="datauri">Data URI (with prefix)</option>
-                <option value="raw">Raw Base64</option>
+                <option value="datauri">Data URI（プレフィックス付き）</option>
+                <option value="raw">Base64のみ</option>
               </select>
             </div>
             <div class="pane-actions" style="margin-top: var(--space-sm)">
-              <button class="btn btn-primary" id="img-copy-b64">📋 Copy Base64</button>
+              <button class="btn btn-primary" id="img-copy-b64">📋 Base64をコピー</button>
             </div>
             <textarea id="img-b64-output" rows="8" readonly style="margin-top: var(--space-sm); font-size: 0.75rem;"></textarea>
           </div>
@@ -50,30 +42,21 @@ export function renderImageBase64() {
 
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Base64 → Image</span>
+          <span class="pane-title">Base64 → 画像</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="b64-download">⬇ Download</button>
+            <button class="btn btn-secondary" id="b64-download">⬇ ダウンロード</button>
           </div>
         </div>
         <div class="pane-body">
           <div class="qr-form-group">
-            <label for="b64-input">Paste Base64 string or data URI</label>
-            <textarea id="b64-input" rows="6" placeholder="data:image/png;base64,iVBORw0KGgo... or just the raw base64 string"></textarea>
+            <label for="b64-input">Base64文字列またはData URIを貼り付け</label>
+            <textarea id="b64-input" rows="6" placeholder="data:image/png;base64,iVBORw0KGgo... またはBase64文字列のみ"></textarea>
           </div>
           <div id="b64-preview-container" class="b64-preview-container">
-            <div class="qr-placeholder">Paste a Base64 string above to preview the image</div>
+            <div class="qr-placeholder">上にBase64文字列を貼り付けると画像をプレビューできます</div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Image to Base64 Converter</h2>
-      <p style="margin-bottom: 1.5rem;">Convert images to Base64 data URIs to embed them directly into your HTML or CSS files. This technique reduces HTTP requests, which can speed up the loading time of small icons or logos.</p>
-      <p style="margin-bottom: 1.5rem;">All image processing happens securely within your browser. The tool also supports converting Base64 strings back into downloadable images.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -91,7 +74,7 @@ export function renderImageBase64() {
 
         function processFile(file) {
             if (!file || !file.type.startsWith('image/')) {
-                showToast('Please select an image file', 'error');
+                showToast('画像ファイルを選択してください', 'error');
                 return;
             }
 
@@ -160,7 +143,7 @@ export function renderImageBase64() {
         function decodeBase64() {
             let val = b64Input.value.trim();
             if (!val) {
-                b64PreviewContainer.innerHTML = '<div class="qr-placeholder">Paste a Base64 string above to preview the image</div>';
+                b64PreviewContainer.innerHTML = '<div class="qr-placeholder">上にBase64文字列を貼り付けると画像をプレビューできます</div>';
                 return;
             }
 
@@ -186,7 +169,7 @@ export function renderImageBase64() {
             };
 
             img.onerror = () => {
-                b64PreviewContainer.innerHTML = '<div class="qr-placeholder" style="color: var(--color-error)">Invalid Base64 image data</div>';
+                b64PreviewContainer.innerHTML = '<div class="qr-placeholder" style="color: var(--color-error)">無効なBase64画像データです</div>';
             };
 
             img.src = val;
@@ -197,14 +180,14 @@ export function renderImageBase64() {
         // Download decoded image
         document.getElementById('b64-download').addEventListener('click', () => {
             const img = document.getElementById('b64-decoded-img');
-            if (!img) { showToast('Decode an image first', 'error'); return; }
+            if (!img) { showToast('先に画像をデコードしてください', 'error'); return; }
             const link = document.createElement('a');
             link.download = 'decoded-image.png';
             link.href = img.src;
             link.click();
-            showToast('Image downloaded');
+            showToast('画像をダウンロードしました');
         });
     }, 0);
 
-    return page;
+    return widget;
 }

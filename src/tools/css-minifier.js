@@ -1,74 +1,39 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderCssMinifier() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>CSS Minifier / Beautifier</span>
-      </div>
-      <h1>CSS Minifier / Beautifier</h1>
-      <p>Minify CSS to reduce file size for production, or beautify minified CSS for readability. Helps improve page load performance.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Input CSS</span>
+          <span class="pane-title">入力CSS</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="css-sample">Sample</button>
-            <button class="btn btn-secondary" id="css-clear">Clear</button>
+            <button class="btn btn-secondary" id="css-sample">サンプル</button>
+            <button class="btn btn-secondary" id="css-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="css-input" placeholder="Paste your CSS here..."></textarea>
+          <textarea id="css-input" placeholder="ここにCSSを貼り付けてください..."></textarea>
         </div>
         <div class="tool-actions">
-          <button class="btn btn-primary" id="css-minify">Minify →</button>
-          <button class="btn btn-primary" id="css-beautify">Beautify →</button>
+          <button class="btn btn-primary" id="css-minify">Minify（圧縮） →</button>
+          <button class="btn btn-primary" id="css-beautify">整形 →</button>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Output</span>
+          <span class="pane-title">出力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="css-copy">Copy</button>
+            <button class="btn btn-secondary" id="css-copy">コピー</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="css-output" readonly placeholder="Result will appear here..."></textarea>
+          <textarea id="css-output" readonly placeholder="結果がここに表示されます..."></textarea>
         </div>
         <div class="status-bar">
           <span id="css-stats"></span>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>Why Minify CSS?</h2>
-      <p>CSS minification removes unnecessary characters (whitespace, comments, semicolons) from CSS code without changing its functionality. This results in smaller file sizes, which leads to faster page load times.</p>
-      <h3>Benefits of Minification</h3>
-      <ul>
-        <li><strong>Faster Load Times:</strong> Smaller files download faster, especially on mobile networks.</li>
-        <li><strong>Reduced Bandwidth:</strong> Less data transferred means lower hosting costs and better performance.</li>
-        <li><strong>Better Performance Scores:</strong> Tools like Google PageSpeed Insights recommend minified CSS.</li>
-        <li><strong>Production Best Practice:</strong> Modern build tools automatically minify CSS for production.</li>
-      </ul>
-      <h3>What Gets Removed</h3>
-      <ul>
-        <li>Comments (<code>/* ... */</code>)</li>
-        <li>Unnecessary whitespace and line breaks</li>
-        <li>Trailing semicolons before closing braces</li>
-        <li>Extra spaces around selectors, properties, and values</li>
-      </ul>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">CSS Minifier</h2>
-      <p style="margin-bottom: 1.5rem;">Minifying CSS is a critical step in web performance optimization. Our CSS Minifier strips out unnecessary whitespace, comments, and line breaks from your stylesheet, significantly reducing the file size.</p>
-      <p style="margin-bottom: 1.5rem;">Smaller CSS files mean faster download times, quicker rendering, and higher Core Web Vitals scores, which directly impacts your search engine ranking and user experience.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -120,7 +85,7 @@ export function renderCssMinifier() {
             const result = output.value.length;
             if (original > 0 && result > 0) {
                 const savings = ((1 - result / original) * 100).toFixed(1);
-                stats.textContent = `Original: ${original} chars → Output: ${result} chars (${savings > 0 ? savings + '% smaller' : Math.abs(savings) + '% larger'})`;
+                stats.textContent = `元: ${original} 文字 → 出力: ${result} 文字 (${savings > 0 ? savings + '% 削減' : Math.abs(savings) + '% 増加'})`;
             } else {
                 stats.textContent = '';
             }
@@ -184,5 +149,5 @@ export function renderCssMinifier() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }

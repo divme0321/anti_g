@@ -1,36 +1,28 @@
-import { showToast, copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderCssGradient() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
 
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>CSS Gradient Generator</span>
-      </div>
-      <h1>CSS Gradient Generator</h1>
-      <p>Create beautiful CSS gradients with a visual editor. Copy the CSS code directly into your project.</p>
-    </div>
-    <div class="tool-container">
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Settings</span>
+          <span class="pane-title">設定</span>
         </div>
         <div class="pane-body">
           <div class="qr-settings">
             <div class="qr-form-group">
-              <label for="grad-type">Gradient Type</label>
+              <label for="grad-type">グラデーションの種類</label>
               <select id="grad-type">
-                <option value="linear">Linear Gradient</option>
-                <option value="radial">Radial Gradient</option>
-                <option value="conic">Conic Gradient</option>
+                <option value="linear">線形グラデーション</option>
+                <option value="radial">円形グラデーション</option>
+                <option value="conic">扇形グラデーション</option>
               </select>
             </div>
 
             <div id="grad-linear-opts">
               <div class="qr-form-group">
-                <label for="grad-angle">Angle: <span id="grad-angle-val">135</span>°</label>
+                <label for="grad-angle">角度: <span id="grad-angle-val">135</span>°</label>
                 <input type="range" id="grad-angle" min="0" max="360" value="135" class="grad-range" />
               </div>
               <div class="grad-direction-grid" id="grad-direction-grid">
@@ -48,22 +40,22 @@ export function renderCssGradient() {
 
             <div id="grad-radial-opts" style="display:none">
               <div class="qr-form-group">
-                <label for="grad-shape">Shape</label>
+                <label for="grad-shape">形状</label>
                 <select id="grad-shape">
-                  <option value="circle">Circle</option>
-                  <option value="ellipse">Ellipse</option>
+                  <option value="circle">円</option>
+                  <option value="ellipse">楕円</option>
                 </select>
               </div>
             </div>
 
             <div class="qr-form-group" style="margin-top: var(--space-lg)">
-              <label>Color Stops</label>
+              <label>カラーストップ</label>
               <div id="grad-stops"></div>
-              <button class="btn btn-secondary" id="grad-add-stop" style="margin-top: var(--space-sm)">+ Add Color Stop</button>
+              <button class="btn btn-secondary" id="grad-add-stop" style="margin-top: var(--space-sm)">+ カラーストップを追加</button>
             </div>
 
             <div class="qr-form-group" style="margin-top: var(--space-lg)">
-              <label>Presets</label>
+              <label>プリセット</label>
               <div class="grad-presets" id="grad-presets"></div>
             </div>
           </div>
@@ -72,9 +64,9 @@ export function renderCssGradient() {
 
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Preview & Code</span>
+          <span class="pane-title">プレビューとコード</span>
           <div class="pane-actions">
-            <button class="btn btn-primary" id="grad-copy-css">📋 Copy CSS</button>
+            <button class="btn btn-primary" id="grad-copy-css">📋 CSSをコピー</button>
           </div>
         </div>
         <div class="pane-body">
@@ -84,15 +76,6 @@ export function renderCssGradient() {
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">CSS Gradient Generator</h2>
-      <p style="margin-bottom: 1.5rem;">Create beautiful, pure CSS gradients without writing a single line of code. Our CSS Gradient Generator provides a visual interface to blend colors, adjust angles, and instantly copy the cross-browser compatible CSS code.</p>
-      <p style="margin-bottom: 1.5rem;">Gradients can significantly enhance the visual appeal of backgrounds, buttons, and text. This tool ensures your gradients look perfect on all devices while keeping your site lightweight and fast.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -251,5 +234,5 @@ export function renderCssGradient() {
         updateGradient();
     }, 0);
 
-    return page;
+    return widget;
 }

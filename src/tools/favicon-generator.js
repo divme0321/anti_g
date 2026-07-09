@@ -1,46 +1,38 @@
-import { showToast } from '../main.js';
+import { showToast } from '../utils.js';
 
-export function renderFaviconGenerator() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
 
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Favicon Generator</span>
-      </div>
-      <h1>Favicon Generator</h1>
-      <p>Create favicons from text, emoji, or initials. Download in multiple sizes for web, iOS, and Android.</p>
-    </div>
-    <div class="tool-container">
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Design</span>
+          <span class="pane-title">デザイン</span>
         </div>
         <div class="pane-body">
           <div class="qr-settings">
             <div class="qr-form-group">
-              <label for="fav-mode">Mode</label>
+              <label for="fav-mode">モード</label>
               <select id="fav-mode">
-                <option value="emoji">Emoji</option>
-                <option value="text">Text / Initials</option>
+                <option value="emoji">絵文字</option>
+                <option value="text">テキスト / イニシャル</option>
               </select>
             </div>
 
             <div id="fav-emoji-opts">
               <div class="qr-form-group">
-                <label>Pick an Emoji</label>
+                <label>絵文字を選択</label>
                 <div class="fav-emoji-grid" id="fav-emoji-grid"></div>
               </div>
             </div>
 
             <div id="fav-text-opts" style="display:none">
               <div class="qr-form-group">
-                <label for="fav-text">Text (1-2 characters)</label>
+                <label for="fav-text">テキスト（1〜2文字）</label>
                 <input type="text" id="fav-text" maxlength="2" value="DT" placeholder="AB" />
               </div>
               <div class="qr-form-group">
-                <label for="fav-font">Font</label>
+                <label for="fav-font">フォント</label>
                 <select id="fav-font">
                   <option value="Inter, sans-serif">Inter</option>
                   <option value="Georgia, serif">Georgia</option>
@@ -50,24 +42,24 @@ export function renderFaviconGenerator() {
                 </select>
               </div>
               <div class="qr-form-group">
-                <label for="fav-bold">Bold</label>
+                <label for="fav-bold">太字</label>
                 <select id="fav-bold">
-                  <option value="bold">Yes</option>
-                  <option value="normal">No</option>
+                  <option value="bold">はい</option>
+                  <option value="normal">いいえ</option>
                 </select>
               </div>
             </div>
 
             <div class="qr-options-row">
               <div class="qr-form-group">
-                <label for="fav-bg">Background</label>
+                <label for="fav-bg">背景色</label>
                 <div class="qr-color-input">
                   <input type="color" id="fav-bg" value="#6366f1" />
                   <span id="fav-bg-label">#6366f1</span>
                 </div>
               </div>
               <div class="qr-form-group">
-                <label for="fav-fg">Text Color</label>
+                <label for="fav-fg">文字色</label>
                 <div class="qr-color-input">
                   <input type="color" id="fav-fg" value="#ffffff" />
                   <span id="fav-fg-label">#ffffff</span>
@@ -76,11 +68,11 @@ export function renderFaviconGenerator() {
             </div>
 
             <div class="qr-form-group">
-              <label for="fav-shape">Shape</label>
+              <label for="fav-shape">形状</label>
               <select id="fav-shape">
-                <option value="rounded">Rounded Square</option>
-                <option value="circle">Circle</option>
-                <option value="square">Square</option>
+                <option value="rounded">角丸四角形</option>
+                <option value="circle">円形</option>
+                <option value="square">四角形</option>
               </select>
             </div>
           </div>
@@ -89,40 +81,31 @@ export function renderFaviconGenerator() {
 
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Preview & Download</span>
+          <span class="pane-title">プレビューとダウンロード</span>
         </div>
         <div class="pane-body">
           <div class="fav-preview-grid" id="fav-preview-grid"></div>
           <div class="fav-download-section">
-            <button class="btn btn-primary" id="fav-download-all" style="width:100%; justify-content:center; padding: var(--space-md);">⬇ Download All Sizes (ZIP-free)</button>
+            <button class="btn btn-primary" id="fav-download-all" style="width:100%; justify-content:center; padding: var(--space-md);">⬇ 全サイズをダウンロード（ZIP不要）</button>
           </div>
           <div class="fav-html-section">
-            <label style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); margin-bottom: var(--space-sm); display:block;">HTML Code</label>
+            <label style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); margin-bottom: var(--space-sm); display:block;">HTMLコード</label>
             <pre><code id="fav-html-output"></code></pre>
-            <button class="btn btn-secondary" id="fav-copy-html" style="margin-top: var(--space-sm);">📋 Copy HTML</button>
+            <button class="btn btn-secondary" id="fav-copy-html" style="margin-top: var(--space-sm);">📋 HTMLをコピー</button>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Favicon Generator</h2>
-      <p style="margin-bottom: 1.5rem;">Generate a complete set of favicons for all modern browsers, devices, and platforms from a single image or emoji. A proper favicon setup is crucial for brand identity and browser tab recognition.</p>
-      <p style="margin-bottom: 1.5rem;">This tool creates the necessary sizes for iOS, Android, Windows, and standard web formats, along with the HTML meta tags required to implement them.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
         const emojis = ['🚀', '⚡', '🔥', '💎', '🎯', '⭐', '🌟', '✨', '🎨', '🛠️', '💻', '🌐', '📱', '🎮', '🎵', '📸', '🏆', '💡', '🔒', '📊', '🧩', '🎁', '🌈', '☕', '🍕', '🦄', '🐱', '🐶', '🌸', '🍀', '🎭', '🎪'];
 
         const sizes = [
-            { size: 16, label: '16×16', desc: 'Browser tab' },
-            { size: 32, label: '32×32', desc: 'Standard' },
+            { size: 16, label: '16×16', desc: 'ブラウザタブ' },
+            { size: 32, label: '32×32', desc: '標準' },
             { size: 48, label: '48×48', desc: 'Windows' },
-            { size: 64, label: '64×64', desc: 'Bookmark' },
-            { size: 128, label: '128×128', desc: 'Chrome Web Store' },
+            { size: 64, label: '64×64', desc: 'ブックマーク' },
+            { size: 128, label: '128×128', desc: 'Chromeウェブストア' },
             { size: 180, label: '180×180', desc: 'Apple Touch' },
             { size: 192, label: '192×192', desc: 'Android' },
             { size: 512, label: '512×512', desc: 'PWA' },
@@ -224,13 +207,13 @@ export function renderFaviconGenerator() {
                 const downloadBtn = document.createElement('button');
                 downloadBtn.className = 'btn btn-secondary';
                 downloadBtn.textContent = '⬇';
-                downloadBtn.title = `Download ${label}`;
+                downloadBtn.title = `${label} をダウンロード`;
                 downloadBtn.addEventListener('click', () => {
                     const link = document.createElement('a');
                     link.download = `favicon-${size}x${size}.png`;
                     link.href = canvas.toDataURL('image/png');
                     link.click();
-                    showToast(`${label} favicon downloaded`);
+                    showToast(`${label} のファビコンをダウンロードしました`);
                 });
 
                 item.appendChild(canvas);
@@ -256,7 +239,7 @@ export function renderFaviconGenerator() {
         });
 
         // All inputs
-        page.querySelectorAll('input, select').forEach(el => {
+        widget.querySelectorAll('input, select').forEach(el => {
             el.addEventListener('input', renderPreviews);
             el.addEventListener('change', renderPreviews);
         });
@@ -279,17 +262,17 @@ export function renderFaviconGenerator() {
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             });
-            showToast('All sizes downloaded');
+            showToast('全サイズをダウンロードしました');
         });
 
         // Copy HTML
         document.getElementById('fav-copy-html').addEventListener('click', () => {
             const code = document.getElementById('fav-html-output').textContent;
-            navigator.clipboard.writeText(code).then(() => showToast('HTML copied'));
+            navigator.clipboard.writeText(code).then(() => showToast('HTMLをコピーしました'));
         });
 
         renderPreviews();
     }, 0);
 
-    return page;
+    return widget;
 }

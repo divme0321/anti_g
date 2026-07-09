@@ -1,4 +1,4 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
 const HTML_ENTITIES = {
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -11,72 +11,36 @@ const HTML_ENTITIES = {
 
 const REVERSE_ENTITIES = Object.fromEntries(Object.entries(HTML_ENTITIES).map(([k, v]) => [v, k]));
 
-export function renderHtmlEntities() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>HTML Entity Encoder / Decoder</span>
-      </div>
-      <h1>HTML Entity Encoder / Decoder</h1>
-      <p>Convert special characters to HTML entities and vice versa. Essential for safely embedding content in HTML.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Input</span>
+          <span class="pane-title">入力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="html-clear">Clear</button>
+            <button class="btn btn-secondary" id="html-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="html-input" placeholder='Enter text like <div class="test"> or &amp;copy; to encode/decode...'></textarea>
+          <textarea id="html-input" placeholder='<div class="test"> や &amp;copy; などのテキストを入力してエンコード/デコード...'></textarea>
         </div>
         <div class="tool-actions">
-          <button class="btn btn-primary" id="html-encode">Encode →</button>
-          <button class="btn btn-primary" id="html-decode">← Decode</button>
+          <button class="btn btn-primary" id="html-encode">エンコード →</button>
+          <button class="btn btn-primary" id="html-decode">← デコード</button>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Output</span>
+          <span class="pane-title">出力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="html-copy">Copy</button>
+            <button class="btn btn-secondary" id="html-copy">コピー</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="html-output" readonly placeholder="Result will appear here..."></textarea>
+          <textarea id="html-output" readonly placeholder="結果がここに表示されます..."></textarea>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>What are HTML Entities?</h2>
-      <p>HTML entities are special codes used to represent characters that have a reserved meaning in HTML, or characters that are not easily typed on a keyboard. They begin with an ampersand (&) and end with a semicolon (;).</p>
-      <h3>Why Use HTML Entities?</h3>
-      <ul>
-        <li><strong>Security (XSS Prevention):</strong> Encoding user input prevents Cross-Site Scripting (XSS) attacks where malicious HTML/JavaScript could be injected.</li>
-        <li><strong>Display Special Characters:</strong> Characters like <, >, and & have special meaning in HTML. To display them literally, you must use entities.</li>
-        <li><strong>Non-ASCII Characters:</strong> Represent symbols like © (copyright), ® (registered), € (euro) reliably across different character encodings.</li>
-      </ul>
-      <h3>Common HTML Entities</h3>
-      <ul>
-        <li><code>&amp;lt;</code> → < (less than)</li>
-        <li><code>&amp;gt;</code> → > (greater than)</li>
-        <li><code>&amp;amp;</code> → & (ampersand)</li>
-        <li><code>&amp;quot;</code> → " (double quote)</li>
-        <li><code>&amp;copy;</code> → © (copyright)</li>
-        <li><code>&amp;nbsp;</code> → non-breaking space</li>
-      </ul>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">HTML Entity Encoder & Decoder</h2>
-      <p style="margin-bottom: 1.5rem;">Safely encode HTML entities to prevent Cross-Site Scripting (XSS) attacks, or decode them back to readable text. Converting reserved characters like &lt; and &gt; ensures your code renders correctly.</p>
-      <p style="margin-bottom: 1.5rem;">This tool is essential for web developers needing to display raw code snippets on a webpage without the browser trying to interpret them as live HTML tags.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -111,5 +75,5 @@ export function renderHtmlEntities() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }

@@ -1,67 +1,36 @@
-export function renderWordCounter() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Word Counter</span>
-      </div>
-      <h1>Word Counter & Text Analyzer</h1>
-      <p>Count words, characters, sentences, and paragraphs. Estimate reading time and analyze text statistics in real time.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Input Text</span>
+          <span class="pane-title">入力テキスト</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="wc-clear">Clear</button>
+            <button class="btn btn-secondary" id="wc-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="wc-input" placeholder="Start typing or paste your text here..."></textarea>
+          <textarea id="wc-input" placeholder="ここにテキストを入力または貼り付け..."></textarea>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Statistics</span>
+          <span class="pane-title">統計</span>
         </div>
         <div class="pane-body">
           <div class="wc-stats-grid" id="wc-stats">
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-words">0</div><div class="wc-stat-label">Words</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-chars">0</div><div class="wc-stat-label">Characters</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-chars-no-space">0</div><div class="wc-stat-label">Characters (no spaces)</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-sentences">0</div><div class="wc-stat-label">Sentences</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-paragraphs">0</div><div class="wc-stat-label">Paragraphs</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-lines">0</div><div class="wc-stat-label">Lines</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-reading">0 min</div><div class="wc-stat-label">Reading Time</div></div>
-            <div class="wc-stat"><div class="wc-stat-value" id="wc-speaking">0 min</div><div class="wc-stat-label">Speaking Time</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-words">0</div><div class="wc-stat-label">単語数</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-chars">0</div><div class="wc-stat-label">文字数</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-chars-no-space">0</div><div class="wc-stat-label">文字数（空白除く）</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-sentences">0</div><div class="wc-stat-label">文の数</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-paragraphs">0</div><div class="wc-stat-label">段落数</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-lines">0</div><div class="wc-stat-label">行数</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-reading">0 分</div><div class="wc-stat-label">読了時間</div></div>
+            <div class="wc-stat"><div class="wc-stat-value" id="wc-speaking">0 分</div><div class="wc-stat-label">発話時間</div></div>
           </div>
           <div class="wc-top-words" id="wc-top-words"></div>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>About Word Counter</h2>
-      <p>This tool provides a comprehensive analysis of your text, helping writers, students, and content creators track their writing progress and optimize content length.</p>
-      <h3>Use Cases</h3>
-      <ul>
-        <li><strong>Content Writing:</strong> Ensure blog posts, articles, and social media posts meet target word counts.</li>
-        <li><strong>SEO Optimization:</strong> Search engines often favor content of certain lengths. Track your word count for optimal SEO.</li>
-        <li><strong>Academic Writing:</strong> Stay within essay and paper word limits set by professors.</li>
-        <li><strong>Speech Preparation:</strong> Estimate speaking time using the average speaking pace of ~150 words per minute.</li>
-        <li><strong>Character Limits:</strong> Check character counts for tweets (280 chars), meta descriptions (155 chars), and titles (60 chars).</li>
-      </ul>
-      <h3>How Reading Time is Calculated</h3>
-      <p>Average reading speed is approximately 200-250 words per minute. We use 225 wpm as the baseline. Speaking time uses 150 wpm, which is the average pace for presentations.</p>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Word & Character Counter</h2>
-      <p style="margin-bottom: 1.5rem;">Analyze text to get instant word counts, character counts (with and without spaces), paragraph counts, and reading time estimates.</p>
-      <p style="margin-bottom: 1.5rem;">Perfect for content creators, copywriters, and developers needing to meet strict length limits for SEO meta descriptions, tweets, or database fields.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -85,8 +54,8 @@ export function renderWordCounter() {
             document.getElementById('wc-sentences').textContent = sentences.toLocaleString();
             document.getElementById('wc-paragraphs').textContent = paragraphs.toLocaleString();
             document.getElementById('wc-lines').textContent = lines.toLocaleString();
-            document.getElementById('wc-reading').textContent = words ? readTime + ' min' : '0 min';
-            document.getElementById('wc-speaking').textContent = words ? speakTime + ' min' : '0 min';
+            document.getElementById('wc-reading').textContent = words ? readTime + ' 分' : '0 分';
+            document.getElementById('wc-speaking').textContent = words ? speakTime + ' 分' : '0 分';
 
             // Top words
             if (words > 0) {
@@ -96,7 +65,7 @@ export function renderWordCounter() {
                 });
                 const sorted = Object.entries(wordFreq).sort((a, b) => b[1] - a[1]).slice(0, 10);
                 if (sorted.length > 0) {
-                    document.getElementById('wc-top-words').innerHTML = '<h4 style="margin-bottom:8px;color:var(--color-text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em">Top Words</h4>' +
+                    document.getElementById('wc-top-words').innerHTML = '<h4 style="margin-bottom:8px;color:var(--color-text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em">頻出単語</h4>' +
                         sorted.map(([word, count]) => `<span class="wc-word-tag">${word} <strong>${count}</strong></span>`).join(' ');
                 }
             } else {
@@ -111,5 +80,5 @@ export function renderWordCounter() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }

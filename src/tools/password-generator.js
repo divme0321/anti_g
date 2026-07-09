@@ -1,88 +1,58 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderPasswordGenerator() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Password Generator</span>
-      </div>
-      <h1>Password Generator</h1>
-      <p>Generate strong, random passwords with customizable length and character options. Uses cryptographically secure random number generation.</p>
-    </div>
-    <div class="tool-container single-pane">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container single-pane';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Generator</span>
+          <span class="pane-title">ジェネレーター</span>
         </div>
         <div class="pane-body">
-          <div class="password-display" id="pw-display">Click "Generate" to create a password</div>
+          <div class="password-display" id="pw-display">「生成」をクリックしてパスワードを作成</div>
           <div class="password-strength" id="pw-strength"></div>
 
           <div class="password-controls">
             <div class="form-group">
-              <label for="pw-length">Length: <strong id="pw-length-val">16</strong></label>
+              <label for="pw-length">長さ: <strong id="pw-length-val">16</strong></label>
               <input type="range" id="pw-length" min="4" max="128" value="16" style="width:100%" />
             </div>
 
             <div class="password-options">
               <label class="pw-option">
-                <input type="checkbox" id="pw-upper" checked /> Uppercase (A-Z)
+                <input type="checkbox" id="pw-upper" checked /> 大文字 (A-Z)
               </label>
               <label class="pw-option">
-                <input type="checkbox" id="pw-lower" checked /> Lowercase (a-z)
+                <input type="checkbox" id="pw-lower" checked /> 小文字 (a-z)
               </label>
               <label class="pw-option">
-                <input type="checkbox" id="pw-numbers" checked /> Numbers (0-9)
+                <input type="checkbox" id="pw-numbers" checked /> 数字 (0-9)
               </label>
               <label class="pw-option">
-                <input type="checkbox" id="pw-symbols" checked /> Symbols (!@#$%...)
+                <input type="checkbox" id="pw-symbols" checked /> 記号 (!@#$%...)
               </label>
               <label class="pw-option">
-                <input type="checkbox" id="pw-exclude-ambiguous" /> Exclude Ambiguous (O0Il1)
+                <input type="checkbox" id="pw-exclude-ambiguous" /> 紛らわしい文字を除外 (O0Il1)
               </label>
             </div>
 
             <div style="display:flex;gap:8px;margin-top:16px;">
-              <button class="btn btn-primary" id="pw-generate" style="flex:1;">🔄 Generate Password</button>
-              <button class="btn btn-secondary" id="pw-copy">📋 Copy</button>
+              <button class="btn btn-primary" id="pw-generate" style="flex:1;">🔄 パスワードを生成</button>
+              <button class="btn btn-secondary" id="pw-copy">📋 コピー</button>
             </div>
           </div>
 
           <div class="password-bulk" style="margin-top:24px;">
-            <h3 style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:12px;">Bulk Generate</h3>
+            <h3 style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:12px;">まとめて生成</h3>
             <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
-              <label style="font-size:0.85rem;color:var(--color-text-dim);">Count:</label>
+              <label style="font-size:0.85rem;color:var(--color-text-dim);">個数:</label>
               <input type="number" id="pw-bulk-count" value="5" min="1" max="50" style="width:80px;" />
-              <button class="btn btn-secondary" id="pw-bulk-generate">Generate Multiple</button>
+              <button class="btn btn-secondary" id="pw-bulk-generate">複数生成</button>
             </div>
             <div id="pw-bulk-list" class="password-bulk-list"></div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>Why Use Strong Passwords?</h2>
-      <p>Weak passwords are the leading cause of security breaches. A strong password should be long, random, and unique for every account.</p>
-      <h3>Password Security Tips</h3>
-      <ul>
-        <li><strong>Length Matters Most:</strong> A 16+ character password is exponentially harder to crack than a short one.</li>
-        <li><strong>Mix Character Types:</strong> Use uppercase, lowercase, numbers, and symbols together.</li>
-        <li><strong>Never Reuse Passwords:</strong> If one service is breached, unique passwords protect your other accounts.</li>
-        <li><strong>Use a Password Manager:</strong> Tools like Bitwarden, 1Password, or KeePass store your passwords securely.</li>
-        <li><strong>Enable 2FA:</strong> Two-factor authentication adds an extra layer of security beyond passwords.</li>
-      </ul>
-      <h3>How Secure is This Generator?</h3>
-      <p>This password generator uses the Web Crypto API (<code>crypto.getRandomValues()</code>) for cryptographically secure random number generation. All password generation happens entirely in your browser — passwords are never sent to any server.</p>
-      <h3>Brute Force Time Estimates</h3>
-      <ul>
-        <li><strong>8 characters (lowercase only):</strong> ~5 hours</li>
-        <li><strong>8 characters (mixed):</strong> ~7 months</li>
-        <li><strong>12 characters (mixed + symbols):</strong> ~34,000 years</li>
-        <li><strong>16 characters (mixed + symbols):</strong> ~billions of years</li>
-      </ul>
-    </div>
   `;
 
     setTimeout(() => {
@@ -115,7 +85,7 @@ export function renderPasswordGenerator() {
 
         function generatePassword(length) {
             const charset = getCharset();
-            if (!charset) return '⚠️ Select at least one character type';
+            if (!charset) return '⚠️ 少なくとも1種類の文字を選択してください';
             const array = new Uint32Array(length);
             crypto.getRandomValues(array);
             return Array.from(array, x => charset[x % charset.length]).join('');
@@ -130,10 +100,10 @@ export function renderPasswordGenerator() {
             if (/\d/.test(password)) score++;
             if (/[^a-zA-Z0-9]/.test(password)) score++;
 
-            if (score <= 2) return { label: 'Weak', color: 'var(--color-error)', percent: 25 };
-            if (score <= 3) return { label: 'Fair', color: 'var(--color-warning)', percent: 50 };
-            if (score <= 4) return { label: 'Strong', color: '#22c55e', percent: 75 };
-            return { label: 'Very Strong', color: '#10b981', percent: 100 };
+            if (score <= 2) return { label: '弱い', color: 'var(--color-error)', percent: 25 };
+            if (score <= 3) return { label: 'やや弱い', color: 'var(--color-warning)', percent: 50 };
+            if (score <= 4) return { label: '強い', color: '#22c55e', percent: 75 };
+            return { label: '非常に強い', color: '#10b981', percent: 100 };
         }
 
         function updateDisplay() {
@@ -153,7 +123,7 @@ export function renderPasswordGenerator() {
         document.getElementById('pw-generate').addEventListener('click', updateDisplay);
         document.getElementById('pw-copy').addEventListener('click', () => {
             const text = display.textContent;
-            if (text && !text.startsWith('⚠️') && !text.startsWith('Click')) {
+            if (text && !text.startsWith('⚠️') && !text.startsWith('「生成」')) {
                 copyToClipboard(text);
             }
         });
@@ -178,5 +148,5 @@ export function renderPasswordGenerator() {
         updateDisplay();
     }, 0);
 
-    return page;
+    return widget;
 }

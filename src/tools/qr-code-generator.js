@@ -1,114 +1,106 @@
-import { showToast, copyToClipboard } from '../main.js';
+import { showToast } from '../utils.js';
 import qrcode from 'qrcode-generator';
 
-export function renderQrCodeGenerator() {
-  const page = document.createElement('div');
-  page.className = 'tool-page';
+export function render() {
+  const widget = document.createElement('div');
+  widget.className = 'tool-container';
 
-  page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>QR Code Generator</span>
-      </div>
-      <h1>QR Code Generator</h1>
-      <p>Generate QR codes for URLs, text, WiFi, email, and more. Download as PNG or SVG.</p>
-    </div>
-    <div class="tool-container">
+  widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Settings</span>
+          <span class="pane-title">設定</span>
         </div>
         <div class="pane-body">
           <div class="qr-settings">
             <div class="qr-form-group">
-              <label for="qr-type">Type</label>
+              <label for="qr-type">種類</label>
               <select id="qr-type">
-                <option value="text">Text / URL</option>
+                <option value="text">テキスト / URL</option>
                 <option value="wifi">WiFi</option>
-                <option value="email">Email</option>
-                <option value="phone">Phone</option>
+                <option value="email">メール</option>
+                <option value="phone">電話番号</option>
               </select>
             </div>
 
             <div id="qr-text-fields">
               <div class="qr-form-group">
-                <label for="qr-input">Content</label>
-                <textarea id="qr-input" rows="4" placeholder="Enter URL or text...">https://</textarea>
+                <label for="qr-input">内容</label>
+                <textarea id="qr-input" rows="4" placeholder="URLまたはテキストを入力...">https://</textarea>
               </div>
             </div>
 
             <div id="qr-wifi-fields" style="display:none">
               <div class="qr-form-group">
-                <label for="qr-wifi-ssid">Network Name (SSID)</label>
+                <label for="qr-wifi-ssid">ネットワーク名 (SSID)</label>
                 <input type="text" id="qr-wifi-ssid" placeholder="MyNetwork" />
               </div>
               <div class="qr-form-group">
-                <label for="qr-wifi-pass">Password</label>
-                <input type="text" id="qr-wifi-pass" placeholder="Password" />
+                <label for="qr-wifi-pass">パスワード</label>
+                <input type="text" id="qr-wifi-pass" placeholder="パスワード" />
               </div>
               <div class="qr-form-group">
-                <label for="qr-wifi-enc">Encryption</label>
+                <label for="qr-wifi-enc">暗号化方式</label>
                 <select id="qr-wifi-enc">
                   <option value="WPA">WPA/WPA2</option>
                   <option value="WEP">WEP</option>
-                  <option value="nopass">None</option>
+                  <option value="nopass">なし</option>
                 </select>
               </div>
             </div>
 
             <div id="qr-email-fields" style="display:none">
               <div class="qr-form-group">
-                <label for="qr-email-to">To</label>
+                <label for="qr-email-to">宛先</label>
                 <input type="text" id="qr-email-to" placeholder="user@example.com" />
               </div>
               <div class="qr-form-group">
-                <label for="qr-email-subject">Subject</label>
-                <input type="text" id="qr-email-subject" placeholder="Subject" />
+                <label for="qr-email-subject">件名</label>
+                <input type="text" id="qr-email-subject" placeholder="件名" />
               </div>
               <div class="qr-form-group">
-                <label for="qr-email-body">Body</label>
-                <textarea id="qr-email-body" rows="3" placeholder="Email body..."></textarea>
+                <label for="qr-email-body">本文</label>
+                <textarea id="qr-email-body" rows="3" placeholder="メール本文..."></textarea>
               </div>
             </div>
 
             <div id="qr-phone-fields" style="display:none">
               <div class="qr-form-group">
-                <label for="qr-phone-num">Phone Number</label>
-                <input type="text" id="qr-phone-num" placeholder="+1234567890" />
+                <label for="qr-phone-num">電話番号</label>
+                <input type="text" id="qr-phone-num" placeholder="+819012345678" />
               </div>
             </div>
 
             <div class="qr-options-row">
               <div class="qr-form-group">
-                <label for="qr-size">Size</label>
+                <label for="qr-size">サイズ</label>
                 <select id="qr-size">
-                  <option value="4">Small (132px)</option>
-                  <option value="6" selected>Medium (198px)</option>
-                  <option value="10">Large (330px)</option>
-                  <option value="16">XL (528px)</option>
+                  <option value="4">小 (132px)</option>
+                  <option value="6" selected>中 (198px)</option>
+                  <option value="10">大 (330px)</option>
+                  <option value="16">特大 (528px)</option>
                 </select>
               </div>
               <div class="qr-form-group">
-                <label for="qr-ecl">Error Correction</label>
+                <label for="qr-ecl">誤り訂正レベル</label>
                 <select id="qr-ecl">
-                  <option value="L">Low (7%)</option>
-                  <option value="M" selected>Medium (15%)</option>
-                  <option value="Q">Quartile (25%)</option>
-                  <option value="H">High (30%)</option>
+                  <option value="L">低 (7%)</option>
+                  <option value="M" selected>中 (15%)</option>
+                  <option value="Q">高 (25%)</option>
+                  <option value="H">最高 (30%)</option>
                 </select>
               </div>
             </div>
 
             <div class="qr-options-row">
               <div class="qr-form-group">
-                <label for="qr-fg">Foreground</label>
+                <label for="qr-fg">前景色</label>
                 <div class="qr-color-input">
                   <input type="color" id="qr-fg" value="#000000" />
                   <span id="qr-fg-label">#000000</span>
                 </div>
               </div>
               <div class="qr-form-group">
-                <label for="qr-bg">Background</label>
+                <label for="qr-bg">背景色</label>
                 <div class="qr-color-input">
                   <input type="color" id="qr-bg" value="#ffffff" />
                   <span id="qr-bg-label">#ffffff</span>
@@ -121,7 +113,7 @@ export function renderQrCodeGenerator() {
 
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Preview</span>
+          <span class="pane-title">プレビュー</span>
           <div class="pane-actions">
             <button class="btn btn-secondary" id="qr-download-png">⬇ PNG</button>
             <button class="btn btn-secondary" id="qr-download-svg">⬇ SVG</button>
@@ -131,15 +123,6 @@ export function renderQrCodeGenerator() {
           <div id="qr-preview" class="qr-preview-area"></div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">QR Code Generator</h2>
-      <p style="margin-bottom: 1.5rem;">Create customized QR codes for URLs, text, Wi-Fi networks, or contact information. QR codes bridge the gap between the physical and digital world, allowing users to scan and access data instantly.</p>
-      <p style="margin-bottom: 1.5rem;">Generate high-quality, scannable QR codes completely offline within your browser, ensuring your data remains private.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
   setTimeout(() => {
@@ -179,7 +162,7 @@ export function renderQrCodeGenerator() {
     function generateQR() {
       const data = getData();
       if (!data || data === 'https://' || data === 'tel:' || data === 'mailto:?subject=&body=') {
-        preview.innerHTML = '<div class="qr-placeholder">Enter content to generate QR code</div>';
+        preview.innerHTML = '<div class="qr-placeholder">内容を入力するとQRコードが生成されます</div>';
         return;
       }
 
@@ -228,7 +211,7 @@ export function renderQrCodeGenerator() {
         // Store SVG data for download
         preview.dataset.svg = qr.createSvgTag({ cellSize, margin: cellSize });
       } catch (e) {
-        preview.innerHTML = '<div class="qr-placeholder" style="color: var(--color-error)">Data too long for QR code — try a shorter input</div>';
+        preview.innerHTML = '<div class="qr-placeholder" style="color: var(--color-error)">データが長すぎてQRコードにできません — 短い内容をお試しください</div>';
       }
     }
 
@@ -238,7 +221,7 @@ export function renderQrCodeGenerator() {
     });
 
     // Watch all inputs
-    page.querySelectorAll('input, textarea, select').forEach(el => {
+    widget.querySelectorAll('input, textarea, select').forEach(el => {
       el.addEventListener('input', generateQR);
       el.addEventListener('change', generateQR);
     });
@@ -254,28 +237,28 @@ export function renderQrCodeGenerator() {
     // Download PNG
     document.getElementById('qr-download-png').addEventListener('click', () => {
       const canvas = document.getElementById('qr-canvas');
-      if (!canvas) { showToast('Generate a QR code first', 'error'); return; }
+      if (!canvas) { showToast('先にQRコードを生成してください', 'error'); return; }
       const link = document.createElement('a');
       link.download = 'qrcode.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
-      showToast('PNG downloaded');
+      showToast('PNGをダウンロードしました');
     });
 
     // Download SVG
     document.getElementById('qr-download-svg').addEventListener('click', () => {
       const svgData = preview.dataset.svg;
-      if (!svgData) { showToast('Generate a QR code first', 'error'); return; }
+      if (!svgData) { showToast('先にQRコードを生成してください', 'error'); return; }
       const blob = new Blob([svgData], { type: 'image/svg+xml' });
       const link = document.createElement('a');
       link.download = 'qrcode.svg';
       link.href = URL.createObjectURL(blob);
       link.click();
-      showToast('SVG downloaded');
+      showToast('SVGをダウンロードしました');
     });
 
     generateQR();
   }, 0);
 
-  return page;
+  return widget;
 }

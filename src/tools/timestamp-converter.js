@@ -1,52 +1,42 @@
-import { copyToClipboard } from '../main.js';
-
-export function renderTimestampConverter() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Timestamp Converter</span>
-      </div>
-      <h1>Unix Timestamp Converter</h1>
-      <p>Convert between Unix timestamps and human-readable date/time formats. Essential for debugging APIs and working with date fields.</p>
-    </div>
-    <div class="tool-container single-pane">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container single-pane';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Current Time</span>
+          <span class="pane-title">現在時刻</span>
         </div>
         <div class="pane-body">
           <div class="timestamp-current">
             <div class="timestamp-live" id="ts-live"></div>
-            <div class="timestamp-live-label">Current Unix Timestamp (updates live)</div>
+            <div class="timestamp-live-label">現在のUnixタイムスタンプ（リアルタイム更新）</div>
           </div>
 
           <div class="timestamp-sections">
             <div class="timestamp-section">
-              <h3>Timestamp → Date</h3>
+              <h3>タイムスタンプ → 日時</h3>
               <div class="form-group">
-                <label for="ts-input">Unix Timestamp</label>
+                <label for="ts-input">Unixタイムスタンプ</label>
                 <div style="display:flex;gap:8px">
-                  <input type="text" id="ts-input" placeholder="e.g. 1708560000" style="flex:1" />
-                  <button class="btn btn-primary" id="ts-to-date">Convert →</button>
+                  <input type="text" id="ts-input" placeholder="例: 1708560000" style="flex:1" />
+                  <button class="btn btn-primary" id="ts-to-date">変換 →</button>
                 </div>
               </div>
               <div class="timestamp-result" id="ts-date-result"></div>
             </div>
 
             <div class="timestamp-section">
-              <h3>Date → Timestamp</h3>
+              <h3>日時 → タイムスタンプ</h3>
               <div class="form-group">
-                <label>Date & Time</label>
+                <label>日付と時刻</label>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                  <input type="number" id="ts-year" placeholder="Year" style="width:90px" />
-                  <input type="number" id="ts-month" placeholder="Month" min="1" max="12" style="width:80px" />
-                  <input type="number" id="ts-day" placeholder="Day" min="1" max="31" style="width:70px" />
-                  <input type="number" id="ts-hour" placeholder="Hour" min="0" max="23" style="width:70px" />
-                  <input type="number" id="ts-min" placeholder="Min" min="0" max="59" style="width:70px" />
-                  <input type="number" id="ts-sec" placeholder="Sec" min="0" max="59" style="width:70px" />
-                  <button class="btn btn-primary" id="ts-to-unix">Convert →</button>
+                  <input type="number" id="ts-year" placeholder="年" style="width:90px" />
+                  <input type="number" id="ts-month" placeholder="月" min="1" max="12" style="width:80px" />
+                  <input type="number" id="ts-day" placeholder="日" min="1" max="31" style="width:70px" />
+                  <input type="number" id="ts-hour" placeholder="時" min="0" max="23" style="width:70px" />
+                  <input type="number" id="ts-min" placeholder="分" min="0" max="59" style="width:70px" />
+                  <input type="number" id="ts-sec" placeholder="秒" min="0" max="59" style="width:70px" />
+                  <button class="btn btn-primary" id="ts-to-unix">変換 →</button>
                 </div>
               </div>
               <div class="timestamp-result" id="ts-unix-result"></div>
@@ -54,32 +44,6 @@ export function renderTimestampConverter() {
           </div>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>What is a Unix Timestamp?</h2>
-      <p>A Unix timestamp (also known as POSIX time or Epoch time) represents the number of seconds that have elapsed since January 1, 1970, at 00:00:00 UTC (the Unix Epoch). This format is widely used in programming because it's simple, timezone-independent, and easy to compare.</p>
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>API Responses:</strong> Many APIs return timestamps as Unix epoch values.</li>
-        <li><strong>Database Storage:</strong> Storing dates as integers is efficient and timezone-agnostic.</li>
-        <li><strong>Log Analysis:</strong> Server logs often use Unix timestamps for precise timing.</li>
-        <li><strong>Scheduling:</strong> Cron jobs and scheduled tasks often use epoch-based timing.</li>
-      </ul>
-      <h3>Key Formats</h3>
-      <ul>
-        <li><strong>Seconds:</strong> Standard Unix timestamp (10 digits, e.g., 1708560000)</li>
-        <li><strong>Milliseconds:</strong> JavaScript/Java style (13 digits, e.g., 1708560000000)</li>
-        <li><strong>ISO 8601:</strong> Human-readable format (e.g., 2024-02-22T00:00:00Z)</li>
-      </ul>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Unix Timestamp Converter</h2>
-      <p style="margin-bottom: 1.5rem;">Convert Unix timestamps to human-readable dates and vice versa. Unix time is the number of seconds that have elapsed since January 1, 1970, and is widely used in databases and APIs.</p>
-      <p style="margin-bottom: 1.5rem;">This tool helps developers quickly debug timestamp issues, convert local times to UTC, and manage date-related data easily.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -112,16 +76,16 @@ export function renderTimestampConverter() {
             const date = new Date(ts * 1000);
 
             if (isNaN(date.getTime())) {
-                resultDiv.innerHTML = '<span style="color:var(--color-error)">Invalid timestamp</span>';
+                resultDiv.innerHTML = '<span style="color:var(--color-error)">無効なタイムスタンプです</span>';
                 return;
             }
 
             resultDiv.innerHTML = `
         <div class="ts-result-row"><strong>UTC:</strong> ${date.toUTCString()}</div>
         <div class="ts-result-row"><strong>ISO 8601:</strong> ${date.toISOString()}</div>
-        <div class="ts-result-row"><strong>Local:</strong> ${date.toLocaleString()}</div>
-        <div class="ts-result-row"><strong>Relative:</strong> ${getRelativeTime(date)}</div>
-        <button class="btn btn-secondary" style="margin-top:8px" onclick="navigator.clipboard.writeText('${date.toISOString()}')">Copy ISO</button>
+        <div class="ts-result-row"><strong>ローカル:</strong> ${date.toLocaleString()}</div>
+        <div class="ts-result-row"><strong>相対時間:</strong> ${getRelativeTime(date)}</div>
+        <button class="btn btn-secondary" style="margin-top:8px" onclick="navigator.clipboard.writeText('${date.toISOString()}')">ISOをコピー</button>
       `;
         });
 
@@ -139,10 +103,10 @@ export function renderTimestampConverter() {
             const resultDiv = document.getElementById('ts-unix-result');
 
             resultDiv.innerHTML = `
-        <div class="ts-result-row"><strong>Unix (seconds):</strong> <span class="ts-value">${ts}</span></div>
-        <div class="ts-result-row"><strong>Unix (milliseconds):</strong> <span class="ts-value">${ts * 1000}</span></div>
+        <div class="ts-result-row"><strong>Unix（秒）:</strong> <span class="ts-value">${ts}</span></div>
+        <div class="ts-result-row"><strong>Unix（ミリ秒）:</strong> <span class="ts-value">${ts * 1000}</span></div>
         <div class="ts-result-row"><strong>ISO 8601:</strong> ${date.toISOString()}</div>
-        <button class="btn btn-secondary" style="margin-top:8px" onclick="navigator.clipboard.writeText('${ts}')">Copy Timestamp</button>
+        <button class="btn btn-secondary" style="margin-top:8px" onclick="navigator.clipboard.writeText('${ts}')">タイムスタンプをコピー</button>
       `;
         });
 
@@ -159,17 +123,16 @@ export function renderTimestampConverter() {
             const diff = Date.now() - date.getTime();
             const abs = Math.abs(diff);
             const future = diff < 0;
-            const prefix = future ? 'in ' : '';
-            const suffix = future ? '' : ' ago';
+            const suffix = future ? '後' : '前';
 
-            if (abs < 60000) return prefix + Math.floor(abs / 1000) + ' seconds' + suffix;
-            if (abs < 3600000) return prefix + Math.floor(abs / 60000) + ' minutes' + suffix;
-            if (abs < 86400000) return prefix + Math.floor(abs / 3600000) + ' hours' + suffix;
-            if (abs < 2592000000) return prefix + Math.floor(abs / 86400000) + ' days' + suffix;
-            if (abs < 31536000000) return prefix + Math.floor(abs / 2592000000) + ' months' + suffix;
-            return prefix + Math.floor(abs / 31536000000) + ' years' + suffix;
+            if (abs < 60000) return Math.floor(abs / 1000) + ' 秒' + suffix;
+            if (abs < 3600000) return Math.floor(abs / 60000) + ' 分' + suffix;
+            if (abs < 86400000) return Math.floor(abs / 3600000) + ' 時間' + suffix;
+            if (abs < 2592000000) return Math.floor(abs / 86400000) + ' 日' + suffix;
+            if (abs < 31536000000) return Math.floor(abs / 2592000000) + ' ヶ月' + suffix;
+            return Math.floor(abs / 31536000000) + ' 年' + suffix;
         }
     }, 0);
 
-    return page;
+    return widget;
 }

@@ -1,64 +1,36 @@
-export function renderDiffChecker() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Diff Checker</span>
-      </div>
-      <h1>Diff Checker</h1>
-      <p>Compare two blocks of text side by side and see the differences highlighted. Perfect for code reviews and document comparison.</p>
-    </div>
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-widget';
+    widget.innerHTML = `
     <div class="tool-container">
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Original Text</span>
+          <span class="pane-title">元のテキスト</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="diff-sample">Sample</button>
+            <button class="btn btn-secondary" id="diff-sample">サンプル</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="diff-left" placeholder="Paste original text here..."></textarea>
+          <textarea id="diff-left" placeholder="元のテキストをここに貼り付けてください..."></textarea>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Modified Text</span>
+          <span class="pane-title">変更後のテキスト</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="diff-clear">Clear All</button>
+            <button class="btn btn-secondary" id="diff-clear">すべてクリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="diff-right" placeholder="Paste modified text here..."></textarea>
+          <textarea id="diff-right" placeholder="変更後のテキストをここに貼り付けてください..."></textarea>
         </div>
       </div>
     </div>
     <div style="max-width:1200px;margin:16px auto;padding:0 32px;">
-      <button class="btn btn-primary" id="diff-compare" style="width:100%;">Compare ↓</button>
+      <button class="btn btn-primary" id="diff-compare" style="width:100%;">比較 ↓</button>
     </div>
     <div class="tool-page" style="padding-top:0;">
       <div id="diff-result" class="diff-result"></div>
-    </div>
-    <div class="tool-info">
-      <h2>About Diff Checking</h2>
-      <p>A diff (short for "difference") shows the changes between two versions of a text. Lines that were removed are highlighted in red, and lines that were added are highlighted in green. Unchanged lines provide context.</p>
-      <h3>Use Cases</h3>
-      <ul>
-        <li><strong>Code Review:</strong> Compare code changes before committing to version control.</li>
-        <li><strong>Document Editing:</strong> See what changed between drafts of a document.</li>
-        <li><strong>Configuration Comparison:</strong> Compare configuration files between environments.</li>
-        <li><strong>Data Validation:</strong> Verify expected vs. actual output in testing.</li>
-      </ul>
-      <h3>How It Works</h3>
-      <p>This tool uses a line-by-line comparison algorithm. Each line is compared between the original and modified text. Lines that exist only in the original are marked as removed (red), lines that exist only in the modified text are marked as added (green), and matching lines are shown as context.</p>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Text Diff Checker</h2>
-      <p style="margin-bottom: 1.5rem;">Compare two text blocks or code snippets instantly to spot the differences. The Diff Checker highlights additions, deletions, and modifications line by line.</p>
-      <p style="margin-bottom: 1.5rem;">This tool is invaluable for reviewing code changes, comparing document drafts, or debugging configuration files without needing to open a full IDE or Git client.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
     </div>
   `;
 
@@ -139,9 +111,9 @@ export function renderDiffChecker() {
             result.innerHTML = html;
 
             document.getElementById('diff-stats').innerHTML = `
-        <span class="diff-stat-added">+${added} added</span>
-        <span class="diff-stat-removed">-${removed} removed</span>
-        <span class="diff-stat-unchanged">${unchanged} unchanged</span>
+        <span class="diff-stat-added">+${added} 追加</span>
+        <span class="diff-stat-removed">-${removed} 削除</span>
+        <span class="diff-stat-unchanged">${unchanged} 変更なし</span>
       `;
         });
 
@@ -169,5 +141,5 @@ console.log(result);`;
         });
     }, 0);
 
-    return page;
+    return widget;
 }

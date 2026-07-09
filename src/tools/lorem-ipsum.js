@@ -1,4 +1,4 @@
-import { copyToClipboard, showToast } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
 const WORDS = [
     'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
@@ -31,53 +31,36 @@ function generateParagraph(sentences = 4) {
     return Array.from({ length: sentences }, () => generateSentence()).join(' ');
 }
 
-export function renderLoremIpsum() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>/</span> <span>Lorem Ipsum</span>
-      </div>
-      <h1>Lorem Ipsum Generator</h1>
-      <p>Generate placeholder text for your designs and mockups.</p>
-    </div>
-    <div class="tool-container single-pane">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container single-pane';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Options</span>
+          <span class="pane-title">オプション</span>
         </div>
         <div class="pane-body">
           <div class="lorem-controls">
             <div class="form-group">
-              <label>Count</label>
+              <label>数量</label>
               <input type="number" id="lorem-count" value="3" min="1" max="50" />
             </div>
             <div class="form-group">
-              <label>Type</label>
+              <label>種類</label>
               <select id="lorem-type">
-                <option value="paragraphs">Paragraphs</option>
-                <option value="sentences">Sentences</option>
-                <option value="words">Words</option>
+                <option value="paragraphs">段落</option>
+                <option value="sentences">文</option>
+                <option value="words">単語</option>
               </select>
             </div>
             <div style="display:flex;align-items:flex-end;gap:0.5rem;">
-              <button class="btn btn-primary" id="lorem-generate">Generate</button>
-              <button class="btn btn-secondary" id="lorem-copy">📋 Copy</button>
+              <button class="btn btn-primary" id="lorem-generate">生成</button>
+              <button class="btn btn-secondary" id="lorem-copy">📋 コピー</button>
             </div>
           </div>
           <div class="lorem-output" id="lorem-output" style="margin-top:1rem;"></div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Lorem Ipsum Generator</h2>
-      <p style="margin-bottom: 1.5rem;">Generate placeholder text instantly for your mockups, wireframes, and prototypes. Lorem Ipsum has been the industry standard dummy text since the 1500s.</p>
-      <p style="margin-bottom: 1.5rem;">Customize the number of paragraphs, words, or lists to perfectly fit your design layout before the final copy is ready.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -107,5 +90,5 @@ export function renderLoremIpsum() {
         generate();
     }, 0);
 
-    return page;
+    return widget;
 }

@@ -1,71 +1,37 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderUrlEncoder() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>URL Encoder / Decoder</span>
-      </div>
-      <h1>URL Encoder / Decoder</h1>
-      <p>Encode special characters for safe URL usage, or decode URL-encoded strings back to readable text.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Input</span>
+          <span class="pane-title">入力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="url-clear">Clear</button>
+            <button class="btn btn-secondary" id="url-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="url-input" placeholder="Enter text or URL to encode/decode..."></textarea>
+          <textarea id="url-input" placeholder="エンコード/デコードしたいテキストまたはURLを入力..."></textarea>
         </div>
         <div class="tool-actions">
-          <button class="btn btn-primary" id="url-encode">Encode</button>
-          <button class="btn btn-primary" id="url-decode">Decode</button>
+          <button class="btn btn-primary" id="url-encode">エンコード</button>
+          <button class="btn btn-primary" id="url-decode">デコード</button>
           <button class="btn btn-secondary" id="url-encode-component">encodeURIComponent</button>
           <button class="btn btn-secondary" id="url-decode-component">decodeURIComponent</button>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Output</span>
+          <span class="pane-title">出力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="url-copy">Copy</button>
+            <button class="btn btn-secondary" id="url-copy">コピー</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="url-output" readonly placeholder="Result will appear here..."></textarea>
+          <textarea id="url-output" readonly placeholder="結果がここに表示されます..."></textarea>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>About URL Encoding</h2>
-      <p>URL encoding (also known as percent-encoding) replaces special characters in URLs with a "%" followed by two hexadecimal digits. This is necessary because URLs can only contain a limited set of characters from the ASCII character set.</p>
-      <h3>When to Use URL Encoding</h3>
-      <ul>
-        <li><strong>Query Parameters:</strong> When passing data through URL query strings, special characters like spaces, &, =, etc. must be encoded.</li>
-        <li><strong>File Paths:</strong> URLs containing spaces or non-ASCII characters need encoding.</li>
-        <li><strong>API Requests:</strong> When constructing API URLs programmatically, all user-provided values should be URL-encoded.</li>
-        <li><strong>Form Submissions:</strong> HTML forms use URL encoding (application/x-www-form-urlencoded) by default.</li>
-      </ul>
-      <h3>encodeURI vs encodeURIComponent</h3>
-      <ul>
-        <li><strong>encodeURI:</strong> Encodes a complete URI. Does NOT encode characters that have special meaning in a URI (like :, /, ?, #, &, =).</li>
-        <li><strong>encodeURIComponent:</strong> Encodes a URI component (like a query parameter value). Encodes ALL special characters including :, /, ?, #, etc.</li>
-      </ul>
-      <p>Use <code>encodeURIComponent</code> when encoding individual values, and <code>encodeURI</code> when encoding a full URL that should remain navigable.</p>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">URL Encoder / Decoder</h2>
-      <p style="margin-bottom: 1.5rem;">Safely encode text for use in URL query strings, or decode URL-encoded strings back to plain text. URL encoding ensures that special characters do not break the URL structure.</p>
-      <p style="margin-bottom: 1.5rem;">Essential for working with REST APIs, handling form submissions, or debugging complex web requests.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -73,16 +39,16 @@ export function renderUrlEncoder() {
         const output = document.getElementById('url-output');
 
         document.getElementById('url-encode').addEventListener('click', () => {
-            try { output.value = encodeURI(input.value); } catch (e) { output.value = 'Error: ' + e.message; }
+            try { output.value = encodeURI(input.value); } catch (e) { output.value = 'エラー: ' + e.message; }
         });
         document.getElementById('url-decode').addEventListener('click', () => {
-            try { output.value = decodeURI(input.value); } catch (e) { output.value = 'Error: ' + e.message; }
+            try { output.value = decodeURI(input.value); } catch (e) { output.value = 'エラー: ' + e.message; }
         });
         document.getElementById('url-encode-component').addEventListener('click', () => {
-            try { output.value = encodeURIComponent(input.value); } catch (e) { output.value = 'Error: ' + e.message; }
+            try { output.value = encodeURIComponent(input.value); } catch (e) { output.value = 'エラー: ' + e.message; }
         });
         document.getElementById('url-decode-component').addEventListener('click', () => {
-            try { output.value = decodeURIComponent(input.value); } catch (e) { output.value = 'Error: ' + e.message; }
+            try { output.value = decodeURIComponent(input.value); } catch (e) { output.value = 'エラー: ' + e.message; }
         });
         document.getElementById('url-clear').addEventListener('click', () => {
             input.value = '';
@@ -93,5 +59,5 @@ export function renderUrlEncoder() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }

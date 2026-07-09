@@ -1,4 +1,4 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
 // Simple markdown parser (no external dependencies)
 function parseMarkdown(md) {
@@ -61,54 +61,37 @@ console.log(greet("DevToolBox"));
 Built with ♥ by **DevToolBox**
 `;
 
-export function renderMarkdownPreview() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>/</span> <span>Markdown Preview</span>
-      </div>
-      <h1>Markdown Preview</h1>
-      <p>Write Markdown and see a beautiful rendered preview in real-time.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
           <span class="pane-title">Markdown</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="md-clear">Clear</button>
+            <button class="btn btn-secondary" id="md-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="md-input" placeholder="Write your Markdown here...">${SAMPLE_MARKDOWN}</textarea>
+          <textarea id="md-input" placeholder="ここにMarkdownを入力してください...">${SAMPLE_MARKDOWN}</textarea>
         </div>
         <div class="tool-actions">
-          <button class="btn btn-secondary" id="md-copy-md">📋 Copy MD</button>
-          <button class="btn btn-secondary" id="md-copy-html">📋 Copy HTML</button>
+          <button class="btn btn-secondary" id="md-copy-md">📋 MDをコピー</button>
+          <button class="btn btn-secondary" id="md-copy-html">📋 HTMLをコピー</button>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Preview</span>
+          <span class="pane-title">プレビュー</span>
         </div>
         <div class="pane-body">
           <div class="markdown-preview" id="md-preview"></div>
         </div>
         <div class="status-bar">
           <span class="status-dot"></span>
-          <span id="md-status">0 words</span>
+          <span id="md-status">0 単語</span>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Markdown Previewer</h2>
-      <p style="margin-bottom: 1.5rem;">Write and preview Markdown in real-time. Markdown is a lightweight markup language used for writing documentation, README files, and blog posts.</p>
-      <p style="margin-bottom: 1.5rem;">Our tool instantly converts your Markdown syntax into formatted HTML, providing a live preview of how your text will look when published.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -120,7 +103,7 @@ export function renderMarkdownPreview() {
             const md = input.value;
             preview.innerHTML = parseMarkdown(md);
             const wordCount = md.trim() ? md.trim().split(/\s+/).length : 0;
-            status.textContent = `${wordCount} words · ${md.length} characters`;
+            status.textContent = `${wordCount} 単語 · ${md.length} 文字`;
         }
 
         input.addEventListener('input', update);
@@ -141,5 +124,5 @@ export function renderMarkdownPreview() {
         update();
     }, 0);
 
-    return page;
+    return widget;
 }

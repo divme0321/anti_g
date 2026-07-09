@@ -1,84 +1,49 @@
-import { copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderHashGenerator() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Hash Generator</span>
-      </div>
-      <h1>Hash Generator</h1>
-      <p>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text input. Useful for verifying data integrity and creating checksums.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Input</span>
+          <span class="pane-title">入力</span>
           <div class="pane-actions">
-            <button class="btn btn-secondary" id="hash-clear">Clear</button>
+            <button class="btn btn-secondary" id="hash-clear">クリア</button>
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="hash-input" placeholder="Enter text to hash..."></textarea>
+          <textarea id="hash-input" placeholder="ハッシュ化したいテキストを入力..."></textarea>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Hash Output</span>
+          <span class="pane-title">ハッシュ出力</span>
         </div>
         <div class="pane-body">
           <div class="hash-results" id="hash-results">
             <div class="hash-result-item">
               <label>MD5</label>
               <div class="hash-value" id="hash-md5">—</div>
-              <button class="btn-icon" data-target="hash-md5" title="Copy">📋</button>
+              <button class="btn-icon" data-target="hash-md5" title="コピー">📋</button>
             </div>
             <div class="hash-result-item">
               <label>SHA-1</label>
               <div class="hash-value" id="hash-sha1">—</div>
-              <button class="btn-icon" data-target="hash-sha1" title="Copy">📋</button>
+              <button class="btn-icon" data-target="hash-sha1" title="コピー">📋</button>
             </div>
             <div class="hash-result-item">
               <label>SHA-256</label>
               <div class="hash-value" id="hash-sha256">—</div>
-              <button class="btn-icon" data-target="hash-sha256" title="Copy">📋</button>
+              <button class="btn-icon" data-target="hash-sha256" title="コピー">📋</button>
             </div>
             <div class="hash-result-item">
               <label>SHA-512</label>
               <div class="hash-value" id="hash-sha512">—</div>
-              <button class="btn-icon" data-target="hash-sha512" title="Copy">📋</button>
+              <button class="btn-icon" data-target="hash-sha512" title="コピー">📋</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>What is a Hash?</h2>
-      <p>A hash function takes an input (or "message") and produces a fixed-size string of bytes, typically a hexadecimal number. The output is unique to each unique input — even a tiny change in input produces a dramatically different hash. Hash functions are one-way: you cannot reverse-engineer the original input from the hash.</p>
-      <h3>Common Use Cases</h3>
-      <ul>
-        <li><strong>Data Integrity:</strong> Verify that files haven't been corrupted during transfer by comparing their hash values.</li>
-        <li><strong>Password Storage:</strong> Store hashed passwords instead of plain text for security.</li>
-        <li><strong>Digital Signatures:</strong> Create unique identifiers for documents and data.</li>
-        <li><strong>Checksums:</strong> Quickly compare large datasets by comparing their hash outputs.</li>
-      </ul>
-      <h3>Algorithm Comparison</h3>
-      <ul>
-        <li><strong>MD5</strong> — 128-bit hash. Fast but considered cryptographically broken. Still useful for non-security checksums.</li>
-        <li><strong>SHA-1</strong> — 160-bit hash. Deprecated for security use but widely used in legacy systems.</li>
-        <li><strong>SHA-256</strong> — 256-bit hash. Part of SHA-2 family. Currently the recommended standard for most use cases.</li>
-        <li><strong>SHA-512</strong> — 512-bit hash. Longer output, slightly more secure than SHA-256 for specific applications.</li>
-      </ul>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Hash Generator (MD5, SHA)</h2>
-      <p style="margin-bottom: 1.5rem;">Generate cryptographic hashes instantly using algorithms like MD5, SHA-1, SHA-256, and SHA-512. Hashing is a one-way mathematical function used extensively in data integrity verification and password hashing.</p>
-      <p style="margin-bottom: 1.5rem;">All hashing is performed locally in your browser using the Web Crypto API, meaning your sensitive text is never sent to a server.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -177,5 +142,5 @@ export function renderHashGenerator() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }

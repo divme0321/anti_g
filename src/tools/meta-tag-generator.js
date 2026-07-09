@@ -1,47 +1,39 @@
-import { showToast, copyToClipboard } from '../main.js';
+import { copyToClipboard } from '../utils.js';
 
-export function renderMetaTagGenerator() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
 
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Meta Tag Generator</span>
-      </div>
-      <h1>Meta Tag Generator</h1>
-      <p>Generate SEO-optimized meta tags, Open Graph tags, and Twitter Cards for your website. Preview how your page looks on Google and social media.</p>
-    </div>
-    <div class="tool-container">
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Page Information</span>
+          <span class="pane-title">ページ情報</span>
         </div>
         <div class="pane-body">
           <div class="qr-settings">
             <div class="qr-form-group">
-              <label for="meta-title">Page Title <span class="meta-counter" id="meta-title-count">0/60</span></label>
-              <input type="text" id="meta-title" placeholder="My Awesome Page" maxlength="70" />
+              <label for="meta-title">ページタイトル <span class="meta-counter" id="meta-title-count">0/60</span></label>
+              <input type="text" id="meta-title" placeholder="すばらしいページ" maxlength="70" />
             </div>
             <div class="qr-form-group">
-              <label for="meta-desc">Description <span class="meta-counter" id="meta-desc-count">0/160</span></label>
-              <textarea id="meta-desc" rows="3" placeholder="A brief description of your page content..." maxlength="200"></textarea>
+              <label for="meta-desc">説明文 <span class="meta-counter" id="meta-desc-count">0/160</span></label>
+              <textarea id="meta-desc" rows="3" placeholder="ページ内容の簡単な説明..." maxlength="200"></textarea>
             </div>
             <div class="qr-form-group">
               <label for="meta-url">URL</label>
               <input type="text" id="meta-url" placeholder="https://example.com/page" />
             </div>
             <div class="qr-form-group">
-              <label for="meta-image">Image URL (for social sharing)</label>
+              <label for="meta-image">画像URL（SNSシェア用）</label>
               <input type="text" id="meta-image" placeholder="https://example.com/image.jpg" />
             </div>
             <div class="qr-form-group">
-              <label for="meta-keywords">Keywords (comma-separated)</label>
-              <input type="text" id="meta-keywords" placeholder="keyword1, keyword2, keyword3" />
+              <label for="meta-keywords">キーワード（カンマ区切り）</label>
+              <input type="text" id="meta-keywords" placeholder="キーワード1, キーワード2, キーワード3" />
             </div>
             <div class="qr-form-group">
-              <label for="meta-author">Author</label>
-              <input type="text" id="meta-author" placeholder="John Doe" />
+              <label for="meta-author">作成者</label>
+              <input type="text" id="meta-author" placeholder="山田 太郎" />
             </div>
 
             <div class="qr-options-row">
@@ -66,7 +58,7 @@ export function renderMetaTagGenerator() {
             </div>
 
             <div class="qr-form-group">
-              <label for="meta-twitter-handle">Twitter Handle</label>
+              <label for="meta-twitter-handle">Twitterハンドル</label>
               <input type="text" id="meta-twitter-handle" placeholder="@yourhandle" />
             </div>
           </div>
@@ -75,52 +67,43 @@ export function renderMetaTagGenerator() {
 
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Preview & Code</span>
+          <span class="pane-title">プレビューとコード</span>
           <div class="pane-actions">
-            <button class="btn btn-primary" id="meta-copy">📋 Copy HTML</button>
+            <button class="btn btn-primary" id="meta-copy">📋 HTMLをコピー</button>
           </div>
         </div>
         <div class="pane-body">
           <div class="meta-previews">
             <div class="qr-form-group">
-              <label>Google Search Preview</label>
+              <label>Google検索プレビュー</label>
               <div class="meta-google-preview" id="meta-google-preview">
                 <div class="meta-gp-url">example.com</div>
-                <div class="meta-gp-title">Page Title</div>
-                <div class="meta-gp-desc">Page description will appear here...</div>
+                <div class="meta-gp-title">ページタイトル</div>
+                <div class="meta-gp-desc">ページの説明文がここに表示されます...</div>
               </div>
             </div>
 
             <div class="qr-form-group">
-              <label>Social Media Preview</label>
+              <label>SNSプレビュー</label>
               <div class="meta-social-preview" id="meta-social-preview">
                 <div class="meta-sp-image" id="meta-sp-image">
-                  <span>🖼️ No image set</span>
+                  <span>🖼️ 画像未設定</span>
                 </div>
                 <div class="meta-sp-content">
                   <div class="meta-sp-domain">example.com</div>
-                  <div class="meta-sp-title">Page Title</div>
-                  <div class="meta-sp-desc">Page description...</div>
+                  <div class="meta-sp-title">ページタイトル</div>
+                  <div class="meta-sp-desc">ページの説明文...</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="meta-code-output">
-            <label style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); margin-bottom: var(--space-sm); display:block;">Generated HTML</label>
+            <label style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-text-dim); margin-bottom: var(--space-sm); display:block;">生成されたHTML</label>
             <pre><code id="meta-output"></code></pre>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">SEO Meta Tag Generator</h2>
-      <p style="margin-bottom: 1.5rem;">Create perfectly formatted HTML meta tags for SEO and social media sharing. Includes Open Graph (Facebook) and Twitter Cards to ensure your links look great when shared.</p>
-      <p style="margin-bottom: 1.5rem;">Proper meta tags are essential for search engine optimization and improving click-through rates from social platforms.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -157,20 +140,20 @@ export function renderMetaTagGenerator() {
             // Google preview
             const gp = document.getElementById('meta-google-preview');
             gp.querySelector('.meta-gp-url').textContent = url || 'example.com';
-            gp.querySelector('.meta-gp-title').textContent = title || 'Page Title';
-            gp.querySelector('.meta-gp-desc').textContent = desc || 'Page description will appear here...';
+            gp.querySelector('.meta-gp-title').textContent = title || 'ページタイトル';
+            gp.querySelector('.meta-gp-desc').textContent = desc || 'ページの説明文がここに表示されます...';
 
             // Social preview
             const spImage = document.getElementById('meta-sp-image');
             if (image) {
-                spImage.innerHTML = `<img src="${image}" alt="Preview" onerror="this.parentElement.innerHTML='<span>⚠️ Image failed to load</span>'" />`;
+                spImage.innerHTML = `<img src="${image}" alt="プレビュー" onerror="this.parentElement.innerHTML='<span>⚠️ 画像を読み込めませんでした</span>'" />`;
             } else {
-                spImage.innerHTML = '<span>🖼️ No image set</span>';
+                spImage.innerHTML = '<span>🖼️ 画像未設定</span>';
             }
             const sp = document.getElementById('meta-social-preview');
             sp.querySelector('.meta-sp-domain').textContent = url ? new URL(url.startsWith('http') ? url : 'https://' + url).hostname : 'example.com';
-            sp.querySelector('.meta-sp-title').textContent = title || 'Page Title';
-            sp.querySelector('.meta-sp-desc').textContent = desc || 'Page description...';
+            sp.querySelector('.meta-sp-title').textContent = title || 'ページタイトル';
+            sp.querySelector('.meta-sp-desc').textContent = desc || 'ページの説明文...';
 
             // Generate HTML
             let html = '';
@@ -202,7 +185,7 @@ export function renderMetaTagGenerator() {
         }
 
         // Watch all inputs
-        page.querySelectorAll('input, textarea, select').forEach(el => {
+        widget.querySelectorAll('input, textarea, select').forEach(el => {
             el.addEventListener('input', update);
             el.addEventListener('change', update);
         });
@@ -215,5 +198,5 @@ export function renderMetaTagGenerator() {
         update();
     }, 0);
 
-    return page;
+    return widget;
 }

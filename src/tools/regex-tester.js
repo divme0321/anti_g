@@ -1,87 +1,39 @@
-export function renderRegexTester() {
-    const page = document.createElement('div');
-    page.className = 'tool-page';
-    page.innerHTML = `
-    <div class="tool-header">
-      <div class="tool-breadcrumb">
-        <a href="/">Home</a> <span>›</span> <span>Regex Tester</span>
-      </div>
-      <h1>Regex Tester</h1>
-      <p>Test regular expressions against sample text with real-time match highlighting, capture groups, and flag support.</p>
-    </div>
-    <div class="tool-container">
+export function render() {
+    const widget = document.createElement('div');
+    widget.className = 'tool-container';
+    widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Pattern</span>
+          <span class="pane-title">パターン</span>
         </div>
         <div class="pane-body" style="display:flex;flex-direction:column;gap:12px;">
           <div class="regex-input-row">
             <span class="regex-slash">/</span>
-            <input type="text" id="regex-pattern" placeholder="Enter regex pattern..." style="flex:1" />
+            <input type="text" id="regex-pattern" placeholder="正規表現パターンを入力..." style="flex:1" />
             <span class="regex-slash">/</span>
-            <input type="text" id="regex-flags" value="g" style="width:60px;text-align:center" placeholder="flags" />
+            <input type="text" id="regex-flags" value="g" style="width:60px;text-align:center" placeholder="フラグ" />
           </div>
           <div class="regex-flags-help">
-            <span class="regex-flag-tag" data-flag="g">g global</span>
-            <span class="regex-flag-tag" data-flag="i">i case-insensitive</span>
-            <span class="regex-flag-tag" data-flag="m">m multiline</span>
+            <span class="regex-flag-tag" data-flag="g">g グローバル</span>
+            <span class="regex-flag-tag" data-flag="i">i 大文字小文字を無視</span>
+            <span class="regex-flag-tag" data-flag="m">m 複数行</span>
             <span class="regex-flag-tag" data-flag="s">s dotAll</span>
           </div>
-          <label class="pane-title" style="margin-top:8px">Test String</label>
-          <textarea id="regex-input" placeholder="Enter text to test against..." rows="8"></textarea>
+          <label class="pane-title" style="margin-top:8px">テスト文字列</label>
+          <textarea id="regex-input" placeholder="テスト対象のテキストを入力..." rows="8"></textarea>
         </div>
       </div>
       <div class="tool-pane">
         <div class="pane-header">
-          <span class="pane-title">Results</span>
+          <span class="pane-title">結果</span>
         </div>
         <div class="pane-body">
           <div id="regex-error" class="regex-error" style="display:none"></div>
-          <div id="regex-match-info" class="regex-match-info">No matches</div>
+          <div id="regex-match-info" class="regex-match-info">マッチなし</div>
           <div id="regex-highlighted" class="regex-highlighted"></div>
           <div id="regex-groups" class="regex-groups"></div>
         </div>
       </div>
-    </div>
-    <div class="tool-info">
-      <h2>Regular Expression Reference</h2>
-      <p>Regular expressions (regex) are powerful patterns used to match, search, and manipulate text. They're an essential skill for developers working with text processing, form validation, and data extraction.</p>
-      <h3>Common Patterns</h3>
-      <ul>
-        <li><code>.</code> — Matches any character (except newline by default)</li>
-        <li><code>\\d</code> — Matches any digit (0-9)</li>
-        <li><code>\\w</code> — Matches any word character (a-z, A-Z, 0-9, _)</li>
-        <li><code>\\s</code> — Matches any whitespace character</li>
-        <li><code>^</code> — Start of string (or line in multiline mode)</li>
-        <li><code>$</code> — End of string (or line in multiline mode)</li>
-        <li><code>[abc]</code> — Character class: matches a, b, or c</li>
-        <li><code>(group)</code> — Capturing group</li>
-        <li><code>a|b</code> — Alternation: matches a or b</li>
-      </ul>
-      <h3>Quantifiers</h3>
-      <ul>
-        <li><code>*</code> — Zero or more times</li>
-        <li><code>+</code> — One or more times</li>
-        <li><code>?</code> — Zero or one time</li>
-        <li><code>{n}</code> — Exactly n times</li>
-        <li><code>{n,m}</code> — Between n and m times</li>
-      </ul>
-      <h3>Flags</h3>
-      <ul>
-        <li><strong>g</strong> (global) — Find all matches, not just the first</li>
-        <li><strong>i</strong> (case-insensitive) — Ignore case differences</li>
-        <li><strong>m</strong> (multiline) — ^ and $ match start/end of each line</li>
-        <li><strong>s</strong> (dotAll) — . matches newline characters too</li>
-      </ul>
-    </div>
-
-    <div class="tool-seo-content" style="margin-top: 3rem; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 1rem; line-height: 1.8; color: var(--text-secondary);">
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">Regular Expression (Regex) Tester</h2>
-      <p style="margin-bottom: 1.5rem;">Test and debug Regular Expressions against sample text in real-time. Regex is a powerful tool for pattern matching, data validation, and text extraction.</p>
-      <p style="margin-bottom: 1.5rem;">Our tester highlights matches and provides real-time feedback, making it easier to write complex patterns without syntax errors.</p>
-      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Safe & Private</h3>
-      <p>All processing in this tool is done securely within your browser using client-side JavaScript. Your data is never sent to a server or stored in a database, ensuring complete privacy.</p>
-    </div>
   `;
 
     setTimeout(() => {
@@ -106,8 +58,8 @@ export function renderRegexTester() {
             groupsDiv.innerHTML = '';
 
             if (!pat || !text) {
-                matchInfo.textContent = 'No matches';
-                highlighted.innerHTML = '<span style="color:var(--color-text-dim)">Enter a pattern and text to see matches</span>';
+                matchInfo.textContent = 'マッチなし';
+                highlighted.innerHTML = '<span style="color:var(--color-text-dim)">パターンとテキストを入力するとマッチ結果が表示されます</span>';
                 return;
             }
 
@@ -126,7 +78,7 @@ export function renderRegexTester() {
                     if (match) matches.push({ index: match.index, length: match[0].length, groups: [...match] });
                 }
 
-                matchInfo.textContent = matches.length + ' match' + (matches.length !== 1 ? 'es' : '') + ' found';
+                matchInfo.textContent = matches.length + ' 件のマッチが見つかりました';
 
                 // Highlight matches
                 let html = '';
@@ -141,21 +93,21 @@ export function renderRegexTester() {
 
                 // Show groups
                 if (matches.length > 0 && matches[0].groups.length > 1) {
-                    let groupHtml = '<h4 style="margin-bottom:8px;color:var(--color-text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em">Capture Groups</h4>';
+                    let groupHtml = '<h4 style="margin-bottom:8px;color:var(--color-text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em">キャプチャグループ</h4>';
                     matches.forEach((m, i) => {
-                        groupHtml += '<div class="regex-group-match">Match ' + (i + 1) + ': ';
+                        groupHtml += '<div class="regex-group-match">マッチ ' + (i + 1) + ': ';
                         m.groups.forEach((g, j) => {
                             if (j === 0) return;
-                            groupHtml += '<span class="regex-group-tag">Group ' + j + ': ' + escapeHtml(g || '(empty)') + '</span> ';
+                            groupHtml += '<span class="regex-group-tag">グループ ' + j + ': ' + escapeHtml(g || '(空)') + '</span> ';
                         });
                         groupHtml += '</div>';
                     });
                     groupsDiv.innerHTML = groupHtml;
                 }
             } catch (e) {
-                errorDiv.textContent = 'Invalid regex: ' + e.message;
+                errorDiv.textContent = '無効な正規表現: ' + e.message;
                 errorDiv.style.display = 'block';
-                matchInfo.textContent = 'Error';
+                matchInfo.textContent = 'エラー';
                 highlighted.innerHTML = '';
             }
         }
@@ -178,5 +130,5 @@ export function renderRegexTester() {
         });
     }, 0);
 
-    return page;
+    return widget;
 }
