@@ -6,6 +6,10 @@ import jsonSyntaxErrors from './json-syntax-errors.js';
 import curlCheatsheet from './curl-cheatsheet.js';
 import gitCommandReference from './git-command-reference.js';
 import characterEncodingGuide from './character-encoding-guide.js';
+import yamlVsJson from './yaml-vs-json.js';
+import csvJsonConversionPitfalls from './csv-json-conversion-pitfalls.js';
+import namingConventionGuide from './naming-convention-guide.js';
+import cidrSubnetGuide from './cidr-subnet-guide.js';
 
 export const posts = [
   httpStatusCodes,
@@ -14,6 +18,10 @@ export const posts = [
   curlCheatsheet,
   gitCommandReference,
   characterEncodingGuide,
+  yamlVsJson,
+  csvJsonConversionPitfalls,
+  namingConventionGuide,
+  cidrSubnetGuide,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));

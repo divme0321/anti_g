@@ -11,6 +11,7 @@ const toolLoaders = {
   'css-minifier': () => import('./tools/css-minifier.js'),
   'markdown-preview': () => import('./tools/markdown-preview.js'),
   'diff-checker': () => import('./tools/diff-checker.js'),
+  'csv-json-converter': () => import('./tools/csv-json-converter.js'),
   base64: () => import('./tools/base64.js'),
   'url-encoder': () => import('./tools/url-encoder.js'),
   'html-entities': () => import('./tools/html-entities.js'),
@@ -24,11 +25,17 @@ const toolLoaders = {
   'css-gradient': () => import('./tools/css-gradient.js'),
   'meta-tag-generator': () => import('./tools/meta-tag-generator.js'),
   'favicon-generator': () => import('./tools/favicon-generator.js'),
+  'image-compressor': () => import('./tools/image-compressor.js'),
   'color-converter': () => import('./tools/color-converter.js'),
   'regex-tester': () => import('./tools/regex-tester.js'),
   'cron-parser': () => import('./tools/cron-parser.js'),
   'timestamp-converter': () => import('./tools/timestamp-converter.js'),
   'word-counter': () => import('./tools/word-counter.js'),
+  'text-case-converter': () => import('./tools/text-case-converter.js'),
+  'yaml-json-converter': () => import('./tools/yaml-json-converter.js'),
+  'number-base-converter': () => import('./tools/number-base-converter.js'),
+  'slug-generator': () => import('./tools/slug-generator.js'),
+  'cidr-calculator': () => import('./tools/cidr-calculator.js'),
 };
 
 async function mountTool(rootEl) {

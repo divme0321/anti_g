@@ -4,6 +4,7 @@ import sqlFormatter from './sql-formatter.js';
 import cssMinifier from './css-minifier.js';
 import markdownPreview from './markdown-preview.js';
 import diffChecker from './diff-checker.js';
+import csvJsonConverter from './csv-json-converter.js';
 import base64 from './base64.js';
 import urlEncoder from './url-encoder.js';
 import htmlEntities from './html-entities.js';
@@ -17,11 +18,17 @@ import qrCodeGenerator from './qr-code-generator.js';
 import cssGradient from './css-gradient.js';
 import metaTagGenerator from './meta-tag-generator.js';
 import faviconGenerator from './favicon-generator.js';
+import imageCompressor from './image-compressor.js';
 import colorConverter from './color-converter.js';
 import regexTester from './regex-tester.js';
 import cronParser from './cron-parser.js';
 import timestampConverter from './timestamp-converter.js';
 import wordCounter from './word-counter.js';
+import cidrCalculator from './cidr-calculator.js';
+import slugGenerator from './slug-generator.js';
+import numberBaseConverter from './number-base-converter.js';
+import yamlJsonConverter from './yaml-json-converter.js';
+import textCaseConverter from './text-case-converter.js';
 
 export const categories = [
   { id: 'format', label: '変換・整形', desc: 'コードやテキストを読みやすく整形・変換するツール' },
@@ -37,6 +44,7 @@ export const tools = [
   cssMinifier,
   markdownPreview,
   diffChecker,
+  csvJsonConverter,
   base64,
   urlEncoder,
   htmlEntities,
@@ -50,11 +58,17 @@ export const tools = [
   cssGradient,
   metaTagGenerator,
   faviconGenerator,
+  imageCompressor,
   colorConverter,
   regexTester,
   cronParser,
   timestampConverter,
   wordCounter,
+  textCaseConverter,
+  yamlJsonConverter,
+  numberBaseConverter,
+  slugGenerator,
+  cidrCalculator,
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.slug, t]));
