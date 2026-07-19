@@ -29,6 +29,12 @@ import slugGenerator from './slug-generator.js';
 import numberBaseConverter from './number-base-converter.js';
 import yamlJsonConverter from './yaml-json-converter.js';
 import textCaseConverter from './text-case-converter.js';
+import jsonToTypescript from './json-to-typescript.js';
+import dateCalculator from './date-calculator.js';
+import lineSorter from './line-sorter.js';
+import pxRemConverter from './px-rem-converter.js';
+import chmodCalculator from './chmod-calculator.js';
+import markdownTableGenerator from './markdown-table-generator.js';
 
 export const categories = [
   { id: 'format', label: '変換・整形', desc: 'コードやテキストを読みやすく整形・変換するツール' },
@@ -45,6 +51,8 @@ export const tools = [
   markdownPreview,
   diffChecker,
   csvJsonConverter,
+  jsonToTypescript,
+  markdownTableGenerator,
   base64,
   urlEncoder,
   htmlEntities,
@@ -60,15 +68,19 @@ export const tools = [
   faviconGenerator,
   imageCompressor,
   colorConverter,
+  pxRemConverter,
   regexTester,
   cronParser,
   timestampConverter,
+  dateCalculator,
   wordCounter,
   textCaseConverter,
+  lineSorter,
   yamlJsonConverter,
   numberBaseConverter,
   slugGenerator,
   cidrCalculator,
+  chmodCalculator,
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.slug, t]));

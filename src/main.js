@@ -12,6 +12,7 @@ const toolLoaders = {
   'markdown-preview': () => import('./tools/markdown-preview.js'),
   'diff-checker': () => import('./tools/diff-checker.js'),
   'csv-json-converter': () => import('./tools/csv-json-converter.js'),
+  'markdown-table-generator': () => import('./tools/markdown-table-generator.js'),
   base64: () => import('./tools/base64.js'),
   'url-encoder': () => import('./tools/url-encoder.js'),
   'html-entities': () => import('./tools/html-entities.js'),
@@ -36,6 +37,11 @@ const toolLoaders = {
   'number-base-converter': () => import('./tools/number-base-converter.js'),
   'slug-generator': () => import('./tools/slug-generator.js'),
   'cidr-calculator': () => import('./tools/cidr-calculator.js'),
+  'json-to-typescript': () => import('./tools/json-to-typescript.js'),
+  'px-rem-converter': () => import('./tools/px-rem-converter.js'),
+  'chmod-calculator': () => import('./tools/chmod-calculator.js'),
+  'date-calculator': () => import('./tools/date-calculator.js'),
+  'line-sorter': () => import('./tools/line-sorter.js'),
 };
 
 async function mountTool(rootEl) {

@@ -10,6 +10,10 @@ import yamlVsJson from './yaml-vs-json.js';
 import csvJsonConversionPitfalls from './csv-json-conversion-pitfalls.js';
 import namingConventionGuide from './naming-convention-guide.js';
 import cidrSubnetGuide from './cidr-subnet-guide.js';
+import chmodPermissionGuide from './chmod-permission-guide.js';
+import markdownCheatsheet from './markdown-cheatsheet.js';
+import pxRemEmGuide from './px-rem-em-guide.js';
+import typescriptTypeBasics from './typescript-type-basics.js';
 
 export const posts = [
   httpStatusCodes,
@@ -22,6 +26,10 @@ export const posts = [
   csvJsonConversionPitfalls,
   namingConventionGuide,
   cidrSubnetGuide,
+  chmodPermissionGuide,
+  markdownCheatsheet,
+  pxRemEmGuide,
+  typescriptTypeBasics,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));
