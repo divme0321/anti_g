@@ -14,6 +14,9 @@ import chmodPermissionGuide from './chmod-permission-guide.js';
 import markdownCheatsheet from './markdown-cheatsheet.js';
 import pxRemEmGuide from './px-rem-em-guide.js';
 import typescriptTypeBasics from './typescript-type-basics.js';
+import boxShadowDesignGuide from './box-shadow-design-guide.js';
+import colorSchemeBasics from './color-scheme-basics.js';
+import aspectRatioCssGuide from './aspect-ratio-css-guide.js';
 
 export const posts = [
   httpStatusCodes,
@@ -30,6 +33,9 @@ export const posts = [
   markdownCheatsheet,
   pxRemEmGuide,
   typescriptTypeBasics,
+  boxShadowDesignGuide,
+  colorSchemeBasics,
+  aspectRatioCssGuide,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));

@@ -34,7 +34,11 @@ import dateCalculator from './date-calculator.js';
 import lineSorter from './line-sorter.js';
 import pxRemConverter from './px-rem-converter.js';
 import chmodCalculator from './chmod-calculator.js';
+import aspectRatioCalculator from './aspect-ratio-calculator.js';
 import markdownTableGenerator from './markdown-table-generator.js';
+import zenkakuHankaku from './zenkaku-hankaku.js';
+import colorPaletteGenerator from './color-palette-generator.js';
+import boxShadowGenerator from './box-shadow-generator.js';
 
 export const categories = [
   { id: 'format', label: '変換・整形', desc: 'コードやテキストを読みやすく整形・変換するツール' },
@@ -53,6 +57,7 @@ export const tools = [
   csvJsonConverter,
   jsonToTypescript,
   markdownTableGenerator,
+  zenkakuHankaku,
   base64,
   urlEncoder,
   htmlEntities,
@@ -64,11 +69,14 @@ export const tools = [
   loremIpsum,
   qrCodeGenerator,
   cssGradient,
+  boxShadowGenerator,
   metaTagGenerator,
   faviconGenerator,
   imageCompressor,
   colorConverter,
+  colorPaletteGenerator,
   pxRemConverter,
+  aspectRatioCalculator,
   regexTester,
   cronParser,
   timestampConverter,

@@ -63,6 +63,7 @@ export function homePage() {
       const cards = toolsByCategory(cat.id).map(toolCard).join('');
       return `
       <section class="tool-category" aria-labelledby="cat-${cat.id}">
+        <span class="eyebrow" aria-hidden="true">${cat.id}</span>
         <h3 id="cat-${cat.id}">${esc(cat.label)}</h3>
         <p class="tool-category-desc">${esc(cat.desc)}</p>
         <div class="tool-grid">${cards}</div>
@@ -88,12 +89,14 @@ export function homePage() {
     </section>
 
     <section class="tools-section" id="tools" aria-labelledby="tools-heading">
+      <span class="eyebrow" aria-hidden="true">All Tools</span>
       <h2 id="tools-heading">ツール一覧</h2>
       <p class="no-results" id="no-results" hidden>該当するツールが見つかりませんでした。</p>
       ${categorySections}
     </section>
 
     <section class="home-blog" aria-labelledby="blog-heading">
+      <span class="eyebrow" aria-hidden="true">Blog</span>
       <div class="section-head">
         <h2 id="blog-heading">技術ブログ・リファレンス</h2>
         <a class="section-more" href="/blog">すべての記事 →</a>
@@ -102,6 +105,7 @@ export function homePage() {
     </section>
 
     <section class="home-about">
+      <span class="eyebrow" aria-hidden="true">About</span>
       <h2>DevToolBox について</h2>
       <p>DevToolBox は、Web開発・プログラミングの現場で毎日のように必要になる小さな作業——JSONの整形、Base64の変換、正規表現の確認、パスワードの生成など——を、インストール不要でその場で済ませられるオンラインツール集です。</p>
       <p>すべてのツールはJavaScriptによりお使いのブラウザ内だけで動作します。入力したコードやデータが外部サーバーへ送信されることはないため、業務のデータや機密情報を扱う場面でも安心してご利用いただけます。あわせて、HTTPステータスコードや正規表現などの<a href="/blog">技術リファレンス記事</a>も公開しています。</p>

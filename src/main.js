@@ -24,10 +24,12 @@ const toolLoaders = {
   'lorem-ipsum': () => import('./tools/lorem-ipsum.js'),
   'qr-code-generator': () => import('./tools/qr-code-generator.js'),
   'css-gradient': () => import('./tools/css-gradient.js'),
+  'box-shadow-generator': () => import('./tools/box-shadow-generator.js'),
   'meta-tag-generator': () => import('./tools/meta-tag-generator.js'),
   'favicon-generator': () => import('./tools/favicon-generator.js'),
   'image-compressor': () => import('./tools/image-compressor.js'),
   'color-converter': () => import('./tools/color-converter.js'),
+  'color-palette-generator': () => import('./tools/color-palette-generator.js'),
   'regex-tester': () => import('./tools/regex-tester.js'),
   'cron-parser': () => import('./tools/cron-parser.js'),
   'timestamp-converter': () => import('./tools/timestamp-converter.js'),
@@ -39,9 +41,11 @@ const toolLoaders = {
   'cidr-calculator': () => import('./tools/cidr-calculator.js'),
   'json-to-typescript': () => import('./tools/json-to-typescript.js'),
   'px-rem-converter': () => import('./tools/px-rem-converter.js'),
+  'aspect-ratio-calculator': () => import('./tools/aspect-ratio-calculator.js'),
   'chmod-calculator': () => import('./tools/chmod-calculator.js'),
   'date-calculator': () => import('./tools/date-calculator.js'),
   'line-sorter': () => import('./tools/line-sorter.js'),
+  'zenkaku-hankaku': () => import('./tools/zenkaku-hankaku.js'),
 };
 
 async function mountTool(rootEl) {
