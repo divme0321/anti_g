@@ -26,7 +26,7 @@ export default {
 <tr><td>主な用途</td><td>API通信、データ交換</td><td>設定ファイル（CI/CD、IaC等）</td></tr>
 </tbody>
 </table>
-<p>API同士のデータ交換ではパースの厳密さとパフォーマンスに優れるJSONが好まれ、人間が直接編集する設定ファイルではコメントを書け、記述量も少なくて済むYAMLが好まれる傾向があります。相互に変換したい場合は<a href="/yaml-json-converter">YAML⇔JSON変換ツール</a>を使うと、手作業でのミスなくすぐに変換できます。</p>
+<p>API同士のデータ交換ではパースの厳密さとパフォーマンスに優れるJSONが好まれ、人間が直接編集する設定ファイルではコメントを書け、記述量も少なくて済むYAMLが好まれる傾向があります。相互に変換したい場合は<a href="/yaml-json-converter/">YAML⇔JSON変換ツール</a>を使うと、手作業でのミスなくすぐに変換できます。</p>
 
 <h2>YAMLのインデントルールで陥りやすいミス</h2>
 <p>YAMLの構造は中括弧ではなくインデントの深さで決まるため、JSONにはない落とし穴があります。ここでは特に遭遇しやすい2つのミスを紹介します。</p>
@@ -109,7 +109,7 @@ spec:
     branches: [main]
   pull_request:
     branches: [main]</code></pre>
-<p>これらの設定ファイルをJSON形式で確認したい場合や、逆にJSONで受け取ったデータをYAML設定に落とし込みたい場合は<a href="/yaml-json-converter">YAML⇔JSON変換ツール</a>で変換すると、構造を保ったまま素早く確認できます。JSON側の構文チェックには<a href="/json-formatter">JSON整形ツール</a>も活用してください。</p>
+<p>これらの設定ファイルをJSON形式で確認したい場合や、逆にJSONで受け取ったデータをYAML設定に落とし込みたい場合は<a href="/yaml-json-converter/">YAML⇔JSON変換ツール</a>で変換すると、構造を保ったまま素早く確認できます。JSON側の構文チェックには<a href="/json-formatter/">JSON整形ツール</a>も活用してください。</p>
 
 <h2>まとめ</h2>
 <ul>

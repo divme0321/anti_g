@@ -55,7 +55,7 @@ export default {
 <ul>
   <li><strong>新規アカウント登録：</strong> サービスごとに固有の強力なパスワードを都度生成する。</li>
   <li><strong>Wi-Fiやルーターの管理パスワード：</strong> 初期パスワードからの変更時に、推測されにくい文字列を用意する。</li>
-  <li><strong>データベース・APIの認証情報：</strong> 開発環境や検証環境のパスワードを手早く発行する。ランダムな識別子が必要な場合は<a href="/uuid-generator">UUID生成</a>も便利です。</li>
+  <li><strong>データベース・APIの認証情報：</strong> 開発環境や検証環境のパスワードを手早く発行する。ランダムな識別子が必要な場合は<a href="/uuid-generator/">UUID生成</a>も便利です。</li>
   <li><strong>テストデータの作成：</strong> ダミーユーザー用のパスワードを一括生成して投入する。</li>
 </ul>
 `,

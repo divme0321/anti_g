@@ -7,7 +7,7 @@ export function headerHTML() {
   const dropdownItems = categories
     .map((cat) => {
       const items = toolsByCategory(cat.id)
-        .map((t) => `<a href="/${t.slug}">${t.icon} ${t.name}</a>`)
+        .map((t) => `<a href="/${t.slug}/">${t.icon} ${t.name}</a>`)
         .join('');
       return `<div class="nav-dropdown-group"><span class="nav-dropdown-label">${cat.label}</span>${items}</div>`;
     })
@@ -25,8 +25,8 @@ export function headerHTML() {
           <button class="nav-dropdown-btn" type="button" aria-expanded="false">ツール一覧 <span aria-hidden="true">▾</span></button>
           <div class="nav-dropdown-menu">${dropdownItems}</div>
         </div>
-        <a href="/blog">ブログ</a>
-        <a href="/about">運営者情報</a>
+        <a href="/blog/">ブログ</a>
+        <a href="/about/">運営者情報</a>
       </nav>
       <div class="header-actions">
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="テーマ切り替え" title="ライト/ダーク切り替え"><span class="theme-icon-light" aria-hidden="true">☀️</span><span class="theme-icon-dark" aria-hidden="true">🌙</span></button>
@@ -34,13 +34,13 @@ export function headerHTML() {
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      ${tools.map((t) => `<a href="/${t.slug}">${t.icon} ${t.name}</a>`).join('')}
+      ${tools.map((t) => `<a href="/${t.slug}/">${t.icon} ${t.name}</a>`).join('')}
       <div class="mobile-nav-divider"></div>
-      <a href="/blog">ブログ</a>
-      <a href="/about">運営者情報</a>
-      <a href="/contact">お問い合わせ</a>
-      <a href="/privacy">プライバシーポリシー</a>
-      <a href="/terms">利用規約</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/about/">運営者情報</a>
+      <a href="/contact/">お問い合わせ</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/terms/">利用規約</a>
     </div>
   </header>`;
 }
@@ -49,7 +49,7 @@ export function footerHTML() {
   const popular = ['json-formatter', 'base64', 'regex-tester', 'qr-code-generator', 'password-generator', 'timestamp-converter'];
   const popularLinks = tools
     .filter((t) => popular.includes(t.slug))
-    .map((t) => `<a href="/${t.slug}">${t.name}</a>`)
+    .map((t) => `<a href="/${t.slug}/">${t.name}</a>`)
     .join('');
 
   return `
@@ -74,14 +74,14 @@ export function footerHTML() {
         <div class="footer-col">
           <h4>コンテンツ</h4>
           <a href="/">ツール一覧</a>
-          <a href="/blog">技術ブログ</a>
-          <a href="/about">運営者情報</a>
-          <a href="/contact">お問い合わせ</a>
+          <a href="/blog/">技術ブログ</a>
+          <a href="/about/">運営者情報</a>
+          <a href="/contact/">お問い合わせ</a>
         </div>
         <div class="footer-col">
           <h4>規約・ポリシー</h4>
-          <a href="/privacy">プライバシーポリシー</a>
-          <a href="/terms">利用規約</a>
+          <a href="/privacy/">プライバシーポリシー</a>
+          <a href="/terms/">利用規約</a>
           <a href="${siteConfig.operator.site}" target="_blank" rel="noopener">運営会社サイト</a>
         </div>
       </div>

@@ -116,7 +116,7 @@ git restore --source abc1234 src/app.js
 
 # 削除してしまったファイルを復元
 git checkout HEAD -- deleted-file.js</code></pre>
-<p><code>restore</code> はファイル復元専用のコマンドです。戻す前に<a href="/diff-checker">差分チェックツール</a>やgit diffで変更内容を確認しておくと安心です。</p>
+<p><code>restore</code> はファイル復元専用のコマンドです。戻す前に<a href="/diff-checker/">差分チェックツール</a>やgit diffで変更内容を確認しておくと安心です。</p>
 
 <h2>コンフリクトを解消したい</h2>
 <h3>28〜31. 解消の流れ</h3>

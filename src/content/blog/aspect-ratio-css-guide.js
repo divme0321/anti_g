@@ -10,7 +10,7 @@ export default {
   category: 'リファレンス',
   tags: ['CSS', 'デザイン', '画像'],
   relatedTools: ['aspect-ratio-calculator', 'image-compressor', 'meta-tag-generator'],
-  body: `<p>アスペクト比（縦横比）は、動画埋め込み・サムネイル・OGP画像・バナーなど、Web制作のあらゆる場面で登場します。この記事では、16:9や黄金比など代表的な比率の早見表、SNS・広告画像の推奨サイズ一覧、そしてCSSの<code>aspect-ratio</code>プロパティを使った実装方法までをまとめます。「幅800pxで16:9なら高さは何px？」のような個別の計算は<a href="/aspect-ratio-calculator">アスペクト比計算機</a>で一発で求められます。</p>
+  body: `<p>アスペクト比（縦横比）は、動画埋め込み・サムネイル・OGP画像・バナーなど、Web制作のあらゆる場面で登場します。この記事では、16:9や黄金比など代表的な比率の早見表、SNS・広告画像の推奨サイズ一覧、そしてCSSの<code>aspect-ratio</code>プロパティを使った実装方法までをまとめます。「幅800pxで16:9なら高さは何px？」のような個別の計算は<a href="/aspect-ratio-calculator/">アスペクト比計算機</a>で一発で求められます。</p>
 
 <h2>代表的なアスペクト比の早見表</h2>
 <p>まず、実務で頻出する比率とその用途、代表的な解像度を一覧にします。</p>
@@ -42,7 +42,7 @@ export default {
 <tr><td>ディスプレイ広告（レクタングル）</td><td>300×250</td><td>6:5</td></tr>
 </tbody>
 </table>
-<p>OGP画像のサイズはメタタグの<code>og:image</code>とあわせて設定します。メタタグ一式の生成には<a href="/meta-tag-generator">メタタグ生成ツール</a>が使えます。また、大きな画像はそのまま置くと表示速度に響くため、書き出し後に<a href="/image-compressor">画像圧縮ツール</a>でファイルサイズを落としておくとよいでしょう。</p>
+<p>OGP画像のサイズはメタタグの<code>og:image</code>とあわせて設定します。メタタグ一式の生成には<a href="/meta-tag-generator/">メタタグ生成ツール</a>が使えます。また、大きな画像はそのまま置くと表示速度に響くため、書き出し後に<a href="/image-compressor/">画像圧縮ツール</a>でファイルサイズを落としておくとよいでしょう。</p>
 
 <h2>CSS aspect-ratioプロパティの使い方</h2>
 <p>かつて縦横比の維持には後述のpadding-topハックが必要でしたが、現在は<code>aspect-ratio</code>プロパティ一発で指定できます。主要ブラウザはすべて対応済みです。</p>
@@ -109,6 +109,6 @@ export default {
 <li>縦横比の維持は<code>aspect-ratio: 16 / 9</code>の1行で完結します。</li>
 <li>比率の揃わない画像は<code>aspect-ratio</code>＋<code>object-fit: cover</code>で枠に合わせて切り抜けます。</li>
 <li>padding-topハックはレガシー対応以外では不要。見つけたら置き換えを検討しましょう。</li>
-<li>個別の寸法計算は<a href="/aspect-ratio-calculator">アスペクト比計算機</a>で素早く求められます。</li>
+<li>個別の寸法計算は<a href="/aspect-ratio-calculator/">アスペクト比計算機</a>で素早く求められます。</li>
 </ul>`,
 };

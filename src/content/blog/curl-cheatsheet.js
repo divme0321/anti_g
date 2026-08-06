@@ -32,7 +32,7 @@ export default {
 <p>メソッド省略時はGETになります。最もシンプルな形です。</p>
 <h3>2. クエリパラメータ付きGET</h3>
 <pre><code>curl "https://api.example.com/users?page=2&amp;limit=10"</code></pre>
-<p><code>&amp;</code> をシェルに解釈させないため、URLは必ず引用符で囲みます。日本語などを含む値は<a href="/url-encoder">URLエンコードツール</a>で事前に変換しておくと安全です。</p>
+<p><code>&amp;</code> をシェルに解釈させないため、URLは必ず引用符で囲みます。日本語などを含む値は<a href="/url-encoder/">URLエンコードツール</a>で事前に変換しておくと安全です。</p>
 <h3>3. POSTリクエスト</h3>
 <pre><code>curl -X POST https://api.example.com/users -d "name=taro"</code></pre>
 <p><code>-d</code> を付けるとPOSTになるため <code>-X POST</code> は省略可能ですが、明示すると意図が伝わりやすくなります。</p>
@@ -56,7 +56,7 @@ export default {
 <pre><code>curl -X POST https://api.example.com/users \\
   -H "Content-Type: application/json" \\
   -d @payload.json</code></pre>
-<p><code>@ファイル名</code> でファイルの中身をボディとして送れます。長いJSONはファイル化すると管理しやすく、<a href="/json-formatter">JSONフォーマッター</a>で整形・検証してから送ると確実です。</p>
+<p><code>@ファイル名</code> でファイルの中身をボディとして送れます。長いJSONはファイル化すると管理しやすく、<a href="/json-formatter/">JSONフォーマッター</a>で整形・検証してから送ると確実です。</p>
 <h3>9. User-Agentを偽装する</h3>
 <pre><code>curl -A "Mozilla/5.0" https://example.com</code></pre>
 <p>User-Agentで挙動が変わるサーバーの確認に使います。</p>
@@ -64,7 +64,7 @@ export default {
 <h2>認証</h2>
 <h3>10. Bearerトークン認証</h3>
 <pre><code>curl -H "Authorization: Bearer eyJhbGciOi..." https://api.example.com/me</code></pre>
-<p>JWTなどのトークン認証で最も使う形です。トークンの中身は<a href="/jwt-decoder">JWTデコーダー</a>で確認できます。</p>
+<p>JWTなどのトークン認証で最も使う形です。トークンの中身は<a href="/jwt-decoder/">JWTデコーダー</a>で確認できます。</p>
 <h3>11. Basic認証</h3>
 <pre><code>curl -u username:password https://api.example.com/admin</code></pre>
 <p><code>-u</code> がユーザー名とパスワードを自動でBase64エンコードしてヘッダーに付与します。</p>

@@ -43,7 +43,7 @@ export default {
   <li><strong>日本語URLの共有：</strong> Wikipediaなど日本語を含むURLをエンコードして、メールやチャットでリンク切れせずに共有する。</li>
   <li><strong>OGP・シェアリンクの作成：</strong> TwitterやLINEのシェアURLに渡すテキストやURLをエンコードする。</li>
 </ul>
-<p>デコード結果がJSONの場合は<a href="/json-formatter">JSONフォーマッター</a>で整形すると読みやすくなります。また、似た用途のエンコード方式として<a href="/base64">Base64エンコード / デコード</a>もあわせてご利用いただけます。</p>
+<p>デコード結果がJSONの場合は<a href="/json-formatter/">JSONフォーマッター</a>で整形すると読みやすくなります。また、似た用途のエンコード方式として<a href="/base64/">Base64エンコード / デコード</a>もあわせてご利用いただけます。</p>
 `,
   faq: [
     {

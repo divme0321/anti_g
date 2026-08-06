@@ -56,7 +56,7 @@ export default {
     <tr><td>原稿用紙1枚</td><td>400字</td></tr>
   </tbody>
 </table>
-<p>Markdownで原稿を書いている場合は、<a href="/markdown-preview">Markdownプレビュー</a>で見た目を確認しながら本ツールで分量を調整すると効率的です。修正前後の原稿を比べたいときは<a href="/diff-checker">差分チェッカー</a>も利用できます。</p>
+<p>Markdownで原稿を書いている場合は、<a href="/markdown-preview/">Markdownプレビュー</a>で見た目を確認しながら本ツールで分量を調整すると効率的です。修正前後の原稿を比べたいときは<a href="/diff-checker/">差分チェッカー</a>も利用できます。</p>
 `,
   faq: [
     {

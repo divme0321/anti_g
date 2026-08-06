@@ -52,7 +52,7 @@ export default {
     <tr><td>192×192 / 512×512</td><td>Androidホーム画面・PWAマニフェスト</td></tr>
   </tbody>
 </table>
-<p>ダウンロードしたPNGはサイトのルートなどに配置し、コピーしたHTMLコードのパスと一致させてください。あわせてOGPなどの<a href="/meta-tag-generator">メタタグ生成</a>も行うと、タブ・検索結果・SNSでの見え方をまとめて整えられます。</p>
+<p>ダウンロードしたPNGはサイトのルートなどに配置し、コピーしたHTMLコードのパスと一致させてください。あわせてOGPなどの<a href="/meta-tag-generator/">メタタグ生成</a>も行うと、タブ・検索結果・SNSでの見え方をまとめて整えられます。</p>
 `,
   faq: [
     {

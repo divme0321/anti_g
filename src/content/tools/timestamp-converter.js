@@ -33,7 +33,7 @@ export default {
 <ul>
   <li><strong>APIレスポンスの確認：</strong> レスポンスJSONに含まれる <code>created_at: 1700000000</code> のような値が実際にいつなのかを即座に確認する。</li>
   <li><strong>ログ調査：</strong> サーバーログのタイムスタンプを日本時間に直して、障害発生時刻と突き合わせる。</li>
-  <li><strong>トークンの有効期限チェック：</strong> JWTの <code>exp</code>・<code>iat</code> クレームの値を日時に変換して、期限切れかどうかを判断する。中身の確認には<a href="/jwt-decoder">JWTデコーダー</a>が便利です。</li>
+  <li><strong>トークンの有効期限チェック：</strong> JWTの <code>exp</code>・<code>iat</code> クレームの値を日時に変換して、期限切れかどうかを判断する。中身の確認には<a href="/jwt-decoder/">JWTデコーダー</a>が便利です。</li>
   <li><strong>テストデータの作成：</strong> 「2026年1月1日0時（UTC）」のような特定日時のタイムスタンプを算出して、テストコードやSQLに埋め込む。</li>
 </ul>
 
@@ -48,7 +48,7 @@ export default {
     <tr><td>ISO 8601</td><td><code>2023-11-14T22:13:20.000Z</code></td><td>API、ログ、データ交換</td></tr>
   </tbody>
 </table>
-<p>なお、本ツールの「Date → Timestamp」の入力はUTCとして解釈されます。日本時間（JST）の日時からタイムスタンプを求めたい場合は、UTCより9時間進んでいることを考慮して入力してください。定期実行スケジュールの時刻確認には<a href="/cron-parser">cron式の解析</a>ツールも併用できます。</p>
+<p>なお、本ツールの「Date → Timestamp」の入力はUTCとして解釈されます。日本時間（JST）の日時からタイムスタンプを求めたい場合は、UTCより9時間進んでいることを考慮して入力してください。定期実行スケジュールの時刻確認には<a href="/cron-parser/">cron式の解析</a>ツールも併用できます。</p>
 `,
   faq: [
     {

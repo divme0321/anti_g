@@ -47,7 +47,9 @@ const jsonLdScript = (objects) =>
 
 function documentHTML(page, { noindex = false } = {}) {
   const { meta, html } = page;
-  const canonical = siteConfig.url + (meta.path === '/' ? '/' : meta.path);
+  // Cloudflare Pages はディレクトリ形式（/slug/index.html）を末尾スラッシュ付きURLで200配信し、
+  // スラッシュなしは307リダイレクトする。canonicalは実際に200が返るURLと一致させる必要がある。
+  const canonical = siteConfig.url + (meta.path === '/' ? '/' : `${meta.path}/`);
   return `<!DOCTYPE html>
 <html lang="ja" data-prerendered="1">
 <head>
@@ -98,16 +100,16 @@ routes.push({ path: '/', priority: '1.0' });
 for (const t of tools) {
   const page = toolPage(t.slug);
   writePage(`${t.slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/${t.slug}`, priority: '0.8' });
+  routes.push({ path: `/${t.slug}/`, priority: '0.8' });
 }
 
 writePage('blog/index.html', documentHTML(blogIndexPage()));
-routes.push({ path: '/blog', priority: '0.7' });
+routes.push({ path: '/blog/', priority: '0.7' });
 
 for (const p of posts) {
   const page = blogPostPage(p.slug);
   writePage(`blog/${p.slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/blog/${p.slug}`, priority: '0.7', lastmod: p.updated || p.date });
+  routes.push({ path: `/blog/${p.slug}/`, priority: '0.7', lastmod: p.updated || p.date });
 }
 
 const staticPages = [
@@ -118,7 +120,7 @@ const staticPages = [
 ];
 for (const [slug, page] of staticPages) {
   writePage(`${slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/${slug}`, priority: '0.3' });
+  routes.push({ path: `/${slug}/`, priority: '0.3' });
 }
 
 writePage('404.html', documentHTML(notFoundPage(), { noindex: true }));
@@ -145,8 +147,8 @@ const rssItems = posts
   .map(
     (p) => `    <item>
       <title>${esc(p.title)}</title>
-      <link>${siteConfig.url}/blog/${p.slug}</link>
-      <guid>${siteConfig.url}/blog/${p.slug}</guid>
+      <link>${siteConfig.url}/blog/${p.slug}/</link>
+      <guid>${siteConfig.url}/blog/${p.slug}/</guid>
       <pubDate>${new Date(`${p.date}T00:00:00+09:00`).toUTCString()}</pubDate>
       <description>${esc(p.description)}</description>
     </item>`
@@ -156,7 +158,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>${siteConfig.name} ブログ</title>
-    <link>${siteConfig.url}/blog</link>
+    <link>${siteConfig.url}/blog/</link>
     <description>Web開発の現場で役立つ技術リファレンスと入門ガイド</description>
     <language>ja</language>
 ${rssItems}
