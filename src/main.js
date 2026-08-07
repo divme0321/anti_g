@@ -10,6 +10,7 @@ const toolLoaders = {
   'sql-formatter': () => import('./tools/sql-formatter.js'),
   'css-minifier': () => import('./tools/css-minifier.js'),
   'markdown-preview': () => import('./tools/markdown-preview.js'),
+  'markdown-to-text': () => import('./tools/markdown-to-text.js'),
   'diff-checker': () => import('./tools/diff-checker.js'),
   'csv-json-converter': () => import('./tools/csv-json-converter.js'),
   'markdown-table-generator': () => import('./tools/markdown-table-generator.js'),
@@ -21,6 +22,7 @@ const toolLoaders = {
   'hash-generator': () => import('./tools/hash-generator.js'),
   'uuid-generator': () => import('./tools/uuid-generator.js'),
   'password-generator': () => import('./tools/password-generator.js'),
+  'password-strength-checker': () => import('./tools/password-strength-checker.js'),
   'lorem-ipsum': () => import('./tools/lorem-ipsum.js'),
   'qr-code-generator': () => import('./tools/qr-code-generator.js'),
   'css-gradient': () => import('./tools/css-gradient.js'),
@@ -32,7 +34,9 @@ const toolLoaders = {
   'color-palette-generator': () => import('./tools/color-palette-generator.js'),
   'regex-tester': () => import('./tools/regex-tester.js'),
   'cron-parser': () => import('./tools/cron-parser.js'),
+  'cron-next-run': () => import('./tools/cron-next-run.js'),
   'timestamp-converter': () => import('./tools/timestamp-converter.js'),
+  'timezone-converter': () => import('./tools/timezone-converter.js'),
   'word-counter': () => import('./tools/word-counter.js'),
   'text-case-converter': () => import('./tools/text-case-converter.js'),
   'yaml-json-converter': () => import('./tools/yaml-json-converter.js'),
@@ -46,6 +50,8 @@ const toolLoaders = {
   'date-calculator': () => import('./tools/date-calculator.js'),
   'line-sorter': () => import('./tools/line-sorter.js'),
   'zenkaku-hankaku': () => import('./tools/zenkaku-hankaku.js'),
+  'qr-code-reader': () => import('./tools/qr-code-reader.js'),
+  'hex-dump-viewer': () => import('./tools/hex-dump-viewer.js'),
 };
 
 async function mountTool(rootEl) {

@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: '開発者のための無料オンラインツール',
   url: 'https://devtoolbox.link',
   description:
-    'JSON整形、Base64変換、正規表現テスター、QRコード作成など40種類の開発者向けツールを無料で提供。すべてブラウザ内で動作し、データは一切送信されません。登録不要・広告控えめで快適に使えます。',
+    'JSON整形、Base64変換、正規表現テスター、QRコード作成など46種類の開発者向けツールを無料で提供。すべてブラウザ内で動作し、データは一切送信されません。登録不要・広告控えめで快適に使えます。',
   locale: 'ja_JP',
   lang: 'ja',
   operator: {

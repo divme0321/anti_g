@@ -2523,9 +2523,39 @@ textarea {
   white-space: pre;
 }
 
+/* --- HEXダンプビューア --- */
+.hex-mode-btn.active {
+  background: var(--color-accent-gradient);
+  color: #fff;
+  border-color: transparent;
+}
+
+.hex-dump-box {
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  overflow-x: auto;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.hex-dump-pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  white-space: pre;
+  color: var(--color-text);
+}
+
 /* --- Responsive for new tools --- */
 @media (max-width: 768px) {
   .qr-options-row {
     grid-template-columns: 1fr;
+  }
+
+  .hex-dump-pre {
+    font-size: 0.7rem;
   }
 }
