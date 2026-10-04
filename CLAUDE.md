@@ -46,6 +46,7 @@
 ## 検証
 
 - `npm run build` — ビルドが通ること（コンテンツのスキーマ不備はここで落ちる）。
+- `npm run test:seo` — 再ビルド後、全公開ルートのcanonical・og:url・sitemap・robots.txtと404のnoindexが整合していること。検索エンジンの登録状況や本番HTTP応答は別途確認する。
 - `npx vite preview` + ブラウザ確認（Playwright: `executablePath: '/opt/pw-browsers/chromium'`）。
 - 新ページは `dist/<slug>/index.html` に本文が静的に含まれているか確認する。
 
@@ -53,5 +54,5 @@
 
 - AdSense はサイト全体で自動広告（`index.html` と build-static.mjs 内の adsbygoogle スクリプト、client ID は `src/site-config.js`）。`public/ads.txt` を消さない。
 - 運営者情報（合同会社me）・プライバシーポリシー・利用規約はAdSense審査要件。削除・简略化しない。
-- canonical はトレイリングスラッシュなし（`https://devtoolbox.link/base64`）。URL構造を変えるときはリダイレクトを検討する。
+- canonical はトレイリングスラッシュ付き（`https://devtoolbox.link/base64/`、ホームは `https://devtoolbox.link/`）。静的HTMLのディレクトリ形式と本番の200応答URLに合わせ、og:url・sitemapも同じURLにする。末尾スラッシュなしのURLへの変更やリダイレクト設定の変更は別途検討する。
 - コンテンツは必ずオリジナルで正確な日本語。薄い記事を量産しない（審査落ちの原因になる）。

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/build-static.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:seo": "npm run build && node scripts/check-seo.mjs"
   },
   "devDependencies": {
     "vite": "^7.3.1"
