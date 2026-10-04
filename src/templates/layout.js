@@ -61,7 +61,7 @@ export function footerHTML() {
             <span class="logo-icon" aria-hidden="true">DT</span>
             <span class="footer-brand-name">${siteConfig.name}</span>
           </div>
-          <p>${siteConfig.tagline}。すべての処理はブラウザ内で完結し、入力データがサーバーへ送信されることはありません。</p>
+          <p>${siteConfig.tagline}。ブラウザ上で使えます。機密情報や本番環境のAPIキー・トークンは入力しないでください。</p>
           <div class="footer-operator">
             <p><strong>運営:</strong> ${siteConfig.operator.name}</p>
             <p>${siteConfig.operator.address}</p>
