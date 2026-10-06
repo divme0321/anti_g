@@ -1,5 +1,61 @@
 import { copyToClipboard, showToast } from '../utils.js';
 
+// 構文検証の結果を再シリアライズせず、元の字句をそのまま使って整形する。
+// 数値の丸め・指数表記の変更・重複キーの消失・キー順の変更を防ぐ。
+export function formatJson(source, minify = false) {
+    JSON.parse(source);
+
+    const tokens = [];
+    const whitespace = /[ \t\r\n]/;
+    const punctuation = '{}[],:';
+    for (let i = 0; i < source.length;) {
+        const char = source[i];
+        if (whitespace.test(char)) {
+            i++;
+        } else if (char === '"') {
+            const start = i++;
+            // エスケープされた引用符を終端と誤認せず、文字列内の空白も残す。
+            while (i < source.length) {
+                if (source[i] === '\\') i += 2;
+                else if (source[i++] === '"') break;
+            }
+            tokens.push(source.slice(start, i));
+        } else if (punctuation.includes(char)) {
+            tokens.push(char);
+            i++;
+        } else {
+            const start = i++;
+            while (i < source.length && !whitespace.test(source[i]) && !punctuation.includes(source[i])) i++;
+            tokens.push(source.slice(start, i));
+        }
+    }
+
+    if (minify) return tokens.join('');
+
+    const output = [];
+    let depth = 0;
+    const newline = () => output.push('\n', '  '.repeat(depth));
+    for (const [index, token] of tokens.entries()) {
+        if (token === '{' || token === '[') {
+            output.push(token);
+            depth++;
+            const closing = token === '{' ? '}' : ']';
+            if (tokens[index + 1] !== closing) newline();
+        } else if (token === '}' || token === ']') {
+            depth--;
+            const opening = token === '}' ? '{' : '[';
+            if (tokens[index - 1] !== opening) newline();
+            output.push(token);
+        } else if (token === ',') {
+            output.push(token);
+            newline();
+        } else {
+            output.push(token === ':' ? ': ' : token);
+        }
+    }
+    return output.join('');
+}
+
 export function render() {
     const widget = document.createElement('div');
     widget.className = 'tool-container';
@@ -50,9 +106,8 @@ export function render() {
 
         document.getElementById('json-format').addEventListener('click', () => {
             try {
-                const parsed = JSON.parse(input.value);
-                output.value = JSON.stringify(parsed, null, 2);
-                setStatus(`有効なJSONです — トップレベルキー ${Object.keys(parsed).length} 個`);
+                output.value = formatJson(input.value);
+                setStatus('有効なJSONです — 整形完了');
             } catch (e) {
                 output.value = '';
                 setStatus(`エラー: ${e.message}`, true);
@@ -62,10 +117,10 @@ export function render() {
 
         document.getElementById('json-minify').addEventListener('click', () => {
             try {
-                const parsed = JSON.parse(input.value);
-                output.value = JSON.stringify(parsed);
+                output.value = formatJson(input.value, true);
                 setStatus(`圧縮完了 — ${output.value.length} 文字`);
             } catch (e) {
+                output.value = '';
                 setStatus(`エラー: ${e.message}`, true);
                 showToast(e.message, 'error');
             }
