@@ -38,7 +38,7 @@ function breadcrumbJsonLd(items) {
 
 function toolCard(t) {
   return `
-    <a class="tool-card" href="/${t.slug}" data-name="${esc(t.name)} ${esc(t.shortDesc)} ${t.slug}">
+    <a class="tool-card" href="/${t.slug}/" data-name="${esc(t.name)} ${esc(t.shortDesc)} ${t.slug}">
       <span class="tool-card-icon" aria-hidden="true">${t.icon}</span>
       <span class="tool-card-body">
         <span class="tool-card-name">${esc(t.name)}</span>
@@ -49,7 +49,7 @@ function toolCard(t) {
 
 function postCard(p) {
   return `
-    <a class="post-card" href="/blog/${p.slug}">
+    <a class="post-card" href="/blog/${p.slug}/">
       <span class="post-card-meta"><span class="post-card-cat">${esc(p.category)}</span><time datetime="${p.date}">${formatDate(p.date)}</time></span>
       <span class="post-card-title">${esc(p.title)}</span>
       <span class="post-card-desc">${esc(p.description)}</span>
@@ -84,7 +84,7 @@ export function homePage() {
       <div class="hero-badges">
         <span class="badge">✓ 完全無料</span>
         <span class="badge">✓ 登録不要</span>
-        <span class="badge">✓ データ送信なし</span>
+        <span class="badge">✓ ブラウザで利用</span>
       </div>
     </section>
 
@@ -99,7 +99,7 @@ export function homePage() {
       <span class="eyebrow" aria-hidden="true">Blog</span>
       <div class="section-head">
         <h2 id="blog-heading">技術ブログ・リファレンス</h2>
-        <a class="section-more" href="/blog">すべての記事 →</a>
+        <a class="section-more" href="/blog/">すべての記事 →</a>
       </div>
       <div class="post-grid">${latestPosts}</div>
     </section>
@@ -108,7 +108,7 @@ export function homePage() {
       <span class="eyebrow" aria-hidden="true">About</span>
       <h2>DevToolBox について</h2>
       <p>DevToolBox は、Web開発・プログラミングの現場で毎日のように必要になる小さな作業——JSONの整形、Base64の変換、正規表現の確認、パスワードの生成など——を、インストール不要でその場で済ませられるオンラインツール集です。</p>
-      <p>すべてのツールはJavaScriptによりお使いのブラウザ内だけで動作します。入力したコードやデータが外部サーバーへ送信されることはないため、業務のデータや機密情報を扱う場面でも安心してご利用いただけます。あわせて、HTTPステータスコードや正規表現などの<a href="/blog">技術リファレンス記事</a>も公開しています。</p>
+      <p>ブラウザ上で使える開発用ツールです。動作確認にはダミーデータを使い、機密情報や本番環境のAPIキー・トークンは入力しないでください。あわせて、HTTPステータスコードや正規表現などの<a href="/blog/">技術リファレンス記事</a>も公開しています。</p>
     </section>
   </div>`;
 
@@ -194,7 +194,7 @@ export function toolPage(slug) {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: t.name,
-      url: `${siteConfig.url}/${t.slug}`,
+      url: `${siteConfig.url}/${t.slug}/`,
       description: t.description,
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
@@ -249,7 +249,7 @@ export function blogIndexPage() {
 export function blogPostPage(slug) {
   const p = postMap[slug];
   if (!p) return null;
-  const bc = [{ label: 'ホーム', href: '/' }, { label: 'ブログ', href: '/blog' }, { label: p.title }];
+  const bc = [{ label: 'ホーム', href: '/' }, { label: 'ブログ', href: '/blog/' }, { label: p.title }];
 
   const relatedHTML = p.relatedTools?.length
     ? `
@@ -296,7 +296,7 @@ export function blogPostPage(slug) {
           datePublished: p.date,
           dateModified: p.updated || p.date,
           inLanguage: 'ja',
-          mainEntityOfPage: `${siteConfig.url}/blog/${p.slug}`,
+          mainEntityOfPage: `${siteConfig.url}/blog/${p.slug}/`,
           author: { '@type': 'Organization', name: siteConfig.operator.name },
           publisher: { '@type': 'Organization', name: siteConfig.operator.name },
         },
@@ -332,7 +332,7 @@ export function aboutPage() {
         </tbody>
       </table>
       <h2>コンテンツの品質について</h2>
-      <p>掲載しているツールと記事は、実際の開発業務での利用を想定して作成し、公開後も継続的に改善しています。誤りを見つけた場合や、追加してほしいツール・記事のご要望は、<a href="/contact">お問い合わせページ</a>からお気軽にお知らせください。</p>
+      <p>掲載しているツールと記事は、実際の開発業務での利用を想定して作成し、公開後も継続的に改善しています。誤りを見つけた場合や、追加してほしいツール・記事のご要望は、<a href="/contact/">お問い合わせページ</a>からお気軽にお知らせください。</p>
     </article>
   </div>`;
 
@@ -365,7 +365,7 @@ export function contactPage() {
       </ul>
       <h2>ご返信について</h2>
       <p>内容を確認のうえ、通常2〜3営業日以内にご返信します。不具合報告や記事の誤りのご指摘は、返信の有無にかかわらず優先的に対応します。</p>
-      <p>入力データの取り扱いについては<a href="/privacy">プライバシーポリシー</a>をご覧ください。</p>
+      <p>入力データの取り扱いについては<a href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
     </article>
   </div>`;
 
@@ -396,9 +396,8 @@ export function privacyPage() {
       <p>当サイトでは、サービス向上のためにアクセス状況を統計的に把握することがあります。この際にCookieや類似技術が使用される場合がありますが、個人を特定する情報は収集しません。</p>
 
       <h2>3. 広告配信について</h2>
-      <p>当サイトでは、第三者配信の広告サービス「Google AdSense（グーグルアドセンス）」を利用しています。広告配信事業者は、利用者の興味に応じた広告を表示するためにCookieを使用することがあります。</p>
-      <p>Cookieを使用することで、当サイトは利用者のコンピュータを識別できるようになりますが、氏名・住所・メールアドレスなど個人を特定できる情報を取得することはありません。</p>
-      <p>Cookieを無効にする方法や Google AdSense に関する詳細は、<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">Googleの広告に関するポリシーと規約</a>をご確認ください。パーソナライズ広告は、<a href="https://adssettings.google.com/" target="_blank" rel="noopener">Googleの広告設定</a>から無効にできます。</p>
+      <p>当サイトはGoogle AdSenseの導入を予定しています。広告配信開始後は、Googleなどの第三者配信事業者がCookieを使用し、当サイトや他のサイトへの過去のアクセス情報に基づいて広告を配信する場合があります。Googleおよびそのパートナーは、広告Cookieを利用して、利用者の関心に応じた広告を表示する場合があります。</p>
+      <p>Googleによるパーソナライズ広告は<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Googleの広告設定</a>から無効にできます。また、<a href="https://optout.aboutads.info/" target="_blank" rel="noopener">WebChoices</a>では、参加する第三者配信事業者によるパーソナライズ広告を無効にできます。</p>
 
       <h2>4. お問い合わせで取得する情報</h2>
       <p>お問い合わせの際に取得したメールアドレス等の情報は、ご質問への回答および必要な連絡のためにのみ利用し、法令に基づく場合を除き第三者へ提供することはありません。</p>
@@ -409,7 +408,7 @@ export function privacyPage() {
       <h2>6. プライバシーポリシーの変更</h2>
       <p>当社は、法令の変更やサービス内容の変更に応じて、本ポリシーを予告なく改定することがあります。改定後のポリシーは、当ページに掲載した時点から効力を生じるものとします。</p>
 
-      <p class="policy-date">制定日: 2025年11月1日<br />最終改定日: 2026年7月9日</p>
+      <p class="policy-date">制定日: 2025年11月1日<br />最終改定日: 2026年10月4日</p>
     </article>
   </div>`;
 

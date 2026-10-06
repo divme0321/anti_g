@@ -50,7 +50,7 @@ export default {
 <ul>
   <li><strong>READMEの下書き：</strong> GitHubにプッシュする前に見出し構成やコードブロックの表示を確認する。</li>
   <li><strong>Issue・Pull Requestの文章確認：</strong> 長めの報告や提案を投稿前にプレビューし、リストや引用の崩れを直す。</li>
-  <li><strong>ブログ・ドキュメント原稿の執筆：</strong> 表示イメージを見ながら書き進め、文字数はステータスバーで把握する。より詳しい文字数カウントには<a href="/word-counter">文字数カウント</a>も利用できます。</li>
+  <li><strong>ブログ・ドキュメント原稿の執筆：</strong> 表示イメージを見ながら書き進め、文字数はステータスバーで把握する。より詳しい文字数カウントには<a href="/word-counter/">文字数カウント</a>も利用できます。</li>
   <li><strong>MarkdownからHTMLへの変換：</strong> 「HTMLをコピー」でHTMLを取得し、Markdown非対応のCMSやメールテンプレートに貼り付ける。</li>
 </ul>
 `,

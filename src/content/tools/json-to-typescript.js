@@ -49,7 +49,7 @@ export default {
   <li><strong>オプショナルの判断：</strong> レスポンスによって存在したりしなかったりするキーは、サンプル1件からは判定できません。必要に応じて <code>name?: string</code> のように <code>?</code> を付けて調整してください。</li>
   <li><strong>リテラル型・enumの検討：</strong> <code>status: "active"</code> のような値は <code>string</code> と推論されますが、取りうる値が決まっているなら <code>"active" | "inactive"</code> のようなユニオン型にするとより安全です。</li>
 </ul>
-<p>また、TypeScriptの型はコンパイル時にしか存在しないため、実行時に「本当にこの型どおりのデータが来たか」までは保証できません。信頼できない外部APIを扱う場合は、生成したinterfaceをたたき台に <code>zod</code> や <code>valibot</code> などのスキーマ検証ライブラリでランタイムバリデーションを足すと、型と実データの食い違いを実行時にも検出できます。JSONの構造確認や整形には<a href="/json-formatter">JSONフォーマッター</a>もご利用ください。</p>
+<p>また、TypeScriptの型はコンパイル時にしか存在しないため、実行時に「本当にこの型どおりのデータが来たか」までは保証できません。信頼できない外部APIを扱う場合は、生成したinterfaceをたたき台に <code>zod</code> や <code>valibot</code> などのスキーマ検証ライブラリでランタイムバリデーションを足すと、型と実データの食い違いを実行時にも検出できます。JSONの構造確認や整形には<a href="/json-formatter/">JSONフォーマッター</a>もご利用ください。</p>
 `,
   faq: [
     {

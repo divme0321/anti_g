@@ -45,7 +45,7 @@ export default {
   <li><strong>APIレスポンスのデバッグ：</strong> curlや開発ツールで取得した1行のレスポンスを整形し、目的のフィールドを探す。</li>
   <li><strong>設定ファイルの検証：</strong> 編集した設定JSONをデプロイ前にチェックし、構文エラーによる起動失敗を防ぐ。</li>
   <li><strong>ログ調査：</strong> ログに出力されたJSON文字列を整形して、障害時のパラメータを確認する。</li>
-  <li><strong>変更点の比較：</strong> 2つのJSONをそれぞれ整形してから<a href="/diff-checker">テキスト差分比較</a>にかけると、どのフィールドが変わったかを行単位で特定できます。</li>
+  <li><strong>変更点の比較：</strong> 2つのJSONをそれぞれ整形してから<a href="/diff-checker/">テキスト差分比較</a>にかけると、どのフィールドが変わったかを行単位で特定できます。</li>
 </ul>
 `,
   faq: [

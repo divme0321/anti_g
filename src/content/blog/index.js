@@ -17,6 +17,11 @@ import typescriptTypeBasics from './typescript-type-basics.js';
 import boxShadowDesignGuide from './box-shadow-design-guide.js';
 import colorSchemeBasics from './color-scheme-basics.js';
 import aspectRatioCssGuide from './aspect-ratio-css-guide.js';
+import strongPasswordGuide from './strong-password-guide.js';
+import qrCodeMechanism from './qr-code-mechanism.js';
+import timezoneUtcBasics from './timezone-utc-basics.js';
+import hexDumpBasics from './hex-dump-basics.js';
+import cronSyntaxReference from './cron-syntax-reference.js';
 
 export const posts = [
   httpStatusCodes,
@@ -36,6 +41,11 @@ export const posts = [
   boxShadowDesignGuide,
   colorSchemeBasics,
   aspectRatioCssGuide,
+  strongPasswordGuide,
+  qrCodeMechanism,
+  timezoneUtcBasics,
+  hexDumpBasics,
+  cronSyntaxReference,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));

@@ -13,6 +13,7 @@ import jwtDecoder from './jwt-decoder.js';
 import hashGenerator from './hash-generator.js';
 import uuidGenerator from './uuid-generator.js';
 import passwordGenerator from './password-generator.js';
+import passwordStrengthChecker from './password-strength-checker.js';
 import loremIpsum from './lorem-ipsum.js';
 import qrCodeGenerator from './qr-code-generator.js';
 import cssGradient from './css-gradient.js';
@@ -22,7 +23,9 @@ import imageCompressor from './image-compressor.js';
 import colorConverter from './color-converter.js';
 import regexTester from './regex-tester.js';
 import cronParser from './cron-parser.js';
+import cronNextRun from './cron-next-run.js';
 import timestampConverter from './timestamp-converter.js';
+import timezoneConverter from './timezone-converter.js';
 import wordCounter from './word-counter.js';
 import cidrCalculator from './cidr-calculator.js';
 import slugGenerator from './slug-generator.js';
@@ -39,6 +42,9 @@ import markdownTableGenerator from './markdown-table-generator.js';
 import zenkakuHankaku from './zenkaku-hankaku.js';
 import colorPaletteGenerator from './color-palette-generator.js';
 import boxShadowGenerator from './box-shadow-generator.js';
+import qrCodeReader from './qr-code-reader.js';
+import markdownToText from './markdown-to-text.js';
+import hexDumpViewer from './hex-dump-viewer.js';
 
 export const categories = [
   { id: 'format', label: '変換・整形', desc: 'コードやテキストを読みやすく整形・変換するツール' },
@@ -53,6 +59,7 @@ export const tools = [
   sqlFormatter,
   cssMinifier,
   markdownPreview,
+  markdownToText,
   diffChecker,
   csvJsonConverter,
   jsonToTypescript,
@@ -66,8 +73,10 @@ export const tools = [
   hashGenerator,
   uuidGenerator,
   passwordGenerator,
+  passwordStrengthChecker,
   loremIpsum,
   qrCodeGenerator,
+  qrCodeReader,
   cssGradient,
   boxShadowGenerator,
   metaTagGenerator,
@@ -79,7 +88,9 @@ export const tools = [
   aspectRatioCalculator,
   regexTester,
   cronParser,
+  cronNextRun,
   timestampConverter,
+  timezoneConverter,
   dateCalculator,
   wordCounter,
   textCaseConverter,
@@ -89,6 +100,7 @@ export const tools = [
   slugGenerator,
   cidrCalculator,
   chmodCalculator,
+  hexDumpViewer,
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.slug, t]));

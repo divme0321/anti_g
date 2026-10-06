@@ -9,7 +9,7 @@ export default {
   category: '入門ガイド',
   tags: ['CSS', 'レスポンシブ', 'Web制作'],
   relatedTools: ['px-rem-converter', 'css-minifier'],
-  body: `<p>CSSでサイズを指定する単位には<code>px</code>・<code>rem</code>・<code>em</code>・<code>%</code>・<code>vw</code>などがあり、「結局どれを使えばいいのか」は初学者が最初に迷うポイントです。この記事では、絶対単位と相対単位の違い、remとemの基準の違い（そしてemのネストで起きる事故）、フォントサイズ・余白・メディアクエリそれぞれでの実務的な使い分けを解説します。pxとremの相互変換は<a href="/px-rem-converter">px⇔rem変換ツール</a>で手早く確認できます。</p>
+  body: `<p>CSSでサイズを指定する単位には<code>px</code>・<code>rem</code>・<code>em</code>・<code>%</code>・<code>vw</code>などがあり、「結局どれを使えばいいのか」は初学者が最初に迷うポイントです。この記事では、絶対単位と相対単位の違い、remとemの基準の違い（そしてemのネストで起きる事故）、フォントサイズ・余白・メディアクエリそれぞれでの実務的な使い分けを解説します。pxとremの相互変換は<a href="/px-rem-converter/">px⇔rem変換ツール</a>で手早く確認できます。</p>
 
 <h2>絶対単位と相対単位</h2>
 <p>CSSの単位は大きく2種類に分かれます。<strong>絶対単位</strong>は環境によらず固定の長さを表す単位で、Webでは実質<code>px</code>のみを使います。<strong>相対単位</strong>は「何かを基準にした倍率」で長さが決まる単位で、基準が変わればサイズも一緒に変わります。ユーザーの設定や画面サイズに追従できるのが相対単位の強みです。</p>
@@ -47,7 +47,7 @@ export default {
 
 <h2>用途別の使い分け</h2>
 <h3>フォントサイズ — remが基本</h3>
-<p>本文・見出しのフォントサイズはremで指定するのが現在の主流です。基準がルートに固定されるため計算が単純で、後述するユーザー設定への追従も効きます。<code>font-size: 16px</code>ではなく<code>font-size: 1rem</code>、24pxなら<code>1.5rem</code>と書きます。換算に迷ったら<a href="/px-rem-converter">px⇔rem変換ツール</a>で確認してください。</p>
+<p>本文・見出しのフォントサイズはremで指定するのが現在の主流です。基準がルートに固定されるため計算が単純で、後述するユーザー設定への追従も効きます。<code>font-size: 16px</code>ではなく<code>font-size: 1rem</code>、24pxなら<code>1.5rem</code>と書きます。換算に迷ったら<a href="/px-rem-converter/">px⇔rem変換ツール</a>で確認してください。</p>
 <h3>余白（margin / padding） — remを基本に、文字連動はem</h3>
 <p>セクション間の余白やカードのpaddingなど、ページ全体で統一したい余白はremで指定すると、デザインシステムとして一貫させやすくなります。ボタンやバッジのように「文字サイズに比例して伸縮してほしい余白」だけemを使う、という切り分けが実務的です。</p>
 <h3>ボーダー・影 — pxでよい</h3>
@@ -69,6 +69,6 @@ export default {
 <li>remは常にルート基準で予測しやすく、emは親基準のためネストで倍率が累積します。迷ったらremが安全です。</li>
 <li>フォントサイズと共通余白はrem、文字サイズに連動させたい余白はem、1pxのボーダーはpx、メディアクエリはem/remが実務的な使い分けです。</li>
 <li>remを使うとブラウザのフォントサイズ設定に追従でき、アクセシビリティが向上します。ルートをpx固定にするのは避けてください。</li>
-<li>px⇔remの換算は<a href="/px-rem-converter">px⇔rem変換ツール</a>で確認できます。</li>
+<li>px⇔remの換算は<a href="/px-rem-converter/">px⇔rem変換ツール</a>で確認できます。</li>
 </ul>`,
 };

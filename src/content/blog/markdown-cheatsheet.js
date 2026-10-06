@@ -9,7 +9,7 @@ export default {
   category: 'リファレンス',
   tags: ['Markdown', 'GitHub', 'ドキュメント'],
   relatedTools: ['markdown-preview', 'markdown-table-generator'],
-  body: `<p>MarkdownはREADME・技術ブログ・Slack・Notionなど、開発現場のあらゆる文書で使われる軽量マークアップ記法です。この記事では、主要な記法を「どう書くと、どう表示されるか」の対応で一覧できるチートシートとしてまとめました。GitHubで使えるGFM拡張（表・チェックボックス・打ち消し線）や、初心者がつまずきやすい改行・ネストのルールも解説します。書きながら表示を確認したいときは<a href="/markdown-preview">Markdownプレビュー</a>を開いておくと便利です。</p>
+  body: `<p>MarkdownはREADME・技術ブログ・Slack・Notionなど、開発現場のあらゆる文書で使われる軽量マークアップ記法です。この記事では、主要な記法を「どう書くと、どう表示されるか」の対応で一覧できるチートシートとしてまとめました。GitHubで使えるGFM拡張（表・チェックボックス・打ち消し線）や、初心者がつまずきやすい改行・ネストのルールも解説します。書きながら表示を確認したいときは<a href="/markdown-preview/">Markdownプレビュー</a>を開いておくと便利です。</p>
 
 <h2>基本記法一覧</h2>
 <h3>見出し</h3>
@@ -74,7 +74,7 @@ const total = items.reduce((sum, x) =&gt; sum + x.price, 0);
 <tr><td><code>---:</code></td><td>右揃え（数値列に最適）</td></tr>
 </tbody>
 </table>
-<p>列数が多い表を手書きするとパイプの位置合わせが大変なので、<a href="/markdown-table-generator">Markdown表作成ツール</a>でセルに入力して生成するのが確実です。</p>
+<p>列数が多い表を手書きするとパイプの位置合わせが大変なので、<a href="/markdown-table-generator/">Markdown表作成ツール</a>でセルに入力して生成するのが確実です。</p>
 
 <h3>チェックボックス（タスクリスト）</h3>
 <pre><code>- [x] 完了したタスク
@@ -100,6 +100,6 @@ const total = items.reduce((sum, x) =&gt; sum + x.price, 0);
 <li>コードブロックはバッククォート3つで囲み、言語名を添えるとハイライトされます。</li>
 <li>表・チェックボックス・打ち消し線はGFM拡張です。表の揃えは区切り行のコロンで指定します。</li>
 <li>段落は空行で区切る、行内改行は行末スペース2つ、リストのネストはスペース幅を統一する、が崩れないコツです。</li>
-<li>実際の表示は<a href="/markdown-preview">Markdownプレビュー</a>で、表の生成は<a href="/markdown-table-generator">Markdown表作成ツール</a>で確認・作成できます。</li>
+<li>実際の表示は<a href="/markdown-preview/">Markdownプレビュー</a>で、表の生成は<a href="/markdown-table-generator/">Markdown表作成ツール</a>で確認・作成できます。</li>
 </ul>`,
 };

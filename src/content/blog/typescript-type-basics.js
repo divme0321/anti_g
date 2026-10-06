@@ -9,7 +9,7 @@ export default {
   category: '入門ガイド',
   tags: ['TypeScript', 'JavaScript', '型定義'],
   relatedTools: ['json-to-typescript', 'json-formatter'],
-  body: `<p>TypeScriptを書き始めてまず戸惑うのが「<code>interface</code>と<code>type</code>のどちらで型を定義すべきか」という問題です。この記事では、基本の型注釈のおさらいから、interfaceとtype aliasの機能的な違いと使い分けの指針、ユニオン型・オプショナルプロパティ、そしてfetchで取得したAPIレスポンスに型を付ける実例までを解説します。APIレスポンスのJSONから型定義を起こす作業は<a href="/json-to-typescript">JSON→TypeScript型生成ツール</a>で自動化できます。</p>
+  body: `<p>TypeScriptを書き始めてまず戸惑うのが「<code>interface</code>と<code>type</code>のどちらで型を定義すべきか」という問題です。この記事では、基本の型注釈のおさらいから、interfaceとtype aliasの機能的な違いと使い分けの指針、ユニオン型・オプショナルプロパティ、そしてfetchで取得したAPIレスポンスに型を付ける実例までを解説します。APIレスポンスのJSONから型定義を起こす作業は<a href="/json-to-typescript/">JSON→TypeScript型生成ツール</a>で自動化できます。</p>
 
 <h2>基本の型注釈</h2>
 <p>TypeScriptでは変数名や引数名の後ろに<code>: 型</code>を書いて型を宣言します。まずはプリミティブ・配列・オブジェクトの3パターンを押さえます。</p>
@@ -97,7 +97,7 @@ async function fetchArticles(): Promise&lt;Article[]&gt; {
 const articles = await fetchArticles();
 articles[0].title;   // string として補完・チェックが効く
 articles[0].titel;   // タイポはコンパイルエラーで検出</code></pre>
-<p>注意点として、<code>as Article[]</code>は「この形のはず」とコンパイラに伝えているだけで、実行時に検証しているわけではありません。外部APIの仕様変更に備えるなら、zodなどのスキーマ検証ライブラリで実行時チェックを組み合わせると堅牢になります。また、実際のレスポンスJSONから型定義を書き起こす作業は、<a href="/json-to-typescript">JSON→TypeScript型生成ツール</a>にJSONを貼り付ければ一括生成できます。</p>
+<p>注意点として、<code>as Article[]</code>は「この形のはず」とコンパイラに伝えているだけで、実行時に検証しているわけではありません。外部APIの仕様変更に備えるなら、zodなどのスキーマ検証ライブラリで実行時チェックを組み合わせると堅牢になります。また、実際のレスポンスJSONから型定義を書き起こす作業は、<a href="/json-to-typescript/">JSON→TypeScript型生成ツール</a>にJSONを貼り付ければ一括生成できます。</p>
 
 <h2>anyを避けてunknownを使う</h2>
 <p><code>any</code>は型チェックを完全に無効化する型です。<code>any</code>の値はどんなプロパティにアクセスしてもメソッドを呼んでもエラーにならず、TypeScriptを使う意味がその部分だけ失われます。さらに<code>any</code>は代入先にも伝播し、汚染が広がります。</p>
@@ -116,7 +116,7 @@ articles[0].titel;   // タイポはコンパイルエラーで検出</code></pr
 <li>型注釈は関数の引数・戻り値とオブジェクトの形の定義で特に効果を発揮します。明らかな初期値には型推論で十分です。</li>
 <li>interfaceは<code>extends</code>と宣言マージ、typeはユニオン型など任意の型に名前を付けられます。どちらでも書ける場面はチームで統一します。</li>
 <li>ユニオン型（<code>'a' | 'b'</code>）とオプショナル（<code>?</code>）で「取りうる値」を正確に表現できます。</li>
-<li>fetchの結果には<code>Promise&lt;T&gt;</code>で型を付け、必要なら実行時検証も併用します。型定義の作成は<a href="/json-to-typescript">JSON→TypeScript型生成ツール</a>が便利です。</li>
+<li>fetchの結果には<code>Promise&lt;T&gt;</code>で型を付け、必要なら実行時検証も併用します。型定義の作成は<a href="/json-to-typescript/">JSON→TypeScript型生成ツール</a>が便利です。</li>
 <li>型が不明な値はanyではなくunknownで受け、絞り込んでから使います。</li>
 </ul>`,
 };
