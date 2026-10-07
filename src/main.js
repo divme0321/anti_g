@@ -3,6 +3,7 @@
 // - 開発サーバー / フォールバック: ルートに応じてページ全体をクライアント側で描画する
 import './styles/index.css';
 import { initSiteUI } from './site-ui.js';
+import { mountTool } from './tool-loader.js';
 
 // ツールslug → 動的import（コード分割される）
 const toolLoaders = {
@@ -54,18 +55,10 @@ const toolLoaders = {
   'hex-dump-viewer': () => import('./tools/hex-dump-viewer.js'),
 };
 
-async function mountTool(rootEl) {
-  const loader = toolLoaders[rootEl.dataset.tool];
-  if (!loader) return;
-  const mod = await loader();
-  rootEl.innerHTML = '';
-  rootEl.appendChild(mod.render());
-}
-
 async function hydrate() {
   initSiteUI();
   const toolRoot = document.getElementById('tool-root');
-  if (toolRoot) await mountTool(toolRoot);
+  if (toolRoot) await mountTool(toolRoot, toolLoaders[toolRoot.dataset.tool]);
 }
 
 // 開発サーバー用のクライアントレンダリング（本番は静的HTMLが配信されるため通らない）
