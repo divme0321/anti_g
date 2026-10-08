@@ -740,6 +740,21 @@ img {
   color: var(--color-text-muted);
 }
 
+.tool-load-error {
+  color: var(--color-text);
+}
+
+.tool-load-error .btn {
+  min-height: 44px;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.tool-load-error .btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
 /* --- 記事本文 --- */
 .article {
   max-width: 760px;
