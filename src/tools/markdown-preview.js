@@ -1,38 +1,5 @@
 import { copyToClipboard } from '../utils.js';
-
-// Simple markdown parser (no external dependencies)
-function parseMarkdown(md) {
-    let html = md
-        // Code blocks
-        .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
-        // Inline code
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        // Headings
-        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-        // Bold and italic
-        .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        // Links
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-        // Images
-        .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;"/>')
-        // Blockquote
-        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-        // HR
-        .replace(/^---$/gm, '<hr/>')
-        // Unordered list
-        .replace(/^[\-\*] (.+)$/gm, '<li>$1</li>')
-        // Paragraphs (skip if already wrapped)
-        .replace(/^(?!<[a-z])((?!<\/)[^\n]+)$/gm, '<p>$1</p>');
-
-    // Wrap consecutive <li> in <ul>
-    html = html.replace(/(<li>[\s\S]*?<\/li>(\n)?)+/g, (match) => `<ul>${match}</ul>`);
-
-    return html;
-}
+import { parseMarkdown } from './markdown-renderer.js';
 
 const SAMPLE_MARKDOWN = `# Welcome to Markdown Preview
 
@@ -43,7 +10,7 @@ This is a **real-time** Markdown editor with *instant* preview.
 - **Bold** and *italic* text
 - \`Inline code\` formatting
 - [Links](https://example.com) support
-- Code blocks with syntax highlighting
+- Code blocks
 
 ### Code Example
 
@@ -63,7 +30,7 @@ Built with ♥ by **DevToolBox**
 
 export function render() {
     const widget = document.createElement('div');
-    widget.className = 'tool-container';
+    widget.className = 'tool-container markdown-tool';
     widget.innerHTML = `
       <div class="tool-pane">
         <div class="pane-header">
@@ -73,7 +40,8 @@ export function render() {
           </div>
         </div>
         <div class="pane-body">
-          <textarea id="md-input" placeholder="ここにMarkdownを入力してください...">${SAMPLE_MARKDOWN}</textarea>
+          <textarea id="md-input" aria-label="Markdown入力" aria-describedby="md-safety-note" placeholder="ここにMarkdownを入力してください...">${SAMPLE_MARKDOWN}</textarea>
+          <p id="md-safety-note">生HTMLは文字として表示し、画像は自動で読み込みません。リンクを開くと移動先へ通信します。</p>
         </div>
         <div class="tool-actions">
           <button class="btn btn-secondary" id="md-copy-md">📋 MDをコピー</button>
@@ -85,11 +53,11 @@ export function render() {
           <span class="pane-title">プレビュー</span>
         </div>
         <div class="pane-body">
-          <div class="markdown-preview" id="md-preview"></div>
+          <div class="markdown-preview" id="md-preview" role="region" aria-label="Markdownプレビュー"></div>
         </div>
         <div class="status-bar">
           <span class="status-dot"></span>
-          <span id="md-status">0 単語</span>
+          <span id="md-status" role="status">0 単語</span>
         </div>
       </div>
   `;

@@ -755,6 +755,15 @@ img {
   outline-offset: 3px;
 }
 
+.markdown-tool .btn {
+  min-height: 44px;
+}
+
+.markdown-tool .btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
 /* --- 記事本文 --- */
 .article {
   max-width: 760px;
