@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'color-palette-generator',
+  updated: '2026-08-06',
   name: '配色パレット生成',
   shortDesc: 'ベースカラーから調和する配色パレットを自動生成',
   title: '配色 パレット 生成｜補色・類似色・トライアドを自動作成 - DevToolBox',

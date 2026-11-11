@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'qr-code-reader',
+  updated: '2026-10-20',
   name: 'QRコードリーダー（画像から読み取り）',
   shortDesc: '画像内のQRコードを読み取りテキスト化',
   title: 'QRコード 読み取り｜画像から内容を読み取る無料オンラインツール - DevToolBox',

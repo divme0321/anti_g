@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'meta-tag-generator',
+  updated: '2026-10-20',
   name: 'メタタグ生成（SEO / OGP）',
   shortDesc: 'SEO・OGP・Twitterカードのメタタグを一括生成',
   title: 'メタタグ生成（SEO・OGP対応）｜無料オンラインツール - DevToolBox',

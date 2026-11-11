@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'favicon-generator',
+  updated: '2026-08-06',
   name: 'ファビコン作成',
   shortDesc: '絵文字やテキストからファビコンを一括生成',
   title: 'ファビコン作成（favicon生成）｜無料オンラインツール - DevToolBox',

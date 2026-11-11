@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'word-counter',
+  updated: '2026-10-20',
   name: '文字数カウント',
   shortDesc: '文字数・行数・単語数をリアルタイムに集計',
   title: '文字数カウント｜原稿・SNS・レポート対応の無料オンラインツール - DevToolBox',

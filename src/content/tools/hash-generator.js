@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'hash-generator',
+  updated: '2026-10-20',
   name: 'ハッシュ生成（MD5 / SHA-256 など）',
   shortDesc: 'MD5・SHA-256などのハッシュ値を一括生成',
   title: 'ハッシュ生成 MD5・SHA-256・SHA-512｜無料オンラインツール - DevToolBox',

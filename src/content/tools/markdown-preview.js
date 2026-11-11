@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'markdown-preview',
+  updated: '2026-10-20',
   name: 'Markdownプレビュー',
   shortDesc: 'Markdownをリアルタイムでプレビュー表示',
   title: 'Markdownプレビュー（リアルタイム表示）｜無料オンラインツール - DevToolBox',

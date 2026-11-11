@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'json-formatter',
+  updated: '2026-10-06',
   name: 'JSON整形・検証（フォーマッター）',
   shortDesc: 'JSONの整形・圧縮・構文チェックをまとめて実行',
   title: 'JSON整形・検証（フォーマッター）｜無料オンラインツール - DevToolBox',

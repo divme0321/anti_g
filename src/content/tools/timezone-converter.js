@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/thead/tbody/tr/th/td/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'timezone-converter',
+  updated: '2026-08-07',
   name: 'タイムゾーン変換（世界時計）',
   shortDesc: '基準日時から世界の主要都市の現地時刻を一覧比較',
   title: 'タイムゾーン変換（世界時計）｜無料オンラインツール - DevToolBox',

@@ -5,13 +5,14 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { siteConfig } from '../src/site-config.js';
-import { tools } from '../src/content/tools/index.js';
+import { tools, categories } from '../src/content/tools/index.js';
 import { posts } from '../src/content/blog/index.js';
 
 const dist = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 const read = (path) => readFileSync(join(dist, path), 'utf8');
 const expectedPaths = [
-  '/', ...tools.map((tool) => `/${tool.slug}/`), '/blog/',
+  '/', ...tools.map((tool) => `/${tool.slug}/`),
+  ...categories.map((category) => `/category/${category.id}/`), '/blog/',
   ...posts.map((post) => `/blog/${post.slug}/`),
   '/about/', '/contact/', '/privacy/', '/terms/',
 ];
@@ -40,6 +41,26 @@ for (const [index, path] of expectedPaths.entries()) {
   assert.deepEqual(canonical, [siteConfig.url + path], `${path}: canonicalが一致しません`);
   assert.deepEqual(ogUrl, canonical, `${path}: og:urlがcanonicalと一致しません`);
   assert.ok(!/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html), `${path}: 公開ページにnoindexがあります`);
+}
+
+// lastmod は実際の更新日だけを出す（ビルド日で全URLが同じ日付になっていないこと、未来日でないこと）。
+const lastmods = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
+// 公開予定日を先の日付にした記事を事前に検証できるよう、基準日を環境変数で上書きできる。
+// 例: SEO_CHECK_DATE=2026-11-18 npm run test:seo
+const today = process.env.SEO_CHECK_DATE || new Date().toISOString().slice(0, 10);
+for (const lastmod of lastmods) {
+  assert.match(lastmod, /^\d{4}-\d{2}-\d{2}$/, `lastmodの形式が不正です: ${lastmod}`);
+  assert.ok(lastmod <= today, `lastmodが未来日です: ${lastmod}`);
+}
+assert.ok(new Set(lastmods).size > 1, 'lastmodがすべて同じ日付です（ビルド日を出力していないか確認）');
+
+// 内部リンク切れの検出: 全ページの href="/..." が公開ルートか静的ファイルを指していること。
+const knownPaths = new Set([...expectedPaths, '/feed.xml', '/favicon.svg']);
+for (const [index, path] of expectedPaths.entries()) {
+  const html = read(expectedFiles[index]);
+  for (const match of html.matchAll(/<a\b[^>]*href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
+    assert.ok(knownPaths.has(match[1]), `${path}: 内部リンク切れ ${match[1]}`);
+  }
 }
 
 const notFound = read('404.html');

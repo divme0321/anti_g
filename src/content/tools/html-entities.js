@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'html-entities',
+  updated: '2026-08-06',
   name: 'HTMLエンティティ変換（特殊文字エスケープ）',
   shortDesc: 'HTMLの特殊文字をエンティティに相互変換',
   title: 'HTMLエンティティ変換・特殊文字エスケープ｜無料オンラインツール - DevToolBox',

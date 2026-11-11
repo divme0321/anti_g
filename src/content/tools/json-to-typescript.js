@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'json-to-typescript',
+  updated: '2026-10-20',
   name: 'JSON → TypeScript型定義 生成',
   shortDesc: 'JSONからTypeScriptのinterfaceを自動生成',
   title: 'JSON TypeScript 型生成｜interface自動作成ツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'image-base64',
+  updated: '2026-10-20',
   name: '画像 ⇔ Base64 変換',
   shortDesc: '画像とBase64（データURI）を相互変換',
   title: '画像Base64変換（データURI化）｜無料オンラインツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'aspect-ratio-calculator',
+  updated: '2026-07-26',
   name: 'アスペクト比計算機',
   shortDesc: '幅と高さから縦横比を約分し比率固定でサイズ換算',
   title: 'アスペクト比 計算ツール｜16:9や黄金比のサイズ換算 - DevToolBox',

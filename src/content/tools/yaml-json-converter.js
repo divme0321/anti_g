@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'yaml-json-converter',
+  updated: '2026-10-20',
   name: 'YAML ⇔ JSON 変換',
   shortDesc: 'YAMLとJSONを相互に変換できるツール',
   title: 'YAML JSON変換｜無料オンラインツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'css-minifier',
+  updated: '2026-10-20',
   name: 'CSS圧縮・整形',
   shortDesc: 'CSSの圧縮（ミニファイ）と整形を双方向に実行',
   title: 'CSS圧縮・整形（ミニファイ）｜無料オンラインツール - DevToolBox',

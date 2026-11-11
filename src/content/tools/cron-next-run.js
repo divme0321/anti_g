@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/thead/tbody/tr/th/td/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'cron-next-run',
+  updated: '2026-08-07',
   name: 'Cron次回実行時刻シミュレーター',
   shortDesc: 'cron式から次回の実行時刻を複数回分計算',
   title: 'Cron次回実行時刻シミュレーター｜無料オンラインツール - DevToolBox',

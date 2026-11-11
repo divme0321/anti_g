@@ -73,6 +73,7 @@ async function clientRender() {
   if (path === '/') page = pages.homePage();
   else if (path === '/blog') page = pages.blogIndexPage();
   else if (path.startsWith('/blog/')) page = pages.blogPostPage(path.slice('/blog/'.length));
+  else if (path.startsWith('/category/')) page = pages.categoryPage(path.slice('/category/'.length)) || pages.notFoundPage();
   else if (path === '/about') page = pages.aboutPage();
   else if (path === '/contact') page = pages.contactPage();
   else if (path === '/privacy') page = pages.privacyPage();

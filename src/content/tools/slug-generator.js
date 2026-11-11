@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'slug-generator',
+  updated: '2026-10-20',
   name: 'URLスラッグ生成',
   shortDesc: 'タイトル文字列からURLに使えるスラッグを自動生成',
   title: 'URLスラッグ生成｜無料オンラインツール - DevToolBox',

@@ -22,6 +22,9 @@ import qrCodeMechanism from './qr-code-mechanism.js';
 import timezoneUtcBasics from './timezone-utc-basics.js';
 import hexDumpBasics from './hex-dump-basics.js';
 import cronSyntaxReference from './cron-syntax-reference.js';
+import jwtAuthenticationGuide from './jwt-authentication-guide.js';
+import uuidV4V7Guide from './uuid-v4-v7-guide.js';
+import base64Reference from './base64-reference.js';
 
 export const posts = [
   httpStatusCodes,
@@ -46,6 +49,9 @@ export const posts = [
   timezoneUtcBasics,
   hexDumpBasics,
   cronSyntaxReference,
+  jwtAuthenticationGuide,
+  uuidV4V7Guide,
+  base64Reference,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));

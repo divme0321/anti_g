@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'chmod-calculator',
+  updated: '2026-07-19',
   name: 'chmod計算機(パーミッション)',
   shortDesc: 'chmodの8進数とrwx表記を相互変換・計算',
   title: 'chmod計算機｜パーミッション(755/644)をrwx表記と相互変換 - DevToolBox',
