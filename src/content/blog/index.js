@@ -25,6 +25,12 @@ import cronSyntaxReference from './cron-syntax-reference.js';
 import jwtAuthenticationGuide from './jwt-authentication-guide.js';
 import uuidV4V7Guide from './uuid-v4-v7-guide.js';
 import base64Reference from './base64-reference.js';
+import xssEscapeByContext from './xss-escape-by-context.js';
+import sqlExecutionOrder from './sql-execution-order.js';
+import sortUniqCommandGuide from './sort-uniq-command-guide.js';
+import unicodeNormalizationGuide from './unicode-normalization-guide.js';
+import dateArithmeticPitfalls from './date-arithmetic-pitfalls.js';
+import faviconSetupGuide from './favicon-setup-guide.js';
 
 export const posts = [
   httpStatusCodes,
@@ -52,6 +58,12 @@ export const posts = [
   jwtAuthenticationGuide,
   uuidV4V7Guide,
   base64Reference,
+  xssEscapeByContext,
+  sqlExecutionOrder,
+  sortUniqCommandGuide,
+  unicodeNormalizationGuide,
+  dateArithmeticPitfalls,
+  faviconSetupGuide,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));
