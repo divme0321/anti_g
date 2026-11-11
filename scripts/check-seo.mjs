@@ -45,7 +45,9 @@ for (const [index, path] of expectedPaths.entries()) {
 
 // lastmod は実際の更新日だけを出す（ビルド日で全URLが同じ日付になっていないこと、未来日でないこと）。
 const lastmods = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
-const today = new Date().toISOString().slice(0, 10);
+// 公開予定日を先の日付にした記事を事前に検証できるよう、基準日を環境変数で上書きできる。
+// 例: SEO_CHECK_DATE=2026-11-18 npm run test:seo
+const today = process.env.SEO_CHECK_DATE || new Date().toISOString().slice(0, 10);
 for (const lastmod of lastmods) {
   assert.match(lastmod, /^\d{4}-\d{2}-\d{2}$/, `lastmodの形式が不正です: ${lastmod}`);
   assert.ok(lastmod <= today, `lastmodが未来日です: ${lastmod}`);
