@@ -31,6 +31,9 @@ import sortUniqCommandGuide from './sort-uniq-command-guide.js';
 import unicodeNormalizationGuide from './unicode-normalization-guide.js';
 import dateArithmeticPitfalls from './date-arithmetic-pitfalls.js';
 import faviconSetupGuide from './favicon-setup-guide.js';
+import markdownRenderingPitfalls from './markdown-rendering-pitfalls.js';
+import urlSlugDesignGuide from './url-slug-design-guide.js';
+import safeTestDataGuide from './safe-test-data-guide.js';
 
 export const posts = [
   httpStatusCodes,
@@ -64,6 +67,9 @@ export const posts = [
   unicodeNormalizationGuide,
   dateArithmeticPitfalls,
   faviconSetupGuide,
+  markdownRenderingPitfalls,
+  urlSlugDesignGuide,
+  safeTestDataGuide,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export const postMap = Object.fromEntries(posts.map((p) => [p.slug, p]));
