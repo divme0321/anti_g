@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'number-base-converter',
+  updated: '2026-07-17',
   name: '進数変換',
   shortDesc: '2進数・8進数・10進数・16進数を相互に変換',
   title: '進数変換｜無料オンラインツール - DevToolBox',

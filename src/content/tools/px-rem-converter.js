@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'px-rem-converter',
+  updated: '2026-07-19',
   name: 'px ⇔ rem 変換',
   shortDesc: 'pxとremをリアルタイムで相互変換する計算ツール',
   title: 'px rem 変換｜基準フォントサイズ対応の無料計算ツール - DevToolBox',

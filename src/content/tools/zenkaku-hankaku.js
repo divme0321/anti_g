@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'zenkaku-hankaku',
+  updated: '2026-10-20',
   name: '全角・半角変換',
   shortDesc: '全角と半角の英数字・カタカナを一括で相互変換',
   title: '全角 半角 変換｜英数字・カタカナ対応の無料オンラインツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'qr-code-generator',
+  updated: '2026-08-06',
   name: 'QRコード作成',
   shortDesc: 'URLやWi-Fi情報からQRコードを無料で作成',
   title: 'QRコード作成（無料・登録不要・ロゴなし）｜オンラインツール - DevToolBox',

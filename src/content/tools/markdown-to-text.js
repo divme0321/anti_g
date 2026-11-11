@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/thead/tbody/tr/th/td/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'markdown-to-text',
+  updated: '2026-10-20',
   name: 'Markdown → プレーンテキスト変換',
   shortDesc: 'Markdown記法を除去してプレーンテキストに変換',
   title: 'Markdown プレーンテキスト 変換｜無料オンラインツール - DevToolBox',

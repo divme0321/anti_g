@@ -47,11 +47,41 @@ import markdownToText from './markdown-to-text.js';
 import hexDumpViewer from './hex-dump-viewer.js';
 
 export const categories = [
-  { id: 'format', label: '変換・整形', desc: 'コードやテキストを読みやすく整形・変換するツール' },
-  { id: 'encode', label: 'エンコード・ハッシュ', desc: 'Base64・URL・ハッシュなど各種エンコード処理' },
-  { id: 'generate', label: 'ジェネレーター', desc: 'UUID・パスワード・QRコードなどをその場で生成' },
-  { id: 'web', label: 'Web制作・デザイン', desc: 'CSS・配色・メタタグなどWeb制作を助けるツール' },
-  { id: 'dev', label: '開発ユーティリティ', desc: '正規表現・cron・タイムスタンプなど開発の定番ツール' },
+  {
+    id: 'format',
+    label: '変換・整形',
+    desc: 'コードやテキストを読みやすく整形・変換するツール',
+    intro:
+      'APIのレスポンスを読みやすく整える、CSVをJSONに直す、2つの設定ファイルの差分を確かめる——コードやテキストの「形を変える」作業をまとめたカテゴリです。整形と圧縮、形式の相互変換、差分の確認、Markdownの下書きまで、エディタを開くほどでもない作業をブラウザだけで済ませられます。',
+  },
+  {
+    id: 'encode',
+    label: 'エンコード・ハッシュ',
+    desc: 'Base64・URL・ハッシュなど各種エンコード処理',
+    intro:
+      'Base64やURLエンコード、HTMLエスケープ、ハッシュ値の計算、JWTの中身の確認など、データの表現を変えたり検証したりするツールのカテゴリです。エンコードは暗号化ではなく、誰でも元に戻せる変換である点に注意してください。動作確認にはダミーデータを使うことをおすすめします。',
+  },
+  {
+    id: 'generate',
+    label: 'ジェネレーター',
+    desc: 'UUID・パスワード・QRコードなどをその場で生成',
+    intro:
+      'テストデータ用のUUID、推測されにくいパスワード、URLを載せたQRコード、デザインの仮置きテキストなど、「いま1つ必要」なものをその場で作るツールのカテゴリです。生成した結果はコピーやダウンロードでそのまま持ち出せます。',
+  },
+  {
+    id: 'web',
+    label: 'Web制作・デザイン',
+    desc: 'CSS・配色・メタタグなどWeb制作を助けるツール',
+    intro:
+      'グラデーションや影のCSSを目で見ながら調整する、配色を組み立てる、pxとremを換算する、OGPのメタタグを用意する——Webサイトの見た目と公開準備に関わるツールのカテゴリです。プレビューで確かめた値を、そのままCSSやHTMLとしてコピーできます。',
+  },
+  {
+    id: 'dev',
+    label: '開発ユーティリティ',
+    desc: '正規表現・cron・タイムスタンプなど開発の定番ツール',
+    intro:
+      '正規表現の動作確認、cron式の読み解きと次回実行時刻の確認、UNIXタイムスタンプやタイムゾーンの変換、サブネットやパーミッションの計算など、開発と運用で繰り返し出てくる確認作業のためのカテゴリです。頭の中で計算すると間違えやすいものを、入力するだけで確かめられます。',
+  },
 ];
 
 export const tools = [
@@ -104,6 +134,8 @@ export const tools = [
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.slug, t]));
+
+export const categoryMap = Object.fromEntries(categories.map((c) => [c.id, c]));
 
 export function toolsByCategory(categoryId) {
   return tools.filter((t) => t.category === categoryId);

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'cron-parser',
+  updated: '2026-08-06',
   name: 'cron式の解析・日本語変換',
   shortDesc: 'cron式を解析して実行スケジュールを分かりやすく表示',
   title: 'cron式の解析・チェック｜無料オンラインツール - DevToolBox',

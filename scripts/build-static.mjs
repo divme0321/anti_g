@@ -5,7 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { siteConfig } from '../src/site-config.js';
-import { tools } from '../src/content/tools/index.js';
+import { tools, categories } from '../src/content/tools/index.js';
 import { posts } from '../src/content/blog/index.js';
 import { headerHTML, footerHTML } from '../src/templates/layout.js';
 import {
@@ -13,6 +13,7 @@ import {
   toolPage,
   blogIndexPage,
   blogPostPage,
+  categoryPage,
   aboutPage,
   contactPage,
   privacyPage,
@@ -93,23 +94,28 @@ function writePage(outPath, html) {
 // ---- 全ルートを生成 ----
 const routes = [];
 
-const home = homePage();
-writePage('index.html', documentHTML(home));
-routes.push({ path: '/', priority: '1.0' });
-
-for (const t of tools) {
-  const page = toolPage(t.slug);
-  writePage(`${t.slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/${t.slug}/`, priority: '0.8' });
+// lastmod は各ページの meta.lastmod（実際の更新日）だけを使う。
+// ビルド日を入れると毎回全ページが「更新」扱いになり、検索エンジンに信用されなくなるため。
+function addRoute(outPath, path, page, priority) {
+  writePage(outPath, documentHTML(page));
+  routes.push({ path, priority, lastmod: page.meta.lastmod });
 }
 
-writePage('blog/index.html', documentHTML(blogIndexPage()));
-routes.push({ path: '/blog/', priority: '0.7' });
+addRoute('index.html', '/', homePage(), '1.0');
+
+for (const t of tools) {
+  addRoute(`${t.slug}/index.html`, `/${t.slug}/`, toolPage(t.slug), '0.8');
+}
+
+for (const c of categories) {
+  addRoute(`category/${c.id}/index.html`, `/category/${c.id}/`, categoryPage(c.id), '0.6');
+}
+
+const blogIndex = blogIndexPage();
+addRoute('blog/index.html', '/blog/', blogIndex, '0.7');
 
 for (const p of posts) {
-  const page = blogPostPage(p.slug);
-  writePage(`blog/${p.slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/blog/${p.slug}/`, priority: '0.7', lastmod: p.updated || p.date });
+  addRoute(`blog/${p.slug}/index.html`, `/blog/${p.slug}/`, blogPostPage(p.slug), '0.7');
 }
 
 const staticPages = [
@@ -119,22 +125,19 @@ const staticPages = [
   ['terms', termsPage()],
 ];
 for (const [slug, page] of staticPages) {
-  writePage(`${slug}/index.html`, documentHTML(page));
-  routes.push({ path: `/${slug}/`, priority: '0.3' });
+  addRoute(`${slug}/index.html`, `/${slug}/`, page, '0.3');
 }
 
 writePage('404.html', documentHTML(notFoundPage(), { noindex: true }));
 
 // ---- sitemap.xml ----
-const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
   .map(
     (r) => `  <url>
     <loc>${siteConfig.url}${r.path === '/' ? '/' : r.path}</loc>
-    <lastmod>${r.lastmod || today}</lastmod>
-    <priority>${r.priority}</priority>
+${r.lastmod ? `    <lastmod>${r.lastmod}</lastmod>\n` : ''}    <priority>${r.priority}</priority>
   </url>`
   )
   .join('\n')}

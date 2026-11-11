@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'sql-formatter',
+  updated: '2026-10-20',
   name: 'SQL整形（フォーマッター）',
   shortDesc: '貼り付けたSQLをリアルタイムで自動整形して読みやすく',
   title: 'SQL整形（フォーマッター）｜無料オンラインツール - DevToolBox',

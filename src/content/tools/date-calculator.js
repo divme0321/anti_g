@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'date-calculator',
+  updated: '2026-10-29',
   name: '日付計算（日数カウント・加減算）',
   shortDesc: '2つの日付の差分日数と日付の加減算を計算',
   title: '日数計算・日付計算（日数カウント・○日後の日付）｜無料オンラインツール - DevToolBox',

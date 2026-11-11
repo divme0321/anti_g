@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'jwt-decoder',
+  updated: '2026-10-20',
   name: 'JWTデコーダー（トークン解析）',
   shortDesc: 'JWTのヘッダーとペイロードを即座に解析',
   title: 'JWTデコード・トークン解析｜無料オンラインツール - DevToolBox',

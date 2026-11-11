@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'cidr-calculator',
+  updated: '2026-10-20',
   name: 'CIDR / サブネット計算機',
   shortDesc: 'CIDR表記からネットワーク情報を瞬時に計算',
   title: 'CIDR/サブネット計算機｜無料オンラインツール - DevToolBox',

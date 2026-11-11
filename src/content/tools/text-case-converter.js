@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'text-case-converter',
+  updated: '2026-10-20',
   name: 'テキストケース変換',
   shortDesc: 'camelCase・snake_case・kebab-caseなど命名規則を相互変換',
   title: 'テキストケース変換（camelCase・snake_case）｜無料オンラインツール - DevToolBox',

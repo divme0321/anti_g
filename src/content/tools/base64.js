@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'base64',
+  updated: '2026-10-04',
   name: 'Base64 エンコード / デコード',
   shortDesc: 'テキストとBase64文字列を相互変換',
   title: 'Base64エンコード・デコード｜無料オンラインツール - DevToolBox',

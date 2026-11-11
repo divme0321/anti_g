@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'url-encoder',
+  updated: '2026-10-20',
   name: 'URLエンコード / デコード',
   shortDesc: 'URLの特殊文字をパーセントエンコード・復元',
   title: 'URLエンコード・デコード｜無料オンラインツール - DevToolBox',

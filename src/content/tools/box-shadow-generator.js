@@ -2,6 +2,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'box-shadow-generator',
+  updated: '2026-07-26',
   name: 'CSSボックスシャドウ生成',
   shortDesc: 'スライダー操作でbox-shadowのCSSを直感的に生成',
   title: 'box-shadow 生成｜CSSボックスシャドウをスライダーで作成 - DevToolBox',

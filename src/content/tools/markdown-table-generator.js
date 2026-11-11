@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'markdown-table-generator',
+  updated: '2026-10-20',
   name: 'Markdown表(テーブル)作成',
   shortDesc: 'タブ・カンマ区切りデータをMarkdown表に変換',
   title: 'Markdown表作成・テーブルジェネレーター｜無料オンラインツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'image-compressor',
+  updated: '2026-10-20',
   name: '画像圧縮',
   shortDesc: '画像をブラウザ内でJPEG/WebP/PNGに圧縮',
   title: '画像圧縮｜無料オンラインツール - DevToolBox',

@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'regex-tester',
+  updated: '2026-08-06',
   name: '正規表現テスター（チェッカー）',
   shortDesc: '正規表現のマッチをリアルタイムに確認・検証',
   title: '正規表現テスター・チェッカー｜無料オンラインツール - DevToolBox',

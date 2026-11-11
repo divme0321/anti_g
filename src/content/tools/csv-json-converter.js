@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'csv-json-converter',
+  updated: '2026-10-20',
   name: 'CSV ⇔ JSON 変換',
   shortDesc: 'CSVとJSONをブラウザ内で相互に変換',
   title: 'CSV JSON 変換｜無料オンラインツール - DevToolBox',

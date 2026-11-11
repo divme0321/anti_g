@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'diff-checker',
+  updated: '2026-10-20',
   name: 'テキスト差分比較（Diffチェッカー）',
   shortDesc: '2つのテキストの差分を行単位で色分け表示',
   title: 'テキスト差分比較（Diffチェッカー）｜無料オンラインツール - DevToolBox',

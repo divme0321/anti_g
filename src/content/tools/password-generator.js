@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'password-generator',
+  updated: '2026-08-06',
   name: 'パスワード生成',
   shortDesc: '強力なランダムパスワードをブラウザ内で安全に生成',
   title: 'パスワード生成（安全・ランダム）｜無料オンラインツール - DevToolBox',

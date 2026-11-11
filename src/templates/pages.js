@@ -1,7 +1,7 @@
 // 各ページの本文HTMLとメタ情報を生成するテンプレート（文字列生成のみ・DOM非依存）
 // 戻り値: { meta: { title, description, path, ogType, jsonLd }, html }
 import { siteConfig } from '../site-config.js';
-import { tools, categories, toolMap, toolsByCategory } from '../content/tools/index.js';
+import { tools, categories, categoryMap, toolMap, toolsByCategory } from '../content/tools/index.js';
 import { posts, postMap } from '../content/blog/index.js';
 
 const esc = (s) =>
@@ -56,6 +56,69 @@ function postCard(p) {
     </a>`;
 }
 
+// ブログのカテゴリ表示順（一覧ページの見出し順）
+const blogCategories = [
+  { id: 'reference', label: 'リファレンス', desc: '手元に置いて何度も引く早見表・チートシート' },
+  { id: 'guide', label: '入門ガイド', desc: '仕組みと考え方を基礎から理解するための解説' },
+];
+
+// あるツールを relatedTools に挙げている記事（新しい順）
+function postsForTool(slug) {
+  return posts.filter((p) => (p.relatedTools || []).includes(slug));
+}
+
+// あるツールカテゴリに関連する記事（カテゴリ内のツールを relatedTools に挙げている記事）
+function postsForCategory(categoryId) {
+  const slugs = new Set(toolsByCategory(categoryId).map((t) => t.slug));
+  return posts.filter((p) => (p.relatedTools || []).some((s) => slugs.has(s)));
+}
+
+// 関連記事: タグ・関連ツールの重なりでスコアを付け、不足分は新着で補う
+function relatedPosts(p, limit = 3) {
+  const tags = new Set(p.tags || []);
+  const rel = new Set(p.relatedTools || []);
+  const scored = posts
+    .filter((o) => o.slug !== p.slug)
+    .map((o) => ({
+      post: o,
+      score:
+        (o.tags || []).filter((t) => tags.has(t)).length * 2 +
+        (o.relatedTools || []).filter((t) => rel.has(t)).length * 2 +
+        (o.category === p.category ? 1 : 0),
+    }));
+  // sort は安定なので、同点の場合は posts の並び（新しい順）が保たれる
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((x) => x.post);
+}
+
+// 記事本文の h2 に id を振り、目次HTMLを作る（文字列処理のみ・DOM非依存）
+function withToc(body) {
+  const items = [];
+  const html = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner) => {
+    const id = `sec-${items.length + 1}`;
+    items.push({ id, label: inner.replace(/<[^>]+>/g, '') });
+    return `<h2 id="${id}">${inner}</h2>`;
+  });
+  if (items.length < 3) return { toc: '', html: body };
+  const toc = `
+      <nav class="toc" aria-labelledby="toc-heading">
+        <p class="toc-title" id="toc-heading">目次</p>
+        <ol>${items.map((it) => `<li><a href="#${it.id}">${it.label}</a></li>`).join('')}</ol>
+      </nav>`;
+  return { toc, html };
+}
+
+function categoryNav() {
+  return `<div class="category-nav">${categories
+    .map(
+      (cat) =>
+        `<a class="category-chip" href="/category/${cat.id}/"><span class="category-chip-name">${esc(cat.label)}</span><span class="category-chip-count">${toolsByCategory(cat.id).length}種類</span></a>`
+    )
+    .join('')}</div>`;
+}
+
 // ---------------- ホーム ----------------
 export function homePage() {
   const categorySections = categories
@@ -64,7 +127,7 @@ export function homePage() {
       return `
       <section class="tool-category" aria-labelledby="cat-${cat.id}">
         <span class="eyebrow" aria-hidden="true">${cat.id}</span>
-        <h3 id="cat-${cat.id}">${esc(cat.label)}</h3>
+        <h3 id="cat-${cat.id}"><a href="/category/${cat.id}/">${esc(cat.label)}</a></h3>
         <p class="tool-category-desc">${esc(cat.desc)}</p>
         <div class="tool-grid">${cards}</div>
       </section>`;
@@ -86,6 +149,12 @@ export function homePage() {
         <span class="badge">✓ 登録不要</span>
         <span class="badge">✓ ブラウザで利用</span>
       </div>
+    </section>
+
+    <section class="home-categories" aria-labelledby="categories-heading">
+      <span class="eyebrow" aria-hidden="true">Categories</span>
+      <h2 id="categories-heading">目的から探す</h2>
+      ${categoryNav()}
     </section>
 
     <section class="tools-section" id="tools" aria-labelledby="tools-heading">
@@ -117,6 +186,7 @@ export function homePage() {
       title: `${siteConfig.name}｜${siteConfig.tagline}【登録不要・${tools.length}種類】`,
       description: siteConfig.description,
       path: '/',
+      lastmod: posts[0]?.updated || posts[0]?.date,
       ogType: 'website',
       jsonLd: [
         {
@@ -141,7 +211,7 @@ export function toolPage(slug) {
   const cat = categories.find((c) => c.id === t.category);
   const bc = [
     { label: 'ホーム', href: '/' },
-    { label: cat ? cat.label : 'ツール', href: '/#tools' },
+    { label: cat ? cat.label : 'ツール', href: cat ? `/category/${cat.id}/` : '/#tools' },
     { label: t.name },
   ];
 
@@ -173,6 +243,15 @@ export function toolPage(slug) {
     </section>`
     : '';
 
+  const toolPosts = postsForTool(t.slug).slice(0, 4);
+  const relatedPostsHTML = toolPosts.length
+    ? `
+    <section class="related related-posts" aria-labelledby="related-posts-heading">
+      <h2 id="related-posts-heading">関連する解説記事</h2>
+      <div class="post-grid">${toolPosts.map(postCard).join('')}</div>
+    </section>`
+    : '';
+
   const html = `
   <div class="tool-page">
     ${breadcrumb(bc)}
@@ -186,8 +265,10 @@ export function toolPage(slug) {
       <div class="tool-loading" aria-hidden="true">ツールを読み込み中...</div>
     </div>
     <article class="article">${t.article}</article>
+    ${t.updated ? `<p class="content-updated">最終更新: <time datetime="${t.updated}">${formatDate(t.updated)}</time></p>` : ''}
     ${faqHTML}
     ${relatedHTML}
+    ${relatedPostsHTML}
   </div>`;
 
   const jsonLd = [
@@ -201,6 +282,7 @@ export function toolPage(slug) {
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
       inLanguage: 'ja',
+      ...(t.updated ? { dateModified: t.updated } : {}),
     },
     breadcrumbJsonLd(bc),
   ];
@@ -217,7 +299,7 @@ export function toolPage(slug) {
   }
 
   return {
-    meta: { title: t.title, description: t.description, path: `/${t.slug}`, ogType: 'website', jsonLd },
+    meta: { title: t.title, description: t.description, path: `/${t.slug}`, lastmod: t.updated, ogType: 'website', jsonLd },
     html,
   };
 }
@@ -231,7 +313,38 @@ export function blogIndexPage() {
       <h1>技術ブログ・リファレンス</h1>
       <p>Web開発の現場で役立つリファレンスと入門ガイドを公開しています。ツールとあわせてブックマークしてご活用ください。</p>
     </div>
-    <div class="post-list">${posts.map(postCard).join('')}</div>
+    <nav class="blog-cat-nav" aria-label="記事カテゴリ">${blogCategories
+      .map((c) => `<a class="category-chip" href="#blog-${c.id}"><span class="category-chip-name">${esc(c.label)}</span><span class="category-chip-count">${posts.filter((p) => p.category === c.label).length}本</span></a>`)
+      .join('')}</nav>
+    ${blogCategories
+      .map((c) => {
+        const list = posts.filter((p) => p.category === c.label);
+        return list.length
+          ? `
+    <section class="blog-cat" aria-labelledby="blog-${c.id}">
+      <h2 id="blog-${c.id}">${esc(c.label)}</h2>
+      <p class="blog-cat-desc">${esc(c.desc)}</p>
+      <div class="post-list">${list.map(postCard).join('')}</div>
+    </section>`
+          : '';
+      })
+      .join('')}
+    ${(() => {
+      // 既知のカテゴリに当てはまらない記事も一覧から漏らさない
+      const known = new Set(blogCategories.map((c) => c.label));
+      const rest = posts.filter((p) => !known.has(p.category));
+      return rest.length
+        ? `
+    <section class="blog-cat" aria-labelledby="blog-other">
+      <h2 id="blog-other">その他</h2>
+      <div class="post-list">${rest.map(postCard).join('')}</div>
+    </section>`
+        : '';
+    })()}
+    <section class="blog-tools" aria-labelledby="blog-tools-heading">
+      <h2 id="blog-tools-heading">ツールをカテゴリから探す</h2>
+      ${categoryNav()}
+    </section>
   </div>`;
 
   return {
@@ -240,6 +353,7 @@ export function blogIndexPage() {
       description:
         'HTTPステータスコード一覧、正規表現入門、Gitコマンド逆引きなど、Web開発の現場で役立つ技術リファレンスと入門ガイドを公開しています。',
       path: '/blog',
+      lastmod: posts[0]?.updated || posts[0]?.date,
       ogType: 'website',
       jsonLd: [breadcrumbJsonLd([{ label: 'ホーム', href: '/' }, { label: 'ブログ' }])],
     },
@@ -264,6 +378,19 @@ export function blogPostPage(slug) {
     </section>`
     : '';
 
+  const more = relatedPosts(p);
+  const relatedPostsHTML = more.length
+    ? `
+    <section class="related related-posts" aria-labelledby="related-posts-heading">
+      <h2 id="related-posts-heading">関連記事</h2>
+      <div class="post-grid">${more.map(postCard).join('')}</div>
+    </section>`
+    : '';
+  const { toc, html: bodyHTML } = withToc(p.body);
+  // 導入文（最初の h2 より前）の直後に目次を差し込む
+  const firstH2 = bodyHTML.indexOf('<h2');
+  const bodyWithToc = toc && firstH2 >= 0 ? bodyHTML.slice(0, firstH2) + toc + bodyHTML.slice(firstH2) : bodyHTML;
+
   const html = `
   <div class="blog-post">
     ${breadcrumb(bc)}
@@ -277,9 +404,10 @@ export function blogPostPage(slug) {
         <h1>${esc(p.title)}</h1>
         <div class="post-tags">${(p.tags || []).map((tag) => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
       </header>
-      ${p.body}
+      ${bodyWithToc}
     </article>
     ${relatedHTML}
+    ${relatedPostsHTML}
   </div>`;
 
   return {
@@ -287,6 +415,7 @@ export function blogPostPage(slug) {
       title: `${p.title} - ${siteConfig.name}`,
       description: p.description,
       path: `/blog/${p.slug}`,
+      lastmod: p.updated || p.date,
       ogType: 'article',
       jsonLd: [
         {
@@ -300,6 +429,88 @@ export function blogPostPage(slug) {
           mainEntityOfPage: `${siteConfig.url}/blog/${p.slug}/`,
           author: { '@type': 'Organization', name: siteConfig.operator.name },
           publisher: { '@type': 'Organization', name: siteConfig.operator.name },
+        },
+        breadcrumbJsonLd(bc),
+      ],
+    },
+    html,
+  };
+}
+
+// ---------------- カテゴリ ----------------
+export function categoryPage(id) {
+  const cat = categoryMap[id];
+  if (!cat) return null;
+  const list = toolsByCategory(id);
+  const catPosts = postsForCategory(id).slice(0, 6);
+  const bc = [{ label: 'ホーム', href: '/' }, { label: cat.label }];
+  const others = categories.filter((c) => c.id !== id);
+
+  const html = `
+  <div class="category-page">
+    ${breadcrumb(bc)}
+    <div class="page-head">
+      <h1>${esc(cat.label)}ツール一覧</h1>
+      <p>${esc(cat.intro)}</p>
+    </div>
+    <section class="category-tools" aria-labelledby="category-tools-heading">
+      <h2 id="category-tools-heading">${esc(cat.label)}のツール（${list.length}種類）</h2>
+      <div class="tool-grid">${list.map(toolCard).join('')}</div>
+    </section>
+    <section class="category-guide" aria-labelledby="category-guide-heading">
+      <h2 id="category-guide-heading">各ツールでできること</h2>
+      <ul class="category-guide-list">${list
+        .map((t) => `<li><a href="/${t.slug}/">${esc(t.name)}</a>: ${esc(t.lead)}</li>`)
+        .join('')}</ul>
+    </section>
+    ${
+      catPosts.length
+        ? `
+    <section class="related related-posts" aria-labelledby="related-posts-heading">
+      <h2 id="related-posts-heading">${esc(cat.label)}に関する解説記事</h2>
+      <div class="post-grid">${catPosts.map(postCard).join('')}</div>
+    </section>`
+        : ''
+    }
+    <section class="related" aria-labelledby="other-categories-heading">
+      <h2 id="other-categories-heading">ほかのカテゴリ</h2>
+      <div class="category-nav">${others
+        .map(
+          (c) =>
+            `<a class="category-chip" href="/category/${c.id}/"><span class="category-chip-name">${esc(c.label)}</span><span class="category-chip-count">${toolsByCategory(c.id).length}種類</span></a>`
+        )
+        .join('')}</div>
+    </section>
+  </div>`;
+
+  const updates = list.map((t) => t.updated).filter(Boolean).sort();
+  return {
+    meta: {
+      title: `${cat.label}ツール一覧（${list.length}種類・無料） - ${siteConfig.name}`,
+      description: `${cat.desc}を${list.length}種類まとめました。${list
+        .slice(0, 4)
+        .map((t) => t.name)
+        .join('、')}など、登録不要・無料でブラウザから使えます。`,
+      path: `/category/${id}`,
+      lastmod: updates[updates.length - 1],
+      ogType: 'website',
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: `${cat.label}ツール一覧`,
+          url: `${siteConfig.url}/category/${id}/`,
+          description: cat.intro,
+          inLanguage: 'ja',
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: list.map((t, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: t.name,
+              url: `${siteConfig.url}/${t.slug}/`,
+            })),
+          },
         },
         breadcrumbJsonLd(bc),
       ],
@@ -419,6 +630,7 @@ export function privacyPage() {
       title: `プライバシーポリシー - ${siteConfig.name}`,
       description: `${siteConfig.name}のプライバシーポリシー。入力データの取り扱い、Cookie、Google AdSenseによる広告配信について説明しています。`,
       path: '/privacy',
+      lastmod: '2026-10-20',
       ogType: 'website',
       jsonLd: [],
     },
@@ -466,6 +678,7 @@ export function termsPage() {
       title: `利用規約 - ${siteConfig.name}`,
       description: `${siteConfig.name}の利用規約。サービス内容、ツール出力の利用条件、禁止事項、免責事項について定めています。`,
       path: '/terms',
+      lastmod: '2026-07-09',
       ogType: 'website',
       jsonLd: [],
     },

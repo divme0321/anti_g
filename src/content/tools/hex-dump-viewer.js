@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'hex-dump-viewer',
+  updated: '2026-10-20',
   name: 'HEXダンプビューア',
   shortDesc: 'テキストやファイルの中身を16進数ダンプ表示',
   title: 'HEXダンプ 16進数 表示｜HEXダンプビューア - DevToolBox',

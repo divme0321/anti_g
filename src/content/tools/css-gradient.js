@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/table/code のみを使用し、style属性は使わないこと。
 export default {
   slug: 'css-gradient',
+  updated: '2026-08-06',
   name: 'CSSグラデーション生成',
   shortDesc: 'CSSグラデーションを視覚的に作成しコードを取得',
   title: 'CSSグラデーション生成｜無料オンラインツール - DevToolBox',

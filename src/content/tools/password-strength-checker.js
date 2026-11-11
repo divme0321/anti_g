@@ -3,6 +3,7 @@
 // article 内の HTML は h2/h3/p/ul/ol/li/table/thead/tbody/tr/th/td/code/strong/a のみを使用し、style属性は使わないこと。
 export default {
   slug: 'password-strength-checker',
+  updated: '2026-10-20',
   name: 'パスワード強度チェッカー',
   shortDesc: '入力したパスワードの強度をその場で診断できるツール',
   title: 'パスワード強度チェック｜無料オンライン診断ツール - DevToolBox',
