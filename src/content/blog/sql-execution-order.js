@@ -5,12 +5,12 @@ export default {
   slug: 'sql-execution-order',
   title: 'SQLの実行順序を理解する: SELECT文が評価される順番とWHERE・HAVINGの違い',
   description:
-    'SELECT文は書いた順ではなくFROMから評価されます。句ごとの評価順を表で整理し、WHEREで別名が使えない理由、WHEREとHAVINGの使い分け、LEFT JOINの条件をONとWHEREのどちらに書くかを例で解説します。',
+    'SELECT文は書いた順ではなくFROMから評価されます。句ごとの評価順を表で整理し、PostgreSQLでWHEREにSELECTの別名が使えない理由、WHEREとHAVINGの使い分け、LEFT JOINの条件をONとWHEREのどちらに書くかを例で解説します。',
   date: '2026-11-18',
   category: '入門ガイド',
   tags: ['SQL', 'データベース', 'デバッグ'],
   relatedTools: ['sql-formatter', 'diff-checker', 'csv-json-converter'],
-  body: `<p>「SELECTで付けた別名がWHEREで使えない」「集計した結果で絞り込みたいのにエラーになる」——SQLを書き始めた頃につまずくこうした問題の多くは、<strong>SELECT文が書いた順番どおりには評価されない</strong>ことを知ると説明がつきます。この記事では、句が評価される論理的な順序を整理し、その順序から説明できる代表的なエラーと書き方を取り上げます。</p>
+  body: `<p>「PostgreSQLでSELECTの別名がWHEREで使えない」「集計した結果で絞り込みたいのにエラーになる」——SQLを書き始めた頃につまずくこうした問題の多くは、<strong>SELECT文が書いた順番どおりには評価されない</strong>ことを知ると説明がつきます。この記事では、句が評価される論理的な順序を整理し、その順序から説明できる代表的なエラーと書き方を取り上げます。</p>
 
 <h2>書く順番と評価される順番</h2>
 <p>SELECT文は<code>SELECT</code>から書き始めますが、データベースが意味を解釈する順番は<code>FROM</code>からです。</p>
@@ -30,12 +30,12 @@ export default {
 <p>これは「結果がこの順で処理したのと同じになる」という<strong>論理的な順序</strong>です。実際の処理では、データベースのオプティマイザがインデックスや統計情報を見て、もっと効率のよい手順に組み替えます。実際にどう処理されるかは<code>EXPLAIN</code>で確認します。論理的な順序は「何が書けて何が書けないか」「結果がどうなるか」を理解するための道具だと考えてください。</p>
 <p>長いクエリは、句ごとに改行されているだけで順序を追いやすくなります。1行につながったSQLは<a href="/sql-formatter/">SQL整形ツール</a>で整えてから読むと楽です。</p>
 
-<h2>WHEREでSELECTの別名が使えない理由</h2>
-<p>次のクエリは、多くのデータベースでエラーになります。</p>
+<h2>PostgreSQLではなぜWHEREでSELECTの別名が使えないのか</h2>
+<p>次の例では、<code>order_items</code>に<code>total</code>という元の列がないものとします。PostgreSQLでは、同じ階層の<code>WHERE</code>から<code>SELECT</code>の出力列に付けた別名を参照できないので、エラーになります。</p>
 <pre><code>SELECT price * quantity AS total
 FROM order_items
 WHERE total &gt; 10000;   -- エラー: total という列はない</code></pre>
-<p><code>WHERE</code>は2番目、<code>SELECT</code>は5番目に評価されます。<code>WHERE</code>の時点では、まだ<code>total</code>という別名が存在しません。式をそのまま書くか、サブクエリやCTE（<code>WITH</code>句）で一段包みます。</p>
+<p>上の表のように、<code>WHERE</code>は<code>SELECT</code>より前に評価されると考えると分かりやすくなります。SQLiteでは独自の拡張としてこの例の別名を<code>WHERE</code>から参照できますが、移植性を保つなら、式をそのまま書くか、サブクエリやCTE（<code>WITH</code>句）で一段包みます。</p>
 <pre><code>-- 式をそのまま書く
 SELECT price * quantity AS total
 FROM order_items
@@ -130,7 +130,7 @@ LIMIT 20 OFFSET 40;</code></pre>
 <table>
 <thead><tr><th>症状</th><th>原因</th><th>対処</th></tr></thead>
 <tbody>
-<tr><td><code>WHERE</code>で別名が見つからない</td><td><code>WHERE</code>は<code>SELECT</code>より先に評価される</td><td>式を直接書くか、CTEで包む</td></tr>
+<tr><td><code>WHERE</code>で別名が見つからない</td><td>PostgreSQLでは同じ階層の<code>SELECT</code>の別名を参照できない</td><td>式を直接書くか、CTEで包む</td></tr>
 <tr><td><code>WHERE</code>に集計関数を書いてエラー</td><td>グループ化の前に評価される</td><td><code>HAVING</code>に書く</td></tr>
 <tr><td><code>GROUP BY</code>にない列を選んでエラー</td><td>グループ内で値が1つに決まらない</td><td>集計関数で選び方を明示する</td></tr>
 <tr><td><code>LEFT JOIN</code>なのに行が消える</td><td>右側の条件を<code>WHERE</code>に書いている</td><td>条件を<code>ON</code>に移す</td></tr>

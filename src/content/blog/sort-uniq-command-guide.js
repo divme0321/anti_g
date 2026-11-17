@@ -23,8 +23,8 @@ export default {
 <tr><td><code>-V</code></td><td>バージョン番号として比較する</td><td><code>sort -V versions.txt</code></td></tr>
 <tr><td><code>-u</code></td><td>重複した行を1つにする</td><td><code>sort -u file.txt</code></td></tr>
 <tr><td><code>-f</code></td><td>大文字と小文字を区別しない</td><td><code>sort -f names.txt</code></td></tr>
-<tr><td><code>-k</code></td><td>並べ替えの基準にする列を指定する</td><td><code>sort -k2 file.txt</code></td></tr>
-<tr><td><code>-t</code></td><td>列の区切り文字を指定する</td><td><code>sort -t, -k3 data.csv</code></td></tr>
+<tr><td><code>-k</code></td><td>並べ替えのキーにする列の範囲を指定する</td><td><code>sort -k2,2 file.txt</code></td></tr>
+<tr><td><code>-t</code></td><td>列の区切り文字を指定する</td><td><code>sort -t, -k3,3 data.csv</code></td></tr>
 <tr><td><code>-s</code></td><td>安定ソート（同順位の行は元の順序を保つ）</td><td><code>sort -s -k1,1 file.txt</code></td></tr>
 <tr><td><code>-o</code></td><td>結果をファイルに書き出す</td><td><code>sort -o file.txt file.txt</code></td></tr>
 <tr><td><code>-c</code></td><td>並べ替え済みかどうかを確認する</td><td><code>sort -c file.txt</code></td></tr>

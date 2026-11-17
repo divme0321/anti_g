@@ -95,14 +95,14 @@ export default {
 <table>
 <thead><tr><th>危険な書き方</th><th>安全な代替</th></tr></thead>
 <tbody>
-<tr><td><code>el.innerHTML = value</code></td><td><code>el.textContent = value</code></td></tr>
-<tr><td><code>el.insertAdjacentHTML('beforeend', value)</code></td><td><code>el.append(value)</code>（文字列はテキストとして追加される）</td></tr>
+<tr><td><code>el.innerHTML = value</code></td><td><code>el.textContent = value</code>（<code>div</code>・<code>p</code>など、テキスト表示用の要素に限る）</td></tr>
+<tr><td><code>el.insertAdjacentHTML('beforeend', value)</code></td><td><code>el.append(value)</code>（テキスト表示用の要素に文字列として追加する場合）</td></tr>
 <tr><td><code>document.write(value)</code></td><td>使わない</td></tr>
 <tr><td><code>el.setAttribute('href', value)</code></td><td>スキームを検証してから設定する</td></tr>
 <tr><td><code>eval(value)</code>、<code>setTimeout(文字列)</code></td><td>使わない。関数を渡す</td></tr>
 </tbody>
 </table>
-<p><code>textContent</code>は、渡した文字列をそのままテキストとして表示します。タグとして解釈されないため、エスケープを自分で行う必要がありません。フレームワークでは、Reactの<code>dangerouslySetInnerHTML</code>やVueの<code>v-html</code>が<code>innerHTML</code>に相当します。名前のとおり、信頼できない値には使いません。</p>
+<p><code>div</code>や<code>p</code>などのテキスト表示用の要素では、<code>textContent</code>で渡した文字列はHTMLタグとして解釈されません。信頼できない値を<code>script</code>や<code>style</code>に入れてはいけません。<code>textContent</code>や<code>append</code>を使っても、スクリプトやCSSの文脈を安全にできるわけではありません。フレームワークでは、Reactの<code>dangerouslySetInnerHTML</code>やVueの<code>v-html</code>が<code>innerHTML</code>に相当します。名前のとおり、信頼できない値には使いません。</p>
 
 <h2>HTMLをそのまま表示したい場合</h2>
 <p>ブログのコメント欄で装飾を許可する、Markdownを変換して表示する、といった場合は、タグを残したまま危険な部分だけを取り除く必要があります。この処理（サニタイズ）は、正規表現で自作すると抜け道が残ります。HTMLとして解析したうえで、許可したタグと属性だけを残す専用のライブラリ（DOMPurifyなど）を使ってください。Markdownの変換結果を確かめる際は、<a href="/markdown-preview/">Markdownプレビュー</a>のように生のHTMLを文字として表示する設定のものを選ぶと安全です。</p>
